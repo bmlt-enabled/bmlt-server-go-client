@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ValidationError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ValidationError{}
+
 // ValidationError struct for ValidationError
 type ValidationError struct {
 	Message string `json:"message"`
@@ -88,14 +91,18 @@ func (o *ValidationError) SetErrors(v map[string][]string) {
 }
 
 func (o ValidationError) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["message"] = o.Message
-	}
-	if true {
-		toSerialize["errors"] = o.Errors
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ValidationError) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["message"] = o.Message
+	toSerialize["errors"] = o.Errors
+	return toSerialize, nil
 }
 
 type NullableValidationError struct {

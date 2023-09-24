@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServiceBody type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServiceBody{}
+
 // ServiceBody struct for ServiceBody
 type ServiceBody struct {
 	ParentId int32 `json:"parentId"`
@@ -322,41 +325,27 @@ func (o *ServiceBody) SetId(v int32) {
 }
 
 func (o ServiceBody) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["parentId"] = o.ParentId
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["adminUserId"] = o.AdminUserId
-	}
-	if true {
-		toSerialize["assignedUserIds"] = o.AssignedUserIds
-	}
-	if true {
-		toSerialize["url"] = o.Url
-	}
-	if true {
-		toSerialize["helpline"] = o.Helpline
-	}
-	if true {
-		toSerialize["email"] = o.Email
-	}
-	if true {
-		toSerialize["worldId"] = o.WorldId
-	}
-	if true {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServiceBody) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["parentId"] = o.ParentId
+	toSerialize["name"] = o.Name
+	toSerialize["description"] = o.Description
+	toSerialize["type"] = o.Type
+	toSerialize["adminUserId"] = o.AdminUserId
+	toSerialize["assignedUserIds"] = o.AssignedUserIds
+	toSerialize["url"] = o.Url
+	toSerialize["helpline"] = o.Helpline
+	toSerialize["email"] = o.Email
+	toSerialize["worldId"] = o.WorldId
+	toSerialize["id"] = o.Id
+	return toSerialize, nil
 }
 
 type NullableServiceBody struct {

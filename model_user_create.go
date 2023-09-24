@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UserCreate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UserCreate{}
+
 // UserCreate struct for UserCreate
 type UserCreate struct {
 	Username string `json:"username"`
@@ -120,7 +123,7 @@ func (o *UserCreate) SetDisplayName(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *UserCreate) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -130,7 +133,7 @@ func (o *UserCreate) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreate) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -138,7 +141,7 @@ func (o *UserCreate) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *UserCreate) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -152,7 +155,7 @@ func (o *UserCreate) SetDescription(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *UserCreate) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -162,7 +165,7 @@ func (o *UserCreate) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreate) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -170,7 +173,7 @@ func (o *UserCreate) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *UserCreate) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -184,7 +187,7 @@ func (o *UserCreate) SetEmail(v string) {
 
 // GetOwnerId returns the OwnerId field value if set, zero value otherwise.
 func (o *UserCreate) GetOwnerId() string {
-	if o == nil || o.OwnerId == nil {
+	if o == nil || IsNil(o.OwnerId) {
 		var ret string
 		return ret
 	}
@@ -194,7 +197,7 @@ func (o *UserCreate) GetOwnerId() string {
 // GetOwnerIdOk returns a tuple with the OwnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserCreate) GetOwnerIdOk() (*string, bool) {
-	if o == nil || o.OwnerId == nil {
+	if o == nil || IsNil(o.OwnerId) {
 		return nil, false
 	}
 	return o.OwnerId, true
@@ -202,7 +205,7 @@ func (o *UserCreate) GetOwnerIdOk() (*string, bool) {
 
 // HasOwnerId returns a boolean if a field has been set.
 func (o *UserCreate) HasOwnerId() bool {
-	if o != nil && o.OwnerId != nil {
+	if o != nil && !IsNil(o.OwnerId) {
 		return true
 	}
 
@@ -239,29 +242,29 @@ func (o *UserCreate) SetPassword(v string) {
 }
 
 func (o UserCreate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["username"] = o.Username
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["displayName"] = o.DisplayName
-	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
-	if o.Email != nil {
-		toSerialize["email"] = o.Email
-	}
-	if o.OwnerId != nil {
-		toSerialize["ownerId"] = o.OwnerId
-	}
-	if true {
-		toSerialize["password"] = o.Password
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UserCreate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["username"] = o.Username
+	toSerialize["type"] = o.Type
+	toSerialize["displayName"] = o.DisplayName
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.OwnerId) {
+		toSerialize["ownerId"] = o.OwnerId
+	}
+	toSerialize["password"] = o.Password
+	return toSerialize, nil
 }
 
 type NullableUserCreate struct {

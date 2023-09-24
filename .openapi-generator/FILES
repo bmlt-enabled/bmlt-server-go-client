@@ -7,8 +7,9 @@ client.go
 configuration.go
 docs/AuthenticationError.md
 docs/AuthorizationError.md
+docs/ConflictError.md
+docs/ErrorTest.md
 docs/Format.md
-docs/FormatAllOf.md
 docs/FormatBase.md
 docs/FormatCreate.md
 docs/FormatPartialUpdate.md
@@ -20,7 +21,13 @@ docs/MeetingCreate.md
 docs/MeetingPartialUpdate.md
 docs/MeetingUpdate.md
 docs/NotFoundError.md
-docs/RootServerApi.md
+docs/RootServer.md
+docs/RootServerAPI.md
+docs/RootServerBase.md
+docs/RootServerBaseStatistics.md
+docs/RootServerBaseStatisticsMeetings.md
+docs/RootServerBaseStatisticsServiceBodies.md
+docs/ServerError.md
 docs/ServiceBody.md
 docs/ServiceBodyBase.md
 docs/ServiceBodyCreate.md
@@ -31,7 +38,6 @@ docs/TokenCredentials.md
 docs/User.md
 docs/UserBase.md
 docs/UserCreate.md
-docs/UserCreateAllOf.md
 docs/UserPartialUpdate.md
 docs/UserUpdate.md
 docs/ValidationError.md
@@ -40,8 +46,9 @@ go.mod
 go.sum
 model_authentication_error.go
 model_authorization_error.go
+model_conflict_error.go
+model_error_test_.go
 model_format.go
-model_format_all_of.go
 model_format_base.go
 model_format_create.go
 model_format_partial_update.go
@@ -53,6 +60,12 @@ model_meeting_create.go
 model_meeting_partial_update.go
 model_meeting_update.go
 model_not_found_error.go
+model_root_server.go
+model_root_server_base.go
+model_root_server_base_statistics.go
+model_root_server_base_statistics_meetings.go
+model_root_server_base_statistics_service_bodies.go
+model_server_error.go
 model_service_body.go
 model_service_body_base.go
 model_service_body_create.go
@@ -63,7 +76,6 @@ model_token_credentials.go
 model_user.go
 model_user_base.go
 model_user_create.go
-model_user_create_all_of.go
 model_user_partial_update.go
 model_user_update.go
 model_validation_error.go

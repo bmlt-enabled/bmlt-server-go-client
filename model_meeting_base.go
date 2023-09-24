@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the MeetingBase type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &MeetingBase{}
+
 // MeetingBase struct for MeetingBase
 type MeetingBase struct {
 	ServiceBodyId *int32 `json:"serviceBodyId,omitempty"`
@@ -73,7 +76,7 @@ func NewMeetingBaseWithDefaults() *MeetingBase {
 
 // GetServiceBodyId returns the ServiceBodyId field value if set, zero value otherwise.
 func (o *MeetingBase) GetServiceBodyId() int32 {
-	if o == nil || o.ServiceBodyId == nil {
+	if o == nil || IsNil(o.ServiceBodyId) {
 		var ret int32
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *MeetingBase) GetServiceBodyId() int32 {
 // GetServiceBodyIdOk returns a tuple with the ServiceBodyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetServiceBodyIdOk() (*int32, bool) {
-	if o == nil || o.ServiceBodyId == nil {
+	if o == nil || IsNil(o.ServiceBodyId) {
 		return nil, false
 	}
 	return o.ServiceBodyId, true
@@ -91,7 +94,7 @@ func (o *MeetingBase) GetServiceBodyIdOk() (*int32, bool) {
 
 // HasServiceBodyId returns a boolean if a field has been set.
 func (o *MeetingBase) HasServiceBodyId() bool {
-	if o != nil && o.ServiceBodyId != nil {
+	if o != nil && !IsNil(o.ServiceBodyId) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *MeetingBase) SetServiceBodyId(v int32) {
 
 // GetFormatIds returns the FormatIds field value if set, zero value otherwise.
 func (o *MeetingBase) GetFormatIds() []int32 {
-	if o == nil || o.FormatIds == nil {
+	if o == nil || IsNil(o.FormatIds) {
 		var ret []int32
 		return ret
 	}
@@ -115,7 +118,7 @@ func (o *MeetingBase) GetFormatIds() []int32 {
 // GetFormatIdsOk returns a tuple with the FormatIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetFormatIdsOk() ([]int32, bool) {
-	if o == nil || o.FormatIds == nil {
+	if o == nil || IsNil(o.FormatIds) {
 		return nil, false
 	}
 	return o.FormatIds, true
@@ -123,7 +126,7 @@ func (o *MeetingBase) GetFormatIdsOk() ([]int32, bool) {
 
 // HasFormatIds returns a boolean if a field has been set.
 func (o *MeetingBase) HasFormatIds() bool {
-	if o != nil && o.FormatIds != nil {
+	if o != nil && !IsNil(o.FormatIds) {
 		return true
 	}
 
@@ -137,7 +140,7 @@ func (o *MeetingBase) SetFormatIds(v []int32) {
 
 // GetVenueType returns the VenueType field value if set, zero value otherwise.
 func (o *MeetingBase) GetVenueType() int32 {
-	if o == nil || o.VenueType == nil {
+	if o == nil || IsNil(o.VenueType) {
 		var ret int32
 		return ret
 	}
@@ -147,7 +150,7 @@ func (o *MeetingBase) GetVenueType() int32 {
 // GetVenueTypeOk returns a tuple with the VenueType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetVenueTypeOk() (*int32, bool) {
-	if o == nil || o.VenueType == nil {
+	if o == nil || IsNil(o.VenueType) {
 		return nil, false
 	}
 	return o.VenueType, true
@@ -155,7 +158,7 @@ func (o *MeetingBase) GetVenueTypeOk() (*int32, bool) {
 
 // HasVenueType returns a boolean if a field has been set.
 func (o *MeetingBase) HasVenueType() bool {
-	if o != nil && o.VenueType != nil {
+	if o != nil && !IsNil(o.VenueType) {
 		return true
 	}
 
@@ -169,7 +172,7 @@ func (o *MeetingBase) SetVenueType(v int32) {
 
 // GetTemporarilyVirtual returns the TemporarilyVirtual field value if set, zero value otherwise.
 func (o *MeetingBase) GetTemporarilyVirtual() bool {
-	if o == nil || o.TemporarilyVirtual == nil {
+	if o == nil || IsNil(o.TemporarilyVirtual) {
 		var ret bool
 		return ret
 	}
@@ -179,7 +182,7 @@ func (o *MeetingBase) GetTemporarilyVirtual() bool {
 // GetTemporarilyVirtualOk returns a tuple with the TemporarilyVirtual field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetTemporarilyVirtualOk() (*bool, bool) {
-	if o == nil || o.TemporarilyVirtual == nil {
+	if o == nil || IsNil(o.TemporarilyVirtual) {
 		return nil, false
 	}
 	return o.TemporarilyVirtual, true
@@ -187,7 +190,7 @@ func (o *MeetingBase) GetTemporarilyVirtualOk() (*bool, bool) {
 
 // HasTemporarilyVirtual returns a boolean if a field has been set.
 func (o *MeetingBase) HasTemporarilyVirtual() bool {
-	if o != nil && o.TemporarilyVirtual != nil {
+	if o != nil && !IsNil(o.TemporarilyVirtual) {
 		return true
 	}
 
@@ -201,7 +204,7 @@ func (o *MeetingBase) SetTemporarilyVirtual(v bool) {
 
 // GetDay returns the Day field value if set, zero value otherwise.
 func (o *MeetingBase) GetDay() int32 {
-	if o == nil || o.Day == nil {
+	if o == nil || IsNil(o.Day) {
 		var ret int32
 		return ret
 	}
@@ -211,7 +214,7 @@ func (o *MeetingBase) GetDay() int32 {
 // GetDayOk returns a tuple with the Day field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetDayOk() (*int32, bool) {
-	if o == nil || o.Day == nil {
+	if o == nil || IsNil(o.Day) {
 		return nil, false
 	}
 	return o.Day, true
@@ -219,7 +222,7 @@ func (o *MeetingBase) GetDayOk() (*int32, bool) {
 
 // HasDay returns a boolean if a field has been set.
 func (o *MeetingBase) HasDay() bool {
-	if o != nil && o.Day != nil {
+	if o != nil && !IsNil(o.Day) {
 		return true
 	}
 
@@ -233,7 +236,7 @@ func (o *MeetingBase) SetDay(v int32) {
 
 // GetStartTime returns the StartTime field value if set, zero value otherwise.
 func (o *MeetingBase) GetStartTime() string {
-	if o == nil || o.StartTime == nil {
+	if o == nil || IsNil(o.StartTime) {
 		var ret string
 		return ret
 	}
@@ -243,7 +246,7 @@ func (o *MeetingBase) GetStartTime() string {
 // GetStartTimeOk returns a tuple with the StartTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetStartTimeOk() (*string, bool) {
-	if o == nil || o.StartTime == nil {
+	if o == nil || IsNil(o.StartTime) {
 		return nil, false
 	}
 	return o.StartTime, true
@@ -251,7 +254,7 @@ func (o *MeetingBase) GetStartTimeOk() (*string, bool) {
 
 // HasStartTime returns a boolean if a field has been set.
 func (o *MeetingBase) HasStartTime() bool {
-	if o != nil && o.StartTime != nil {
+	if o != nil && !IsNil(o.StartTime) {
 		return true
 	}
 
@@ -265,7 +268,7 @@ func (o *MeetingBase) SetStartTime(v string) {
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *MeetingBase) GetDuration() string {
-	if o == nil || o.Duration == nil {
+	if o == nil || IsNil(o.Duration) {
 		var ret string
 		return ret
 	}
@@ -275,7 +278,7 @@ func (o *MeetingBase) GetDuration() string {
 // GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetDurationOk() (*string, bool) {
-	if o == nil || o.Duration == nil {
+	if o == nil || IsNil(o.Duration) {
 		return nil, false
 	}
 	return o.Duration, true
@@ -283,7 +286,7 @@ func (o *MeetingBase) GetDurationOk() (*string, bool) {
 
 // HasDuration returns a boolean if a field has been set.
 func (o *MeetingBase) HasDuration() bool {
-	if o != nil && o.Duration != nil {
+	if o != nil && !IsNil(o.Duration) {
 		return true
 	}
 
@@ -297,7 +300,7 @@ func (o *MeetingBase) SetDuration(v string) {
 
 // GetTimeZone returns the TimeZone field value if set, zero value otherwise.
 func (o *MeetingBase) GetTimeZone() string {
-	if o == nil || o.TimeZone == nil {
+	if o == nil || IsNil(o.TimeZone) {
 		var ret string
 		return ret
 	}
@@ -307,7 +310,7 @@ func (o *MeetingBase) GetTimeZone() string {
 // GetTimeZoneOk returns a tuple with the TimeZone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetTimeZoneOk() (*string, bool) {
-	if o == nil || o.TimeZone == nil {
+	if o == nil || IsNil(o.TimeZone) {
 		return nil, false
 	}
 	return o.TimeZone, true
@@ -315,7 +318,7 @@ func (o *MeetingBase) GetTimeZoneOk() (*string, bool) {
 
 // HasTimeZone returns a boolean if a field has been set.
 func (o *MeetingBase) HasTimeZone() bool {
-	if o != nil && o.TimeZone != nil {
+	if o != nil && !IsNil(o.TimeZone) {
 		return true
 	}
 
@@ -329,7 +332,7 @@ func (o *MeetingBase) SetTimeZone(v string) {
 
 // GetLatitude returns the Latitude field value if set, zero value otherwise.
 func (o *MeetingBase) GetLatitude() float32 {
-	if o == nil || o.Latitude == nil {
+	if o == nil || IsNil(o.Latitude) {
 		var ret float32
 		return ret
 	}
@@ -339,7 +342,7 @@ func (o *MeetingBase) GetLatitude() float32 {
 // GetLatitudeOk returns a tuple with the Latitude field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetLatitudeOk() (*float32, bool) {
-	if o == nil || o.Latitude == nil {
+	if o == nil || IsNil(o.Latitude) {
 		return nil, false
 	}
 	return o.Latitude, true
@@ -347,7 +350,7 @@ func (o *MeetingBase) GetLatitudeOk() (*float32, bool) {
 
 // HasLatitude returns a boolean if a field has been set.
 func (o *MeetingBase) HasLatitude() bool {
-	if o != nil && o.Latitude != nil {
+	if o != nil && !IsNil(o.Latitude) {
 		return true
 	}
 
@@ -361,7 +364,7 @@ func (o *MeetingBase) SetLatitude(v float32) {
 
 // GetLongitude returns the Longitude field value if set, zero value otherwise.
 func (o *MeetingBase) GetLongitude() float32 {
-	if o == nil || o.Longitude == nil {
+	if o == nil || IsNil(o.Longitude) {
 		var ret float32
 		return ret
 	}
@@ -371,7 +374,7 @@ func (o *MeetingBase) GetLongitude() float32 {
 // GetLongitudeOk returns a tuple with the Longitude field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetLongitudeOk() (*float32, bool) {
-	if o == nil || o.Longitude == nil {
+	if o == nil || IsNil(o.Longitude) {
 		return nil, false
 	}
 	return o.Longitude, true
@@ -379,7 +382,7 @@ func (o *MeetingBase) GetLongitudeOk() (*float32, bool) {
 
 // HasLongitude returns a boolean if a field has been set.
 func (o *MeetingBase) HasLongitude() bool {
-	if o != nil && o.Longitude != nil {
+	if o != nil && !IsNil(o.Longitude) {
 		return true
 	}
 
@@ -393,7 +396,7 @@ func (o *MeetingBase) SetLongitude(v float32) {
 
 // GetPublished returns the Published field value if set, zero value otherwise.
 func (o *MeetingBase) GetPublished() bool {
-	if o == nil || o.Published == nil {
+	if o == nil || IsNil(o.Published) {
 		var ret bool
 		return ret
 	}
@@ -403,7 +406,7 @@ func (o *MeetingBase) GetPublished() bool {
 // GetPublishedOk returns a tuple with the Published field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetPublishedOk() (*bool, bool) {
-	if o == nil || o.Published == nil {
+	if o == nil || IsNil(o.Published) {
 		return nil, false
 	}
 	return o.Published, true
@@ -411,7 +414,7 @@ func (o *MeetingBase) GetPublishedOk() (*bool, bool) {
 
 // HasPublished returns a boolean if a field has been set.
 func (o *MeetingBase) HasPublished() bool {
-	if o != nil && o.Published != nil {
+	if o != nil && !IsNil(o.Published) {
 		return true
 	}
 
@@ -425,7 +428,7 @@ func (o *MeetingBase) SetPublished(v bool) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *MeetingBase) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -435,7 +438,7 @@ func (o *MeetingBase) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -443,7 +446,7 @@ func (o *MeetingBase) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *MeetingBase) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -457,7 +460,7 @@ func (o *MeetingBase) SetEmail(v string) {
 
 // GetWorldId returns the WorldId field value if set, zero value otherwise.
 func (o *MeetingBase) GetWorldId() string {
-	if o == nil || o.WorldId == nil {
+	if o == nil || IsNil(o.WorldId) {
 		var ret string
 		return ret
 	}
@@ -467,7 +470,7 @@ func (o *MeetingBase) GetWorldId() string {
 // GetWorldIdOk returns a tuple with the WorldId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetWorldIdOk() (*string, bool) {
-	if o == nil || o.WorldId == nil {
+	if o == nil || IsNil(o.WorldId) {
 		return nil, false
 	}
 	return o.WorldId, true
@@ -475,7 +478,7 @@ func (o *MeetingBase) GetWorldIdOk() (*string, bool) {
 
 // HasWorldId returns a boolean if a field has been set.
 func (o *MeetingBase) HasWorldId() bool {
-	if o != nil && o.WorldId != nil {
+	if o != nil && !IsNil(o.WorldId) {
 		return true
 	}
 
@@ -489,7 +492,7 @@ func (o *MeetingBase) SetWorldId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MeetingBase) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -499,7 +502,7 @@ func (o *MeetingBase) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -507,7 +510,7 @@ func (o *MeetingBase) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *MeetingBase) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -521,7 +524,7 @@ func (o *MeetingBase) SetName(v string) {
 
 // GetLocationText returns the LocationText field value if set, zero value otherwise.
 func (o *MeetingBase) GetLocationText() string {
-	if o == nil || o.LocationText == nil {
+	if o == nil || IsNil(o.LocationText) {
 		var ret string
 		return ret
 	}
@@ -531,7 +534,7 @@ func (o *MeetingBase) GetLocationText() string {
 // GetLocationTextOk returns a tuple with the LocationText field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetLocationTextOk() (*string, bool) {
-	if o == nil || o.LocationText == nil {
+	if o == nil || IsNil(o.LocationText) {
 		return nil, false
 	}
 	return o.LocationText, true
@@ -539,7 +542,7 @@ func (o *MeetingBase) GetLocationTextOk() (*string, bool) {
 
 // HasLocationText returns a boolean if a field has been set.
 func (o *MeetingBase) HasLocationText() bool {
-	if o != nil && o.LocationText != nil {
+	if o != nil && !IsNil(o.LocationText) {
 		return true
 	}
 
@@ -553,7 +556,7 @@ func (o *MeetingBase) SetLocationText(v string) {
 
 // GetLocationInfo returns the LocationInfo field value if set, zero value otherwise.
 func (o *MeetingBase) GetLocationInfo() string {
-	if o == nil || o.LocationInfo == nil {
+	if o == nil || IsNil(o.LocationInfo) {
 		var ret string
 		return ret
 	}
@@ -563,7 +566,7 @@ func (o *MeetingBase) GetLocationInfo() string {
 // GetLocationInfoOk returns a tuple with the LocationInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetLocationInfoOk() (*string, bool) {
-	if o == nil || o.LocationInfo == nil {
+	if o == nil || IsNil(o.LocationInfo) {
 		return nil, false
 	}
 	return o.LocationInfo, true
@@ -571,7 +574,7 @@ func (o *MeetingBase) GetLocationInfoOk() (*string, bool) {
 
 // HasLocationInfo returns a boolean if a field has been set.
 func (o *MeetingBase) HasLocationInfo() bool {
-	if o != nil && o.LocationInfo != nil {
+	if o != nil && !IsNil(o.LocationInfo) {
 		return true
 	}
 
@@ -585,7 +588,7 @@ func (o *MeetingBase) SetLocationInfo(v string) {
 
 // GetLocationStreet returns the LocationStreet field value if set, zero value otherwise.
 func (o *MeetingBase) GetLocationStreet() string {
-	if o == nil || o.LocationStreet == nil {
+	if o == nil || IsNil(o.LocationStreet) {
 		var ret string
 		return ret
 	}
@@ -595,7 +598,7 @@ func (o *MeetingBase) GetLocationStreet() string {
 // GetLocationStreetOk returns a tuple with the LocationStreet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetLocationStreetOk() (*string, bool) {
-	if o == nil || o.LocationStreet == nil {
+	if o == nil || IsNil(o.LocationStreet) {
 		return nil, false
 	}
 	return o.LocationStreet, true
@@ -603,7 +606,7 @@ func (o *MeetingBase) GetLocationStreetOk() (*string, bool) {
 
 // HasLocationStreet returns a boolean if a field has been set.
 func (o *MeetingBase) HasLocationStreet() bool {
-	if o != nil && o.LocationStreet != nil {
+	if o != nil && !IsNil(o.LocationStreet) {
 		return true
 	}
 
@@ -617,7 +620,7 @@ func (o *MeetingBase) SetLocationStreet(v string) {
 
 // GetLocationNeighborhood returns the LocationNeighborhood field value if set, zero value otherwise.
 func (o *MeetingBase) GetLocationNeighborhood() string {
-	if o == nil || o.LocationNeighborhood == nil {
+	if o == nil || IsNil(o.LocationNeighborhood) {
 		var ret string
 		return ret
 	}
@@ -627,7 +630,7 @@ func (o *MeetingBase) GetLocationNeighborhood() string {
 // GetLocationNeighborhoodOk returns a tuple with the LocationNeighborhood field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetLocationNeighborhoodOk() (*string, bool) {
-	if o == nil || o.LocationNeighborhood == nil {
+	if o == nil || IsNil(o.LocationNeighborhood) {
 		return nil, false
 	}
 	return o.LocationNeighborhood, true
@@ -635,7 +638,7 @@ func (o *MeetingBase) GetLocationNeighborhoodOk() (*string, bool) {
 
 // HasLocationNeighborhood returns a boolean if a field has been set.
 func (o *MeetingBase) HasLocationNeighborhood() bool {
-	if o != nil && o.LocationNeighborhood != nil {
+	if o != nil && !IsNil(o.LocationNeighborhood) {
 		return true
 	}
 
@@ -649,7 +652,7 @@ func (o *MeetingBase) SetLocationNeighborhood(v string) {
 
 // GetLocationCitySubsection returns the LocationCitySubsection field value if set, zero value otherwise.
 func (o *MeetingBase) GetLocationCitySubsection() string {
-	if o == nil || o.LocationCitySubsection == nil {
+	if o == nil || IsNil(o.LocationCitySubsection) {
 		var ret string
 		return ret
 	}
@@ -659,7 +662,7 @@ func (o *MeetingBase) GetLocationCitySubsection() string {
 // GetLocationCitySubsectionOk returns a tuple with the LocationCitySubsection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetLocationCitySubsectionOk() (*string, bool) {
-	if o == nil || o.LocationCitySubsection == nil {
+	if o == nil || IsNil(o.LocationCitySubsection) {
 		return nil, false
 	}
 	return o.LocationCitySubsection, true
@@ -667,7 +670,7 @@ func (o *MeetingBase) GetLocationCitySubsectionOk() (*string, bool) {
 
 // HasLocationCitySubsection returns a boolean if a field has been set.
 func (o *MeetingBase) HasLocationCitySubsection() bool {
-	if o != nil && o.LocationCitySubsection != nil {
+	if o != nil && !IsNil(o.LocationCitySubsection) {
 		return true
 	}
 
@@ -681,7 +684,7 @@ func (o *MeetingBase) SetLocationCitySubsection(v string) {
 
 // GetLocationMunicipality returns the LocationMunicipality field value if set, zero value otherwise.
 func (o *MeetingBase) GetLocationMunicipality() string {
-	if o == nil || o.LocationMunicipality == nil {
+	if o == nil || IsNil(o.LocationMunicipality) {
 		var ret string
 		return ret
 	}
@@ -691,7 +694,7 @@ func (o *MeetingBase) GetLocationMunicipality() string {
 // GetLocationMunicipalityOk returns a tuple with the LocationMunicipality field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetLocationMunicipalityOk() (*string, bool) {
-	if o == nil || o.LocationMunicipality == nil {
+	if o == nil || IsNil(o.LocationMunicipality) {
 		return nil, false
 	}
 	return o.LocationMunicipality, true
@@ -699,7 +702,7 @@ func (o *MeetingBase) GetLocationMunicipalityOk() (*string, bool) {
 
 // HasLocationMunicipality returns a boolean if a field has been set.
 func (o *MeetingBase) HasLocationMunicipality() bool {
-	if o != nil && o.LocationMunicipality != nil {
+	if o != nil && !IsNil(o.LocationMunicipality) {
 		return true
 	}
 
@@ -713,7 +716,7 @@ func (o *MeetingBase) SetLocationMunicipality(v string) {
 
 // GetLocationSubProvince returns the LocationSubProvince field value if set, zero value otherwise.
 func (o *MeetingBase) GetLocationSubProvince() string {
-	if o == nil || o.LocationSubProvince == nil {
+	if o == nil || IsNil(o.LocationSubProvince) {
 		var ret string
 		return ret
 	}
@@ -723,7 +726,7 @@ func (o *MeetingBase) GetLocationSubProvince() string {
 // GetLocationSubProvinceOk returns a tuple with the LocationSubProvince field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetLocationSubProvinceOk() (*string, bool) {
-	if o == nil || o.LocationSubProvince == nil {
+	if o == nil || IsNil(o.LocationSubProvince) {
 		return nil, false
 	}
 	return o.LocationSubProvince, true
@@ -731,7 +734,7 @@ func (o *MeetingBase) GetLocationSubProvinceOk() (*string, bool) {
 
 // HasLocationSubProvince returns a boolean if a field has been set.
 func (o *MeetingBase) HasLocationSubProvince() bool {
-	if o != nil && o.LocationSubProvince != nil {
+	if o != nil && !IsNil(o.LocationSubProvince) {
 		return true
 	}
 
@@ -745,7 +748,7 @@ func (o *MeetingBase) SetLocationSubProvince(v string) {
 
 // GetLocationProvince returns the LocationProvince field value if set, zero value otherwise.
 func (o *MeetingBase) GetLocationProvince() string {
-	if o == nil || o.LocationProvince == nil {
+	if o == nil || IsNil(o.LocationProvince) {
 		var ret string
 		return ret
 	}
@@ -755,7 +758,7 @@ func (o *MeetingBase) GetLocationProvince() string {
 // GetLocationProvinceOk returns a tuple with the LocationProvince field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetLocationProvinceOk() (*string, bool) {
-	if o == nil || o.LocationProvince == nil {
+	if o == nil || IsNil(o.LocationProvince) {
 		return nil, false
 	}
 	return o.LocationProvince, true
@@ -763,7 +766,7 @@ func (o *MeetingBase) GetLocationProvinceOk() (*string, bool) {
 
 // HasLocationProvince returns a boolean if a field has been set.
 func (o *MeetingBase) HasLocationProvince() bool {
-	if o != nil && o.LocationProvince != nil {
+	if o != nil && !IsNil(o.LocationProvince) {
 		return true
 	}
 
@@ -777,7 +780,7 @@ func (o *MeetingBase) SetLocationProvince(v string) {
 
 // GetLocationPostalCode1 returns the LocationPostalCode1 field value if set, zero value otherwise.
 func (o *MeetingBase) GetLocationPostalCode1() string {
-	if o == nil || o.LocationPostalCode1 == nil {
+	if o == nil || IsNil(o.LocationPostalCode1) {
 		var ret string
 		return ret
 	}
@@ -787,7 +790,7 @@ func (o *MeetingBase) GetLocationPostalCode1() string {
 // GetLocationPostalCode1Ok returns a tuple with the LocationPostalCode1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetLocationPostalCode1Ok() (*string, bool) {
-	if o == nil || o.LocationPostalCode1 == nil {
+	if o == nil || IsNil(o.LocationPostalCode1) {
 		return nil, false
 	}
 	return o.LocationPostalCode1, true
@@ -795,7 +798,7 @@ func (o *MeetingBase) GetLocationPostalCode1Ok() (*string, bool) {
 
 // HasLocationPostalCode1 returns a boolean if a field has been set.
 func (o *MeetingBase) HasLocationPostalCode1() bool {
-	if o != nil && o.LocationPostalCode1 != nil {
+	if o != nil && !IsNil(o.LocationPostalCode1) {
 		return true
 	}
 
@@ -809,7 +812,7 @@ func (o *MeetingBase) SetLocationPostalCode1(v string) {
 
 // GetLocationNation returns the LocationNation field value if set, zero value otherwise.
 func (o *MeetingBase) GetLocationNation() string {
-	if o == nil || o.LocationNation == nil {
+	if o == nil || IsNil(o.LocationNation) {
 		var ret string
 		return ret
 	}
@@ -819,7 +822,7 @@ func (o *MeetingBase) GetLocationNation() string {
 // GetLocationNationOk returns a tuple with the LocationNation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetLocationNationOk() (*string, bool) {
-	if o == nil || o.LocationNation == nil {
+	if o == nil || IsNil(o.LocationNation) {
 		return nil, false
 	}
 	return o.LocationNation, true
@@ -827,7 +830,7 @@ func (o *MeetingBase) GetLocationNationOk() (*string, bool) {
 
 // HasLocationNation returns a boolean if a field has been set.
 func (o *MeetingBase) HasLocationNation() bool {
-	if o != nil && o.LocationNation != nil {
+	if o != nil && !IsNil(o.LocationNation) {
 		return true
 	}
 
@@ -841,7 +844,7 @@ func (o *MeetingBase) SetLocationNation(v string) {
 
 // GetPhoneMeetingNumber returns the PhoneMeetingNumber field value if set, zero value otherwise.
 func (o *MeetingBase) GetPhoneMeetingNumber() string {
-	if o == nil || o.PhoneMeetingNumber == nil {
+	if o == nil || IsNil(o.PhoneMeetingNumber) {
 		var ret string
 		return ret
 	}
@@ -851,7 +854,7 @@ func (o *MeetingBase) GetPhoneMeetingNumber() string {
 // GetPhoneMeetingNumberOk returns a tuple with the PhoneMeetingNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetPhoneMeetingNumberOk() (*string, bool) {
-	if o == nil || o.PhoneMeetingNumber == nil {
+	if o == nil || IsNil(o.PhoneMeetingNumber) {
 		return nil, false
 	}
 	return o.PhoneMeetingNumber, true
@@ -859,7 +862,7 @@ func (o *MeetingBase) GetPhoneMeetingNumberOk() (*string, bool) {
 
 // HasPhoneMeetingNumber returns a boolean if a field has been set.
 func (o *MeetingBase) HasPhoneMeetingNumber() bool {
-	if o != nil && o.PhoneMeetingNumber != nil {
+	if o != nil && !IsNil(o.PhoneMeetingNumber) {
 		return true
 	}
 
@@ -873,7 +876,7 @@ func (o *MeetingBase) SetPhoneMeetingNumber(v string) {
 
 // GetVirtualMeetingLink returns the VirtualMeetingLink field value if set, zero value otherwise.
 func (o *MeetingBase) GetVirtualMeetingLink() string {
-	if o == nil || o.VirtualMeetingLink == nil {
+	if o == nil || IsNil(o.VirtualMeetingLink) {
 		var ret string
 		return ret
 	}
@@ -883,7 +886,7 @@ func (o *MeetingBase) GetVirtualMeetingLink() string {
 // GetVirtualMeetingLinkOk returns a tuple with the VirtualMeetingLink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetVirtualMeetingLinkOk() (*string, bool) {
-	if o == nil || o.VirtualMeetingLink == nil {
+	if o == nil || IsNil(o.VirtualMeetingLink) {
 		return nil, false
 	}
 	return o.VirtualMeetingLink, true
@@ -891,7 +894,7 @@ func (o *MeetingBase) GetVirtualMeetingLinkOk() (*string, bool) {
 
 // HasVirtualMeetingLink returns a boolean if a field has been set.
 func (o *MeetingBase) HasVirtualMeetingLink() bool {
-	if o != nil && o.VirtualMeetingLink != nil {
+	if o != nil && !IsNil(o.VirtualMeetingLink) {
 		return true
 	}
 
@@ -905,7 +908,7 @@ func (o *MeetingBase) SetVirtualMeetingLink(v string) {
 
 // GetVirtualMeetingAdditionalInfo returns the VirtualMeetingAdditionalInfo field value if set, zero value otherwise.
 func (o *MeetingBase) GetVirtualMeetingAdditionalInfo() string {
-	if o == nil || o.VirtualMeetingAdditionalInfo == nil {
+	if o == nil || IsNil(o.VirtualMeetingAdditionalInfo) {
 		var ret string
 		return ret
 	}
@@ -915,7 +918,7 @@ func (o *MeetingBase) GetVirtualMeetingAdditionalInfo() string {
 // GetVirtualMeetingAdditionalInfoOk returns a tuple with the VirtualMeetingAdditionalInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetVirtualMeetingAdditionalInfoOk() (*string, bool) {
-	if o == nil || o.VirtualMeetingAdditionalInfo == nil {
+	if o == nil || IsNil(o.VirtualMeetingAdditionalInfo) {
 		return nil, false
 	}
 	return o.VirtualMeetingAdditionalInfo, true
@@ -923,7 +926,7 @@ func (o *MeetingBase) GetVirtualMeetingAdditionalInfoOk() (*string, bool) {
 
 // HasVirtualMeetingAdditionalInfo returns a boolean if a field has been set.
 func (o *MeetingBase) HasVirtualMeetingAdditionalInfo() bool {
-	if o != nil && o.VirtualMeetingAdditionalInfo != nil {
+	if o != nil && !IsNil(o.VirtualMeetingAdditionalInfo) {
 		return true
 	}
 
@@ -937,7 +940,7 @@ func (o *MeetingBase) SetVirtualMeetingAdditionalInfo(v string) {
 
 // GetContactName1 returns the ContactName1 field value if set, zero value otherwise.
 func (o *MeetingBase) GetContactName1() string {
-	if o == nil || o.ContactName1 == nil {
+	if o == nil || IsNil(o.ContactName1) {
 		var ret string
 		return ret
 	}
@@ -947,7 +950,7 @@ func (o *MeetingBase) GetContactName1() string {
 // GetContactName1Ok returns a tuple with the ContactName1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetContactName1Ok() (*string, bool) {
-	if o == nil || o.ContactName1 == nil {
+	if o == nil || IsNil(o.ContactName1) {
 		return nil, false
 	}
 	return o.ContactName1, true
@@ -955,7 +958,7 @@ func (o *MeetingBase) GetContactName1Ok() (*string, bool) {
 
 // HasContactName1 returns a boolean if a field has been set.
 func (o *MeetingBase) HasContactName1() bool {
-	if o != nil && o.ContactName1 != nil {
+	if o != nil && !IsNil(o.ContactName1) {
 		return true
 	}
 
@@ -969,7 +972,7 @@ func (o *MeetingBase) SetContactName1(v string) {
 
 // GetContactName2 returns the ContactName2 field value if set, zero value otherwise.
 func (o *MeetingBase) GetContactName2() string {
-	if o == nil || o.ContactName2 == nil {
+	if o == nil || IsNil(o.ContactName2) {
 		var ret string
 		return ret
 	}
@@ -979,7 +982,7 @@ func (o *MeetingBase) GetContactName2() string {
 // GetContactName2Ok returns a tuple with the ContactName2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetContactName2Ok() (*string, bool) {
-	if o == nil || o.ContactName2 == nil {
+	if o == nil || IsNil(o.ContactName2) {
 		return nil, false
 	}
 	return o.ContactName2, true
@@ -987,7 +990,7 @@ func (o *MeetingBase) GetContactName2Ok() (*string, bool) {
 
 // HasContactName2 returns a boolean if a field has been set.
 func (o *MeetingBase) HasContactName2() bool {
-	if o != nil && o.ContactName2 != nil {
+	if o != nil && !IsNil(o.ContactName2) {
 		return true
 	}
 
@@ -1001,7 +1004,7 @@ func (o *MeetingBase) SetContactName2(v string) {
 
 // GetContactPhone1 returns the ContactPhone1 field value if set, zero value otherwise.
 func (o *MeetingBase) GetContactPhone1() string {
-	if o == nil || o.ContactPhone1 == nil {
+	if o == nil || IsNil(o.ContactPhone1) {
 		var ret string
 		return ret
 	}
@@ -1011,7 +1014,7 @@ func (o *MeetingBase) GetContactPhone1() string {
 // GetContactPhone1Ok returns a tuple with the ContactPhone1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetContactPhone1Ok() (*string, bool) {
-	if o == nil || o.ContactPhone1 == nil {
+	if o == nil || IsNil(o.ContactPhone1) {
 		return nil, false
 	}
 	return o.ContactPhone1, true
@@ -1019,7 +1022,7 @@ func (o *MeetingBase) GetContactPhone1Ok() (*string, bool) {
 
 // HasContactPhone1 returns a boolean if a field has been set.
 func (o *MeetingBase) HasContactPhone1() bool {
-	if o != nil && o.ContactPhone1 != nil {
+	if o != nil && !IsNil(o.ContactPhone1) {
 		return true
 	}
 
@@ -1033,7 +1036,7 @@ func (o *MeetingBase) SetContactPhone1(v string) {
 
 // GetContactPhone2 returns the ContactPhone2 field value if set, zero value otherwise.
 func (o *MeetingBase) GetContactPhone2() string {
-	if o == nil || o.ContactPhone2 == nil {
+	if o == nil || IsNil(o.ContactPhone2) {
 		var ret string
 		return ret
 	}
@@ -1043,7 +1046,7 @@ func (o *MeetingBase) GetContactPhone2() string {
 // GetContactPhone2Ok returns a tuple with the ContactPhone2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetContactPhone2Ok() (*string, bool) {
-	if o == nil || o.ContactPhone2 == nil {
+	if o == nil || IsNil(o.ContactPhone2) {
 		return nil, false
 	}
 	return o.ContactPhone2, true
@@ -1051,7 +1054,7 @@ func (o *MeetingBase) GetContactPhone2Ok() (*string, bool) {
 
 // HasContactPhone2 returns a boolean if a field has been set.
 func (o *MeetingBase) HasContactPhone2() bool {
-	if o != nil && o.ContactPhone2 != nil {
+	if o != nil && !IsNil(o.ContactPhone2) {
 		return true
 	}
 
@@ -1065,7 +1068,7 @@ func (o *MeetingBase) SetContactPhone2(v string) {
 
 // GetContactEmail1 returns the ContactEmail1 field value if set, zero value otherwise.
 func (o *MeetingBase) GetContactEmail1() string {
-	if o == nil || o.ContactEmail1 == nil {
+	if o == nil || IsNil(o.ContactEmail1) {
 		var ret string
 		return ret
 	}
@@ -1075,7 +1078,7 @@ func (o *MeetingBase) GetContactEmail1() string {
 // GetContactEmail1Ok returns a tuple with the ContactEmail1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetContactEmail1Ok() (*string, bool) {
-	if o == nil || o.ContactEmail1 == nil {
+	if o == nil || IsNil(o.ContactEmail1) {
 		return nil, false
 	}
 	return o.ContactEmail1, true
@@ -1083,7 +1086,7 @@ func (o *MeetingBase) GetContactEmail1Ok() (*string, bool) {
 
 // HasContactEmail1 returns a boolean if a field has been set.
 func (o *MeetingBase) HasContactEmail1() bool {
-	if o != nil && o.ContactEmail1 != nil {
+	if o != nil && !IsNil(o.ContactEmail1) {
 		return true
 	}
 
@@ -1097,7 +1100,7 @@ func (o *MeetingBase) SetContactEmail1(v string) {
 
 // GetContactEmail2 returns the ContactEmail2 field value if set, zero value otherwise.
 func (o *MeetingBase) GetContactEmail2() string {
-	if o == nil || o.ContactEmail2 == nil {
+	if o == nil || IsNil(o.ContactEmail2) {
 		var ret string
 		return ret
 	}
@@ -1107,7 +1110,7 @@ func (o *MeetingBase) GetContactEmail2() string {
 // GetContactEmail2Ok returns a tuple with the ContactEmail2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetContactEmail2Ok() (*string, bool) {
-	if o == nil || o.ContactEmail2 == nil {
+	if o == nil || IsNil(o.ContactEmail2) {
 		return nil, false
 	}
 	return o.ContactEmail2, true
@@ -1115,7 +1118,7 @@ func (o *MeetingBase) GetContactEmail2Ok() (*string, bool) {
 
 // HasContactEmail2 returns a boolean if a field has been set.
 func (o *MeetingBase) HasContactEmail2() bool {
-	if o != nil && o.ContactEmail2 != nil {
+	if o != nil && !IsNil(o.ContactEmail2) {
 		return true
 	}
 
@@ -1129,7 +1132,7 @@ func (o *MeetingBase) SetContactEmail2(v string) {
 
 // GetBusLines returns the BusLines field value if set, zero value otherwise.
 func (o *MeetingBase) GetBusLines() string {
-	if o == nil || o.BusLines == nil {
+	if o == nil || IsNil(o.BusLines) {
 		var ret string
 		return ret
 	}
@@ -1139,7 +1142,7 @@ func (o *MeetingBase) GetBusLines() string {
 // GetBusLinesOk returns a tuple with the BusLines field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetBusLinesOk() (*string, bool) {
-	if o == nil || o.BusLines == nil {
+	if o == nil || IsNil(o.BusLines) {
 		return nil, false
 	}
 	return o.BusLines, true
@@ -1147,7 +1150,7 @@ func (o *MeetingBase) GetBusLinesOk() (*string, bool) {
 
 // HasBusLines returns a boolean if a field has been set.
 func (o *MeetingBase) HasBusLines() bool {
-	if o != nil && o.BusLines != nil {
+	if o != nil && !IsNil(o.BusLines) {
 		return true
 	}
 
@@ -1161,7 +1164,7 @@ func (o *MeetingBase) SetBusLines(v string) {
 
 // GetTrainLine returns the TrainLine field value if set, zero value otherwise.
 func (o *MeetingBase) GetTrainLine() string {
-	if o == nil || o.TrainLine == nil {
+	if o == nil || IsNil(o.TrainLine) {
 		var ret string
 		return ret
 	}
@@ -1171,7 +1174,7 @@ func (o *MeetingBase) GetTrainLine() string {
 // GetTrainLineOk returns a tuple with the TrainLine field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetTrainLineOk() (*string, bool) {
-	if o == nil || o.TrainLine == nil {
+	if o == nil || IsNil(o.TrainLine) {
 		return nil, false
 	}
 	return o.TrainLine, true
@@ -1179,7 +1182,7 @@ func (o *MeetingBase) GetTrainLineOk() (*string, bool) {
 
 // HasTrainLine returns a boolean if a field has been set.
 func (o *MeetingBase) HasTrainLine() bool {
-	if o != nil && o.TrainLine != nil {
+	if o != nil && !IsNil(o.TrainLine) {
 		return true
 	}
 
@@ -1193,7 +1196,7 @@ func (o *MeetingBase) SetTrainLine(v string) {
 
 // GetComments returns the Comments field value if set, zero value otherwise.
 func (o *MeetingBase) GetComments() string {
-	if o == nil || o.Comments == nil {
+	if o == nil || IsNil(o.Comments) {
 		var ret string
 		return ret
 	}
@@ -1203,7 +1206,7 @@ func (o *MeetingBase) GetComments() string {
 // GetCommentsOk returns a tuple with the Comments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingBase) GetCommentsOk() (*string, bool) {
-	if o == nil || o.Comments == nil {
+	if o == nil || IsNil(o.Comments) {
 		return nil, false
 	}
 	return o.Comments, true
@@ -1211,7 +1214,7 @@ func (o *MeetingBase) GetCommentsOk() (*string, bool) {
 
 // HasComments returns a boolean if a field has been set.
 func (o *MeetingBase) HasComments() bool {
-	if o != nil && o.Comments != nil {
+	if o != nil && !IsNil(o.Comments) {
 		return true
 	}
 
@@ -1224,116 +1227,124 @@ func (o *MeetingBase) SetComments(v string) {
 }
 
 func (o MeetingBase) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ServiceBodyId != nil {
-		toSerialize["serviceBodyId"] = o.ServiceBodyId
-	}
-	if o.FormatIds != nil {
-		toSerialize["formatIds"] = o.FormatIds
-	}
-	if o.VenueType != nil {
-		toSerialize["venueType"] = o.VenueType
-	}
-	if o.TemporarilyVirtual != nil {
-		toSerialize["temporarilyVirtual"] = o.TemporarilyVirtual
-	}
-	if o.Day != nil {
-		toSerialize["day"] = o.Day
-	}
-	if o.StartTime != nil {
-		toSerialize["startTime"] = o.StartTime
-	}
-	if o.Duration != nil {
-		toSerialize["duration"] = o.Duration
-	}
-	if o.TimeZone != nil {
-		toSerialize["timeZone"] = o.TimeZone
-	}
-	if o.Latitude != nil {
-		toSerialize["latitude"] = o.Latitude
-	}
-	if o.Longitude != nil {
-		toSerialize["longitude"] = o.Longitude
-	}
-	if o.Published != nil {
-		toSerialize["published"] = o.Published
-	}
-	if o.Email != nil {
-		toSerialize["email"] = o.Email
-	}
-	if o.WorldId != nil {
-		toSerialize["worldId"] = o.WorldId
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.LocationText != nil {
-		toSerialize["location_text"] = o.LocationText
-	}
-	if o.LocationInfo != nil {
-		toSerialize["location_info"] = o.LocationInfo
-	}
-	if o.LocationStreet != nil {
-		toSerialize["location_street"] = o.LocationStreet
-	}
-	if o.LocationNeighborhood != nil {
-		toSerialize["location_neighborhood"] = o.LocationNeighborhood
-	}
-	if o.LocationCitySubsection != nil {
-		toSerialize["location_city_subsection"] = o.LocationCitySubsection
-	}
-	if o.LocationMunicipality != nil {
-		toSerialize["location_municipality"] = o.LocationMunicipality
-	}
-	if o.LocationSubProvince != nil {
-		toSerialize["location_sub_province"] = o.LocationSubProvince
-	}
-	if o.LocationProvince != nil {
-		toSerialize["location_province"] = o.LocationProvince
-	}
-	if o.LocationPostalCode1 != nil {
-		toSerialize["location_postal_code_1"] = o.LocationPostalCode1
-	}
-	if o.LocationNation != nil {
-		toSerialize["location_nation"] = o.LocationNation
-	}
-	if o.PhoneMeetingNumber != nil {
-		toSerialize["phone_meeting_number"] = o.PhoneMeetingNumber
-	}
-	if o.VirtualMeetingLink != nil {
-		toSerialize["virtual_meeting_link"] = o.VirtualMeetingLink
-	}
-	if o.VirtualMeetingAdditionalInfo != nil {
-		toSerialize["virtual_meeting_additional_info"] = o.VirtualMeetingAdditionalInfo
-	}
-	if o.ContactName1 != nil {
-		toSerialize["contact_name_1"] = o.ContactName1
-	}
-	if o.ContactName2 != nil {
-		toSerialize["contact_name_2"] = o.ContactName2
-	}
-	if o.ContactPhone1 != nil {
-		toSerialize["contact_phone_1"] = o.ContactPhone1
-	}
-	if o.ContactPhone2 != nil {
-		toSerialize["contact_phone_2"] = o.ContactPhone2
-	}
-	if o.ContactEmail1 != nil {
-		toSerialize["contact_email_1"] = o.ContactEmail1
-	}
-	if o.ContactEmail2 != nil {
-		toSerialize["contact_email_2"] = o.ContactEmail2
-	}
-	if o.BusLines != nil {
-		toSerialize["bus_lines"] = o.BusLines
-	}
-	if o.TrainLine != nil {
-		toSerialize["train_line"] = o.TrainLine
-	}
-	if o.Comments != nil {
-		toSerialize["comments"] = o.Comments
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o MeetingBase) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ServiceBodyId) {
+		toSerialize["serviceBodyId"] = o.ServiceBodyId
+	}
+	if !IsNil(o.FormatIds) {
+		toSerialize["formatIds"] = o.FormatIds
+	}
+	if !IsNil(o.VenueType) {
+		toSerialize["venueType"] = o.VenueType
+	}
+	if !IsNil(o.TemporarilyVirtual) {
+		toSerialize["temporarilyVirtual"] = o.TemporarilyVirtual
+	}
+	if !IsNil(o.Day) {
+		toSerialize["day"] = o.Day
+	}
+	if !IsNil(o.StartTime) {
+		toSerialize["startTime"] = o.StartTime
+	}
+	if !IsNil(o.Duration) {
+		toSerialize["duration"] = o.Duration
+	}
+	if !IsNil(o.TimeZone) {
+		toSerialize["timeZone"] = o.TimeZone
+	}
+	if !IsNil(o.Latitude) {
+		toSerialize["latitude"] = o.Latitude
+	}
+	if !IsNil(o.Longitude) {
+		toSerialize["longitude"] = o.Longitude
+	}
+	if !IsNil(o.Published) {
+		toSerialize["published"] = o.Published
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.WorldId) {
+		toSerialize["worldId"] = o.WorldId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.LocationText) {
+		toSerialize["location_text"] = o.LocationText
+	}
+	if !IsNil(o.LocationInfo) {
+		toSerialize["location_info"] = o.LocationInfo
+	}
+	if !IsNil(o.LocationStreet) {
+		toSerialize["location_street"] = o.LocationStreet
+	}
+	if !IsNil(o.LocationNeighborhood) {
+		toSerialize["location_neighborhood"] = o.LocationNeighborhood
+	}
+	if !IsNil(o.LocationCitySubsection) {
+		toSerialize["location_city_subsection"] = o.LocationCitySubsection
+	}
+	if !IsNil(o.LocationMunicipality) {
+		toSerialize["location_municipality"] = o.LocationMunicipality
+	}
+	if !IsNil(o.LocationSubProvince) {
+		toSerialize["location_sub_province"] = o.LocationSubProvince
+	}
+	if !IsNil(o.LocationProvince) {
+		toSerialize["location_province"] = o.LocationProvince
+	}
+	if !IsNil(o.LocationPostalCode1) {
+		toSerialize["location_postal_code_1"] = o.LocationPostalCode1
+	}
+	if !IsNil(o.LocationNation) {
+		toSerialize["location_nation"] = o.LocationNation
+	}
+	if !IsNil(o.PhoneMeetingNumber) {
+		toSerialize["phone_meeting_number"] = o.PhoneMeetingNumber
+	}
+	if !IsNil(o.VirtualMeetingLink) {
+		toSerialize["virtual_meeting_link"] = o.VirtualMeetingLink
+	}
+	if !IsNil(o.VirtualMeetingAdditionalInfo) {
+		toSerialize["virtual_meeting_additional_info"] = o.VirtualMeetingAdditionalInfo
+	}
+	if !IsNil(o.ContactName1) {
+		toSerialize["contact_name_1"] = o.ContactName1
+	}
+	if !IsNil(o.ContactName2) {
+		toSerialize["contact_name_2"] = o.ContactName2
+	}
+	if !IsNil(o.ContactPhone1) {
+		toSerialize["contact_phone_1"] = o.ContactPhone1
+	}
+	if !IsNil(o.ContactPhone2) {
+		toSerialize["contact_phone_2"] = o.ContactPhone2
+	}
+	if !IsNil(o.ContactEmail1) {
+		toSerialize["contact_email_1"] = o.ContactEmail1
+	}
+	if !IsNil(o.ContactEmail2) {
+		toSerialize["contact_email_2"] = o.ContactEmail2
+	}
+	if !IsNil(o.BusLines) {
+		toSerialize["bus_lines"] = o.BusLines
+	}
+	if !IsNil(o.TrainLine) {
+		toSerialize["train_line"] = o.TrainLine
+	}
+	if !IsNil(o.Comments) {
+		toSerialize["comments"] = o.Comments
+	}
+	return toSerialize, nil
 }
 
 type NullableMeetingBase struct {

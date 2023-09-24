@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FormatBase type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FormatBase{}
+
 // FormatBase struct for FormatBase
 type FormatBase struct {
 	WorldId *string `json:"worldId,omitempty"`
@@ -40,7 +43,7 @@ func NewFormatBaseWithDefaults() *FormatBase {
 
 // GetWorldId returns the WorldId field value if set, zero value otherwise.
 func (o *FormatBase) GetWorldId() string {
-	if o == nil || o.WorldId == nil {
+	if o == nil || IsNil(o.WorldId) {
 		var ret string
 		return ret
 	}
@@ -50,7 +53,7 @@ func (o *FormatBase) GetWorldId() string {
 // GetWorldIdOk returns a tuple with the WorldId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FormatBase) GetWorldIdOk() (*string, bool) {
-	if o == nil || o.WorldId == nil {
+	if o == nil || IsNil(o.WorldId) {
 		return nil, false
 	}
 	return o.WorldId, true
@@ -58,7 +61,7 @@ func (o *FormatBase) GetWorldIdOk() (*string, bool) {
 
 // HasWorldId returns a boolean if a field has been set.
 func (o *FormatBase) HasWorldId() bool {
-	if o != nil && o.WorldId != nil {
+	if o != nil && !IsNil(o.WorldId) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *FormatBase) SetWorldId(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *FormatBase) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -82,7 +85,7 @@ func (o *FormatBase) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FormatBase) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -90,7 +93,7 @@ func (o *FormatBase) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *FormatBase) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -104,7 +107,7 @@ func (o *FormatBase) SetType(v string) {
 
 // GetTranslations returns the Translations field value if set, zero value otherwise.
 func (o *FormatBase) GetTranslations() []FormatTranslation {
-	if o == nil || o.Translations == nil {
+	if o == nil || IsNil(o.Translations) {
 		var ret []FormatTranslation
 		return ret
 	}
@@ -114,7 +117,7 @@ func (o *FormatBase) GetTranslations() []FormatTranslation {
 // GetTranslationsOk returns a tuple with the Translations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FormatBase) GetTranslationsOk() ([]FormatTranslation, bool) {
-	if o == nil || o.Translations == nil {
+	if o == nil || IsNil(o.Translations) {
 		return nil, false
 	}
 	return o.Translations, true
@@ -122,7 +125,7 @@ func (o *FormatBase) GetTranslationsOk() ([]FormatTranslation, bool) {
 
 // HasTranslations returns a boolean if a field has been set.
 func (o *FormatBase) HasTranslations() bool {
-	if o != nil && o.Translations != nil {
+	if o != nil && !IsNil(o.Translations) {
 		return true
 	}
 
@@ -135,17 +138,25 @@ func (o *FormatBase) SetTranslations(v []FormatTranslation) {
 }
 
 func (o FormatBase) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.WorldId != nil {
-		toSerialize["worldId"] = o.WorldId
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if o.Translations != nil {
-		toSerialize["translations"] = o.Translations
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o FormatBase) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.WorldId) {
+		toSerialize["worldId"] = o.WorldId
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Translations) {
+		toSerialize["translations"] = o.Translations
+	}
+	return toSerialize, nil
 }
 
 type NullableFormatBase struct {

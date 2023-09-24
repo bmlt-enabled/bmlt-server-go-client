@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the UserUpdate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &UserUpdate{}
+
 // UserUpdate struct for UserUpdate
 type UserUpdate struct {
 	Username string `json:"username"`
@@ -119,7 +122,7 @@ func (o *UserUpdate) SetDisplayName(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *UserUpdate) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -129,7 +132,7 @@ func (o *UserUpdate) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserUpdate) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -137,7 +140,7 @@ func (o *UserUpdate) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *UserUpdate) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -151,7 +154,7 @@ func (o *UserUpdate) SetDescription(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *UserUpdate) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -161,7 +164,7 @@ func (o *UserUpdate) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserUpdate) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -169,7 +172,7 @@ func (o *UserUpdate) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *UserUpdate) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -183,7 +186,7 @@ func (o *UserUpdate) SetEmail(v string) {
 
 // GetOwnerId returns the OwnerId field value if set, zero value otherwise.
 func (o *UserUpdate) GetOwnerId() string {
-	if o == nil || o.OwnerId == nil {
+	if o == nil || IsNil(o.OwnerId) {
 		var ret string
 		return ret
 	}
@@ -193,7 +196,7 @@ func (o *UserUpdate) GetOwnerId() string {
 // GetOwnerIdOk returns a tuple with the OwnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserUpdate) GetOwnerIdOk() (*string, bool) {
-	if o == nil || o.OwnerId == nil {
+	if o == nil || IsNil(o.OwnerId) {
 		return nil, false
 	}
 	return o.OwnerId, true
@@ -201,7 +204,7 @@ func (o *UserUpdate) GetOwnerIdOk() (*string, bool) {
 
 // HasOwnerId returns a boolean if a field has been set.
 func (o *UserUpdate) HasOwnerId() bool {
-	if o != nil && o.OwnerId != nil {
+	if o != nil && !IsNil(o.OwnerId) {
 		return true
 	}
 
@@ -215,7 +218,7 @@ func (o *UserUpdate) SetOwnerId(v string) {
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *UserUpdate) GetPassword() string {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -225,7 +228,7 @@ func (o *UserUpdate) GetPassword() string {
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserUpdate) GetPasswordOk() (*string, bool) {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
 	return o.Password, true
@@ -233,7 +236,7 @@ func (o *UserUpdate) GetPasswordOk() (*string, bool) {
 
 // HasPassword returns a boolean if a field has been set.
 func (o *UserUpdate) HasPassword() bool {
-	if o != nil && o.Password != nil {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -246,29 +249,31 @@ func (o *UserUpdate) SetPassword(v string) {
 }
 
 func (o UserUpdate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["username"] = o.Username
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["displayName"] = o.DisplayName
-	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
-	if o.Email != nil {
-		toSerialize["email"] = o.Email
-	}
-	if o.OwnerId != nil {
-		toSerialize["ownerId"] = o.OwnerId
-	}
-	if o.Password != nil {
-		toSerialize["password"] = o.Password
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o UserUpdate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["username"] = o.Username
+	toSerialize["type"] = o.Type
+	toSerialize["displayName"] = o.DisplayName
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.OwnerId) {
+		toSerialize["ownerId"] = o.OwnerId
+	}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	return toSerialize, nil
 }
 
 type NullableUserUpdate struct {

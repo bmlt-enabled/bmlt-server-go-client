@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServiceBodyPartialUpdate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServiceBodyPartialUpdate{}
+
 // ServiceBodyPartialUpdate struct for ServiceBodyPartialUpdate
 type ServiceBodyPartialUpdate struct {
 	ParentId *int32 `json:"parentId,omitempty"`
@@ -47,7 +50,7 @@ func NewServiceBodyPartialUpdateWithDefaults() *ServiceBodyPartialUpdate {
 
 // GetParentId returns the ParentId field value if set, zero value otherwise.
 func (o *ServiceBodyPartialUpdate) GetParentId() int32 {
-	if o == nil || o.ParentId == nil {
+	if o == nil || IsNil(o.ParentId) {
 		var ret int32
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *ServiceBodyPartialUpdate) GetParentId() int32 {
 // GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceBodyPartialUpdate) GetParentIdOk() (*int32, bool) {
-	if o == nil || o.ParentId == nil {
+	if o == nil || IsNil(o.ParentId) {
 		return nil, false
 	}
 	return o.ParentId, true
@@ -65,7 +68,7 @@ func (o *ServiceBodyPartialUpdate) GetParentIdOk() (*int32, bool) {
 
 // HasParentId returns a boolean if a field has been set.
 func (o *ServiceBodyPartialUpdate) HasParentId() bool {
-	if o != nil && o.ParentId != nil {
+	if o != nil && !IsNil(o.ParentId) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *ServiceBodyPartialUpdate) SetParentId(v int32) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ServiceBodyPartialUpdate) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *ServiceBodyPartialUpdate) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceBodyPartialUpdate) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -97,7 +100,7 @@ func (o *ServiceBodyPartialUpdate) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *ServiceBodyPartialUpdate) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *ServiceBodyPartialUpdate) SetName(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *ServiceBodyPartialUpdate) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *ServiceBodyPartialUpdate) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceBodyPartialUpdate) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -129,7 +132,7 @@ func (o *ServiceBodyPartialUpdate) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *ServiceBodyPartialUpdate) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *ServiceBodyPartialUpdate) SetDescription(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ServiceBodyPartialUpdate) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -153,7 +156,7 @@ func (o *ServiceBodyPartialUpdate) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceBodyPartialUpdate) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -161,7 +164,7 @@ func (o *ServiceBodyPartialUpdate) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ServiceBodyPartialUpdate) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *ServiceBodyPartialUpdate) SetType(v string) {
 
 // GetAdminUserId returns the AdminUserId field value if set, zero value otherwise.
 func (o *ServiceBodyPartialUpdate) GetAdminUserId() int32 {
-	if o == nil || o.AdminUserId == nil {
+	if o == nil || IsNil(o.AdminUserId) {
 		var ret int32
 		return ret
 	}
@@ -185,7 +188,7 @@ func (o *ServiceBodyPartialUpdate) GetAdminUserId() int32 {
 // GetAdminUserIdOk returns a tuple with the AdminUserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceBodyPartialUpdate) GetAdminUserIdOk() (*int32, bool) {
-	if o == nil || o.AdminUserId == nil {
+	if o == nil || IsNil(o.AdminUserId) {
 		return nil, false
 	}
 	return o.AdminUserId, true
@@ -193,7 +196,7 @@ func (o *ServiceBodyPartialUpdate) GetAdminUserIdOk() (*int32, bool) {
 
 // HasAdminUserId returns a boolean if a field has been set.
 func (o *ServiceBodyPartialUpdate) HasAdminUserId() bool {
-	if o != nil && o.AdminUserId != nil {
+	if o != nil && !IsNil(o.AdminUserId) {
 		return true
 	}
 
@@ -207,7 +210,7 @@ func (o *ServiceBodyPartialUpdate) SetAdminUserId(v int32) {
 
 // GetAssignedUserIds returns the AssignedUserIds field value if set, zero value otherwise.
 func (o *ServiceBodyPartialUpdate) GetAssignedUserIds() []int32 {
-	if o == nil || o.AssignedUserIds == nil {
+	if o == nil || IsNil(o.AssignedUserIds) {
 		var ret []int32
 		return ret
 	}
@@ -217,7 +220,7 @@ func (o *ServiceBodyPartialUpdate) GetAssignedUserIds() []int32 {
 // GetAssignedUserIdsOk returns a tuple with the AssignedUserIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceBodyPartialUpdate) GetAssignedUserIdsOk() ([]int32, bool) {
-	if o == nil || o.AssignedUserIds == nil {
+	if o == nil || IsNil(o.AssignedUserIds) {
 		return nil, false
 	}
 	return o.AssignedUserIds, true
@@ -225,7 +228,7 @@ func (o *ServiceBodyPartialUpdate) GetAssignedUserIdsOk() ([]int32, bool) {
 
 // HasAssignedUserIds returns a boolean if a field has been set.
 func (o *ServiceBodyPartialUpdate) HasAssignedUserIds() bool {
-	if o != nil && o.AssignedUserIds != nil {
+	if o != nil && !IsNil(o.AssignedUserIds) {
 		return true
 	}
 
@@ -239,7 +242,7 @@ func (o *ServiceBodyPartialUpdate) SetAssignedUserIds(v []int32) {
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *ServiceBodyPartialUpdate) GetUrl() string {
-	if o == nil || o.Url == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -249,7 +252,7 @@ func (o *ServiceBodyPartialUpdate) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceBodyPartialUpdate) GetUrlOk() (*string, bool) {
-	if o == nil || o.Url == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
 	return o.Url, true
@@ -257,7 +260,7 @@ func (o *ServiceBodyPartialUpdate) GetUrlOk() (*string, bool) {
 
 // HasUrl returns a boolean if a field has been set.
 func (o *ServiceBodyPartialUpdate) HasUrl() bool {
-	if o != nil && o.Url != nil {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -271,7 +274,7 @@ func (o *ServiceBodyPartialUpdate) SetUrl(v string) {
 
 // GetHelpline returns the Helpline field value if set, zero value otherwise.
 func (o *ServiceBodyPartialUpdate) GetHelpline() string {
-	if o == nil || o.Helpline == nil {
+	if o == nil || IsNil(o.Helpline) {
 		var ret string
 		return ret
 	}
@@ -281,7 +284,7 @@ func (o *ServiceBodyPartialUpdate) GetHelpline() string {
 // GetHelplineOk returns a tuple with the Helpline field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceBodyPartialUpdate) GetHelplineOk() (*string, bool) {
-	if o == nil || o.Helpline == nil {
+	if o == nil || IsNil(o.Helpline) {
 		return nil, false
 	}
 	return o.Helpline, true
@@ -289,7 +292,7 @@ func (o *ServiceBodyPartialUpdate) GetHelplineOk() (*string, bool) {
 
 // HasHelpline returns a boolean if a field has been set.
 func (o *ServiceBodyPartialUpdate) HasHelpline() bool {
-	if o != nil && o.Helpline != nil {
+	if o != nil && !IsNil(o.Helpline) {
 		return true
 	}
 
@@ -303,7 +306,7 @@ func (o *ServiceBodyPartialUpdate) SetHelpline(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *ServiceBodyPartialUpdate) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -313,7 +316,7 @@ func (o *ServiceBodyPartialUpdate) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceBodyPartialUpdate) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -321,7 +324,7 @@ func (o *ServiceBodyPartialUpdate) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *ServiceBodyPartialUpdate) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -335,7 +338,7 @@ func (o *ServiceBodyPartialUpdate) SetEmail(v string) {
 
 // GetWorldId returns the WorldId field value if set, zero value otherwise.
 func (o *ServiceBodyPartialUpdate) GetWorldId() string {
-	if o == nil || o.WorldId == nil {
+	if o == nil || IsNil(o.WorldId) {
 		var ret string
 		return ret
 	}
@@ -345,7 +348,7 @@ func (o *ServiceBodyPartialUpdate) GetWorldId() string {
 // GetWorldIdOk returns a tuple with the WorldId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceBodyPartialUpdate) GetWorldIdOk() (*string, bool) {
-	if o == nil || o.WorldId == nil {
+	if o == nil || IsNil(o.WorldId) {
 		return nil, false
 	}
 	return o.WorldId, true
@@ -353,7 +356,7 @@ func (o *ServiceBodyPartialUpdate) GetWorldIdOk() (*string, bool) {
 
 // HasWorldId returns a boolean if a field has been set.
 func (o *ServiceBodyPartialUpdate) HasWorldId() bool {
-	if o != nil && o.WorldId != nil {
+	if o != nil && !IsNil(o.WorldId) {
 		return true
 	}
 
@@ -366,38 +369,46 @@ func (o *ServiceBodyPartialUpdate) SetWorldId(v string) {
 }
 
 func (o ServiceBodyPartialUpdate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ParentId != nil {
-		toSerialize["parentId"] = o.ParentId
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if o.AdminUserId != nil {
-		toSerialize["adminUserId"] = o.AdminUserId
-	}
-	if o.AssignedUserIds != nil {
-		toSerialize["assignedUserIds"] = o.AssignedUserIds
-	}
-	if o.Url != nil {
-		toSerialize["url"] = o.Url
-	}
-	if o.Helpline != nil {
-		toSerialize["helpline"] = o.Helpline
-	}
-	if o.Email != nil {
-		toSerialize["email"] = o.Email
-	}
-	if o.WorldId != nil {
-		toSerialize["worldId"] = o.WorldId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServiceBodyPartialUpdate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ParentId) {
+		toSerialize["parentId"] = o.ParentId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.AdminUserId) {
+		toSerialize["adminUserId"] = o.AdminUserId
+	}
+	if !IsNil(o.AssignedUserIds) {
+		toSerialize["assignedUserIds"] = o.AssignedUserIds
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.Helpline) {
+		toSerialize["helpline"] = o.Helpline
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.WorldId) {
+		toSerialize["worldId"] = o.WorldId
+	}
+	return toSerialize, nil
 }
 
 type NullableServiceBodyPartialUpdate struct {

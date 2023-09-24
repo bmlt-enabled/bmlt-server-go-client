@@ -13,19 +13,19 @@ package bmlt
 import (
 	"bytes"
 	"context"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 	"strings"
 )
 
 
-// RootServerApiService RootServerApi service
-type RootServerApiService service
+// RootServerAPIService RootServerAPI service
+type RootServerAPIService service
 
 type ApiAuthLogoutRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 }
 
 func (r ApiAuthLogoutRequest) Execute() (*http.Response, error) {
@@ -40,7 +40,7 @@ Revoke token and logout.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiAuthLogoutRequest
 */
-func (a *RootServerApiService) AuthLogout(ctx context.Context) ApiAuthLogoutRequest {
+func (a *RootServerAPIService) AuthLogout(ctx context.Context) ApiAuthLogoutRequest {
 	return ApiAuthLogoutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -48,14 +48,14 @@ func (a *RootServerApiService) AuthLogout(ctx context.Context) ApiAuthLogoutRequ
 }
 
 // Execute executes the request
-func (a *RootServerApiService) AuthLogoutExecute(r ApiAuthLogoutRequest) (*http.Response, error) {
+func (a *RootServerAPIService) AuthLogoutExecute(r ApiAuthLogoutRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.AuthLogout")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.AuthLogout")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -93,9 +93,9 @@ func (a *RootServerApiService) AuthLogoutExecute(r ApiAuthLogoutRequest) (*http.
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -112,7 +112,8 @@ func (a *RootServerApiService) AuthLogoutExecute(r ApiAuthLogoutRequest) (*http.
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -122,7 +123,7 @@ func (a *RootServerApiService) AuthLogoutExecute(r ApiAuthLogoutRequest) (*http.
 
 type ApiAuthRefreshRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 }
 
 func (r ApiAuthRefreshRequest) Execute() (*Token, *http.Response, error) {
@@ -137,7 +138,7 @@ Refresh token.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiAuthRefreshRequest
 */
-func (a *RootServerApiService) AuthRefresh(ctx context.Context) ApiAuthRefreshRequest {
+func (a *RootServerAPIService) AuthRefresh(ctx context.Context) ApiAuthRefreshRequest {
 	return ApiAuthRefreshRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -146,7 +147,7 @@ func (a *RootServerApiService) AuthRefresh(ctx context.Context) ApiAuthRefreshRe
 
 // Execute executes the request
 //  @return Token
-func (a *RootServerApiService) AuthRefreshExecute(r ApiAuthRefreshRequest) (*Token, *http.Response, error) {
+func (a *RootServerAPIService) AuthRefreshExecute(r ApiAuthRefreshRequest) (*Token, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -154,7 +155,7 @@ func (a *RootServerApiService) AuthRefreshExecute(r ApiAuthRefreshRequest) (*Tok
 		localVarReturnValue  *Token
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.AuthRefresh")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.AuthRefresh")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -192,9 +193,9 @@ func (a *RootServerApiService) AuthRefreshExecute(r ApiAuthRefreshRequest) (*Tok
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -211,7 +212,8 @@ func (a *RootServerApiService) AuthRefreshExecute(r ApiAuthRefreshRequest) (*Tok
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -230,7 +232,7 @@ func (a *RootServerApiService) AuthRefreshExecute(r ApiAuthRefreshRequest) (*Tok
 
 type ApiAuthTokenRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	tokenCredentials *TokenCredentials
 }
 
@@ -252,7 +254,7 @@ Exchange credentials for a new token
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiAuthTokenRequest
 */
-func (a *RootServerApiService) AuthToken(ctx context.Context) ApiAuthTokenRequest {
+func (a *RootServerAPIService) AuthToken(ctx context.Context) ApiAuthTokenRequest {
 	return ApiAuthTokenRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -261,7 +263,7 @@ func (a *RootServerApiService) AuthToken(ctx context.Context) ApiAuthTokenReques
 
 // Execute executes the request
 //  @return Token
-func (a *RootServerApiService) AuthTokenExecute(r ApiAuthTokenRequest) (*Token, *http.Response, error) {
+func (a *RootServerAPIService) AuthTokenExecute(r ApiAuthTokenRequest) (*Token, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -269,7 +271,7 @@ func (a *RootServerApiService) AuthTokenExecute(r ApiAuthTokenRequest) (*Token, 
 		localVarReturnValue  *Token
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.AuthToken")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.AuthToken")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -312,9 +314,9 @@ func (a *RootServerApiService) AuthTokenExecute(r ApiAuthTokenRequest) (*Token, 
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -331,7 +333,8 @@ func (a *RootServerApiService) AuthTokenExecute(r ApiAuthTokenRequest) (*Token, 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -341,7 +344,151 @@ func (a *RootServerApiService) AuthTokenExecute(r ApiAuthTokenRequest) (*Token, 
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiCreateErrorTestRequest struct {
+	ctx context.Context
+	ApiService *RootServerAPIService
+	errorTest *ErrorTest
+}
+
+// Pass in error test object.
+func (r ApiCreateErrorTestRequest) ErrorTest(errorTest ErrorTest) ApiCreateErrorTestRequest {
+	r.errorTest = &errorTest
+	return r
+}
+
+func (r ApiCreateErrorTestRequest) Execute() (*ErrorTest, *http.Response, error) {
+	return r.ApiService.CreateErrorTestExecute(r)
+}
+
+/*
+CreateErrorTest Tests some errors
+
+Tests some errors.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiCreateErrorTestRequest
+*/
+func (a *RootServerAPIService) CreateErrorTest(ctx context.Context) ApiCreateErrorTestRequest {
+	return ApiCreateErrorTestRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ErrorTest
+func (a *RootServerAPIService) CreateErrorTestExecute(r ApiCreateErrorTestRequest) (*ErrorTest, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ErrorTest
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.CreateErrorTest")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/errortest"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.errorTest == nil {
+		return localVarReturnValue, nil, reportError("errorTest is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.errorTest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v AuthenticationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ValidationError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ServerError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -360,7 +507,7 @@ func (a *RootServerApiService) AuthTokenExecute(r ApiAuthTokenRequest) (*Token, 
 
 type ApiCreateFormatRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	formatCreate *FormatCreate
 }
 
@@ -382,7 +529,7 @@ Creates a format.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateFormatRequest
 */
-func (a *RootServerApiService) CreateFormat(ctx context.Context) ApiCreateFormatRequest {
+func (a *RootServerAPIService) CreateFormat(ctx context.Context) ApiCreateFormatRequest {
 	return ApiCreateFormatRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -391,7 +538,7 @@ func (a *RootServerApiService) CreateFormat(ctx context.Context) ApiCreateFormat
 
 // Execute executes the request
 //  @return Format
-func (a *RootServerApiService) CreateFormatExecute(r ApiCreateFormatRequest) (*Format, *http.Response, error) {
+func (a *RootServerAPIService) CreateFormatExecute(r ApiCreateFormatRequest) (*Format, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -399,7 +546,7 @@ func (a *RootServerApiService) CreateFormatExecute(r ApiCreateFormatRequest) (*F
 		localVarReturnValue  *Format
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.CreateFormat")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.CreateFormat")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -442,9 +589,9 @@ func (a *RootServerApiService) CreateFormatExecute(r ApiCreateFormatRequest) (*F
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -461,7 +608,8 @@ func (a *RootServerApiService) CreateFormatExecute(r ApiCreateFormatRequest) (*F
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -471,7 +619,8 @@ func (a *RootServerApiService) CreateFormatExecute(r ApiCreateFormatRequest) (*F
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -481,7 +630,8 @@ func (a *RootServerApiService) CreateFormatExecute(r ApiCreateFormatRequest) (*F
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -491,7 +641,8 @@ func (a *RootServerApiService) CreateFormatExecute(r ApiCreateFormatRequest) (*F
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -510,7 +661,7 @@ func (a *RootServerApiService) CreateFormatExecute(r ApiCreateFormatRequest) (*F
 
 type ApiCreateMeetingRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	meetingCreate *MeetingCreate
 }
 
@@ -532,7 +683,7 @@ Creates a meeting.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateMeetingRequest
 */
-func (a *RootServerApiService) CreateMeeting(ctx context.Context) ApiCreateMeetingRequest {
+func (a *RootServerAPIService) CreateMeeting(ctx context.Context) ApiCreateMeetingRequest {
 	return ApiCreateMeetingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -541,7 +692,7 @@ func (a *RootServerApiService) CreateMeeting(ctx context.Context) ApiCreateMeeti
 
 // Execute executes the request
 //  @return Meeting
-func (a *RootServerApiService) CreateMeetingExecute(r ApiCreateMeetingRequest) (*Meeting, *http.Response, error) {
+func (a *RootServerAPIService) CreateMeetingExecute(r ApiCreateMeetingRequest) (*Meeting, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -549,7 +700,7 @@ func (a *RootServerApiService) CreateMeetingExecute(r ApiCreateMeetingRequest) (
 		localVarReturnValue  *Meeting
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.CreateMeeting")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.CreateMeeting")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -592,9 +743,9 @@ func (a *RootServerApiService) CreateMeetingExecute(r ApiCreateMeetingRequest) (
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -611,7 +762,8 @@ func (a *RootServerApiService) CreateMeetingExecute(r ApiCreateMeetingRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -621,7 +773,8 @@ func (a *RootServerApiService) CreateMeetingExecute(r ApiCreateMeetingRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -631,7 +784,8 @@ func (a *RootServerApiService) CreateMeetingExecute(r ApiCreateMeetingRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -641,7 +795,8 @@ func (a *RootServerApiService) CreateMeetingExecute(r ApiCreateMeetingRequest) (
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -660,7 +815,7 @@ func (a *RootServerApiService) CreateMeetingExecute(r ApiCreateMeetingRequest) (
 
 type ApiCreateServiceBodyRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	serviceBodyCreate *ServiceBodyCreate
 }
 
@@ -682,7 +837,7 @@ Creates a service body.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateServiceBodyRequest
 */
-func (a *RootServerApiService) CreateServiceBody(ctx context.Context) ApiCreateServiceBodyRequest {
+func (a *RootServerAPIService) CreateServiceBody(ctx context.Context) ApiCreateServiceBodyRequest {
 	return ApiCreateServiceBodyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -691,7 +846,7 @@ func (a *RootServerApiService) CreateServiceBody(ctx context.Context) ApiCreateS
 
 // Execute executes the request
 //  @return ServiceBody
-func (a *RootServerApiService) CreateServiceBodyExecute(r ApiCreateServiceBodyRequest) (*ServiceBody, *http.Response, error) {
+func (a *RootServerAPIService) CreateServiceBodyExecute(r ApiCreateServiceBodyRequest) (*ServiceBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -699,7 +854,7 @@ func (a *RootServerApiService) CreateServiceBodyExecute(r ApiCreateServiceBodyRe
 		localVarReturnValue  *ServiceBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.CreateServiceBody")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.CreateServiceBody")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -742,9 +897,9 @@ func (a *RootServerApiService) CreateServiceBodyExecute(r ApiCreateServiceBodyRe
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -761,7 +916,8 @@ func (a *RootServerApiService) CreateServiceBodyExecute(r ApiCreateServiceBodyRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -771,7 +927,8 @@ func (a *RootServerApiService) CreateServiceBodyExecute(r ApiCreateServiceBodyRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -781,7 +938,8 @@ func (a *RootServerApiService) CreateServiceBodyExecute(r ApiCreateServiceBodyRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -791,7 +949,8 @@ func (a *RootServerApiService) CreateServiceBodyExecute(r ApiCreateServiceBodyRe
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -810,7 +969,7 @@ func (a *RootServerApiService) CreateServiceBodyExecute(r ApiCreateServiceBodyRe
 
 type ApiCreateUserRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	userCreate *UserCreate
 }
 
@@ -832,7 +991,7 @@ Creates a user.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiCreateUserRequest
 */
-func (a *RootServerApiService) CreateUser(ctx context.Context) ApiCreateUserRequest {
+func (a *RootServerAPIService) CreateUser(ctx context.Context) ApiCreateUserRequest {
 	return ApiCreateUserRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -841,7 +1000,7 @@ func (a *RootServerApiService) CreateUser(ctx context.Context) ApiCreateUserRequ
 
 // Execute executes the request
 //  @return User
-func (a *RootServerApiService) CreateUserExecute(r ApiCreateUserRequest) (*User, *http.Response, error) {
+func (a *RootServerAPIService) CreateUserExecute(r ApiCreateUserRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
@@ -849,7 +1008,7 @@ func (a *RootServerApiService) CreateUserExecute(r ApiCreateUserRequest) (*User,
 		localVarReturnValue  *User
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.CreateUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.CreateUser")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -892,9 +1051,9 @@ func (a *RootServerApiService) CreateUserExecute(r ApiCreateUserRequest) (*User,
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -911,7 +1070,8 @@ func (a *RootServerApiService) CreateUserExecute(r ApiCreateUserRequest) (*User,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -921,7 +1081,8 @@ func (a *RootServerApiService) CreateUserExecute(r ApiCreateUserRequest) (*User,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -931,7 +1092,8 @@ func (a *RootServerApiService) CreateUserExecute(r ApiCreateUserRequest) (*User,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -941,7 +1103,8 @@ func (a *RootServerApiService) CreateUserExecute(r ApiCreateUserRequest) (*User,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -960,7 +1123,7 @@ func (a *RootServerApiService) CreateUserExecute(r ApiCreateUserRequest) (*User,
 
 type ApiDeleteFormatRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	formatId int64
 }
 
@@ -977,7 +1140,7 @@ Deletes a format by id.
  @param formatId ID of format
  @return ApiDeleteFormatRequest
 */
-func (a *RootServerApiService) DeleteFormat(ctx context.Context, formatId int64) ApiDeleteFormatRequest {
+func (a *RootServerAPIService) DeleteFormat(ctx context.Context, formatId int64) ApiDeleteFormatRequest {
 	return ApiDeleteFormatRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -986,20 +1149,20 @@ func (a *RootServerApiService) DeleteFormat(ctx context.Context, formatId int64)
 }
 
 // Execute executes the request
-func (a *RootServerApiService) DeleteFormatExecute(r ApiDeleteFormatRequest) (*http.Response, error) {
+func (a *RootServerAPIService) DeleteFormatExecute(r ApiDeleteFormatRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.DeleteFormat")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.DeleteFormat")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/formats/{formatId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"formatId"+"}", url.PathEscape(parameterToString(r.formatId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"formatId"+"}", url.PathEscape(parameterValueToString(r.formatId, "formatId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1032,9 +1195,9 @@ func (a *RootServerApiService) DeleteFormatExecute(r ApiDeleteFormatRequest) (*h
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -1051,7 +1214,8 @@ func (a *RootServerApiService) DeleteFormatExecute(r ApiDeleteFormatRequest) (*h
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1061,7 +1225,8 @@ func (a *RootServerApiService) DeleteFormatExecute(r ApiDeleteFormatRequest) (*h
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1071,7 +1236,8 @@ func (a *RootServerApiService) DeleteFormatExecute(r ApiDeleteFormatRequest) (*h
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -1081,7 +1247,8 @@ func (a *RootServerApiService) DeleteFormatExecute(r ApiDeleteFormatRequest) (*h
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1091,7 +1258,7 @@ func (a *RootServerApiService) DeleteFormatExecute(r ApiDeleteFormatRequest) (*h
 
 type ApiDeleteMeetingRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	meetingId int64
 }
 
@@ -1108,7 +1275,7 @@ Deletes a meeting by id.
  @param meetingId ID of meeting
  @return ApiDeleteMeetingRequest
 */
-func (a *RootServerApiService) DeleteMeeting(ctx context.Context, meetingId int64) ApiDeleteMeetingRequest {
+func (a *RootServerAPIService) DeleteMeeting(ctx context.Context, meetingId int64) ApiDeleteMeetingRequest {
 	return ApiDeleteMeetingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1117,20 +1284,20 @@ func (a *RootServerApiService) DeleteMeeting(ctx context.Context, meetingId int6
 }
 
 // Execute executes the request
-func (a *RootServerApiService) DeleteMeetingExecute(r ApiDeleteMeetingRequest) (*http.Response, error) {
+func (a *RootServerAPIService) DeleteMeetingExecute(r ApiDeleteMeetingRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.DeleteMeeting")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.DeleteMeeting")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/meetings/{meetingId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"meetingId"+"}", url.PathEscape(parameterToString(r.meetingId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"meetingId"+"}", url.PathEscape(parameterValueToString(r.meetingId, "meetingId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1163,9 +1330,9 @@ func (a *RootServerApiService) DeleteMeetingExecute(r ApiDeleteMeetingRequest) (
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -1182,7 +1349,8 @@ func (a *RootServerApiService) DeleteMeetingExecute(r ApiDeleteMeetingRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1192,7 +1360,8 @@ func (a *RootServerApiService) DeleteMeetingExecute(r ApiDeleteMeetingRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1202,7 +1371,8 @@ func (a *RootServerApiService) DeleteMeetingExecute(r ApiDeleteMeetingRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1212,7 +1382,7 @@ func (a *RootServerApiService) DeleteMeetingExecute(r ApiDeleteMeetingRequest) (
 
 type ApiDeleteServiceBodyRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	serviceBodyId int64
 }
 
@@ -1229,7 +1399,7 @@ Deletes a service body by id.
  @param serviceBodyId ID of service body
  @return ApiDeleteServiceBodyRequest
 */
-func (a *RootServerApiService) DeleteServiceBody(ctx context.Context, serviceBodyId int64) ApiDeleteServiceBodyRequest {
+func (a *RootServerAPIService) DeleteServiceBody(ctx context.Context, serviceBodyId int64) ApiDeleteServiceBodyRequest {
 	return ApiDeleteServiceBodyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1238,20 +1408,20 @@ func (a *RootServerApiService) DeleteServiceBody(ctx context.Context, serviceBod
 }
 
 // Execute executes the request
-func (a *RootServerApiService) DeleteServiceBodyExecute(r ApiDeleteServiceBodyRequest) (*http.Response, error) {
+func (a *RootServerAPIService) DeleteServiceBodyExecute(r ApiDeleteServiceBodyRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.DeleteServiceBody")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.DeleteServiceBody")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/servicebodies/{serviceBodyId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serviceBodyId"+"}", url.PathEscape(parameterToString(r.serviceBodyId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceBodyId"+"}", url.PathEscape(parameterValueToString(r.serviceBodyId, "serviceBodyId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1284,9 +1454,9 @@ func (a *RootServerApiService) DeleteServiceBodyExecute(r ApiDeleteServiceBodyRe
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -1303,7 +1473,8 @@ func (a *RootServerApiService) DeleteServiceBodyExecute(r ApiDeleteServiceBodyRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1313,7 +1484,8 @@ func (a *RootServerApiService) DeleteServiceBodyExecute(r ApiDeleteServiceBodyRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1323,7 +1495,19 @@ func (a *RootServerApiService) DeleteServiceBodyExecute(r ApiDeleteServiceBodyRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ConflictError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1333,7 +1517,7 @@ func (a *RootServerApiService) DeleteServiceBodyExecute(r ApiDeleteServiceBodyRe
 
 type ApiDeleteUserRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	userId int64
 }
 
@@ -1350,7 +1534,7 @@ Deletes a user by id
  @param userId ID of user
  @return ApiDeleteUserRequest
 */
-func (a *RootServerApiService) DeleteUser(ctx context.Context, userId int64) ApiDeleteUserRequest {
+func (a *RootServerAPIService) DeleteUser(ctx context.Context, userId int64) ApiDeleteUserRequest {
 	return ApiDeleteUserRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1359,20 +1543,20 @@ func (a *RootServerApiService) DeleteUser(ctx context.Context, userId int64) Api
 }
 
 // Execute executes the request
-func (a *RootServerApiService) DeleteUserExecute(r ApiDeleteUserRequest) (*http.Response, error) {
+func (a *RootServerAPIService) DeleteUserExecute(r ApiDeleteUserRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.DeleteUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.DeleteUser")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/users/{userId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterToString(r.userId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1405,9 +1589,9 @@ func (a *RootServerApiService) DeleteUserExecute(r ApiDeleteUserRequest) (*http.
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -1424,7 +1608,8 @@ func (a *RootServerApiService) DeleteUserExecute(r ApiDeleteUserRequest) (*http.
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -1434,7 +1619,8 @@ func (a *RootServerApiService) DeleteUserExecute(r ApiDeleteUserRequest) (*http.
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1444,7 +1630,8 @@ func (a *RootServerApiService) DeleteUserExecute(r ApiDeleteUserRequest) (*http.
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -1454,7 +1641,8 @@ func (a *RootServerApiService) DeleteUserExecute(r ApiDeleteUserRequest) (*http.
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -1464,7 +1652,7 @@ func (a *RootServerApiService) DeleteUserExecute(r ApiDeleteUserRequest) (*http.
 
 type ApiGetFormatRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	formatId int64
 }
 
@@ -1481,7 +1669,7 @@ Retrieve a format
  @param formatId ID of format
  @return ApiGetFormatRequest
 */
-func (a *RootServerApiService) GetFormat(ctx context.Context, formatId int64) ApiGetFormatRequest {
+func (a *RootServerAPIService) GetFormat(ctx context.Context, formatId int64) ApiGetFormatRequest {
 	return ApiGetFormatRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1491,7 +1679,7 @@ func (a *RootServerApiService) GetFormat(ctx context.Context, formatId int64) Ap
 
 // Execute executes the request
 //  @return Format
-func (a *RootServerApiService) GetFormatExecute(r ApiGetFormatRequest) (*Format, *http.Response, error) {
+func (a *RootServerAPIService) GetFormatExecute(r ApiGetFormatRequest) (*Format, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1499,13 +1687,13 @@ func (a *RootServerApiService) GetFormatExecute(r ApiGetFormatRequest) (*Format,
 		localVarReturnValue  *Format
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.GetFormat")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.GetFormat")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/formats/{formatId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"formatId"+"}", url.PathEscape(parameterToString(r.formatId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"formatId"+"}", url.PathEscape(parameterValueToString(r.formatId, "formatId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1538,9 +1726,9 @@ func (a *RootServerApiService) GetFormatExecute(r ApiGetFormatRequest) (*Format,
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1557,7 +1745,8 @@ func (a *RootServerApiService) GetFormatExecute(r ApiGetFormatRequest) (*Format,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1567,7 +1756,8 @@ func (a *RootServerApiService) GetFormatExecute(r ApiGetFormatRequest) (*Format,
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1586,7 +1776,7 @@ func (a *RootServerApiService) GetFormatExecute(r ApiGetFormatRequest) (*Format,
 
 type ApiGetFormatsRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 }
 
 func (r ApiGetFormatsRequest) Execute() ([]Format, *http.Response, error) {
@@ -1601,7 +1791,7 @@ Retrieve formats
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetFormatsRequest
 */
-func (a *RootServerApiService) GetFormats(ctx context.Context) ApiGetFormatsRequest {
+func (a *RootServerAPIService) GetFormats(ctx context.Context) ApiGetFormatsRequest {
 	return ApiGetFormatsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1610,7 +1800,7 @@ func (a *RootServerApiService) GetFormats(ctx context.Context) ApiGetFormatsRequ
 
 // Execute executes the request
 //  @return []Format
-func (a *RootServerApiService) GetFormatsExecute(r ApiGetFormatsRequest) ([]Format, *http.Response, error) {
+func (a *RootServerAPIService) GetFormatsExecute(r ApiGetFormatsRequest) ([]Format, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1618,7 +1808,7 @@ func (a *RootServerApiService) GetFormatsExecute(r ApiGetFormatsRequest) ([]Form
 		localVarReturnValue  []Format
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.GetFormats")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.GetFormats")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1656,9 +1846,9 @@ func (a *RootServerApiService) GetFormatsExecute(r ApiGetFormatsRequest) ([]Form
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1675,7 +1865,8 @@ func (a *RootServerApiService) GetFormatsExecute(r ApiGetFormatsRequest) ([]Form
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1694,7 +1885,7 @@ func (a *RootServerApiService) GetFormatsExecute(r ApiGetFormatsRequest) ([]Form
 
 type ApiGetMeetingRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	meetingId int64
 }
 
@@ -1711,7 +1902,7 @@ Retrieve a meeting.
  @param meetingId ID of meeting
  @return ApiGetMeetingRequest
 */
-func (a *RootServerApiService) GetMeeting(ctx context.Context, meetingId int64) ApiGetMeetingRequest {
+func (a *RootServerAPIService) GetMeeting(ctx context.Context, meetingId int64) ApiGetMeetingRequest {
 	return ApiGetMeetingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1721,7 +1912,7 @@ func (a *RootServerApiService) GetMeeting(ctx context.Context, meetingId int64) 
 
 // Execute executes the request
 //  @return Meeting
-func (a *RootServerApiService) GetMeetingExecute(r ApiGetMeetingRequest) (*Meeting, *http.Response, error) {
+func (a *RootServerAPIService) GetMeetingExecute(r ApiGetMeetingRequest) (*Meeting, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1729,13 +1920,13 @@ func (a *RootServerApiService) GetMeetingExecute(r ApiGetMeetingRequest) (*Meeti
 		localVarReturnValue  *Meeting
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.GetMeeting")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.GetMeeting")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/meetings/{meetingId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"meetingId"+"}", url.PathEscape(parameterToString(r.meetingId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"meetingId"+"}", url.PathEscape(parameterValueToString(r.meetingId, "meetingId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1768,9 +1959,9 @@ func (a *RootServerApiService) GetMeetingExecute(r ApiGetMeetingRequest) (*Meeti
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1787,7 +1978,8 @@ func (a *RootServerApiService) GetMeetingExecute(r ApiGetMeetingRequest) (*Meeti
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -1797,7 +1989,8 @@ func (a *RootServerApiService) GetMeetingExecute(r ApiGetMeetingRequest) (*Meeti
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1816,7 +2009,7 @@ func (a *RootServerApiService) GetMeetingExecute(r ApiGetMeetingRequest) (*Meeti
 
 type ApiGetMeetingsRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	meetingIds *string
 	days *string
 	serviceBodyIds *string
@@ -1859,7 +2052,7 @@ Retrieve meetings for authenticated user.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetMeetingsRequest
 */
-func (a *RootServerApiService) GetMeetings(ctx context.Context) ApiGetMeetingsRequest {
+func (a *RootServerAPIService) GetMeetings(ctx context.Context) ApiGetMeetingsRequest {
 	return ApiGetMeetingsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1868,7 +2061,7 @@ func (a *RootServerApiService) GetMeetings(ctx context.Context) ApiGetMeetingsRe
 
 // Execute executes the request
 //  @return []Meeting
-func (a *RootServerApiService) GetMeetingsExecute(r ApiGetMeetingsRequest) ([]Meeting, *http.Response, error) {
+func (a *RootServerAPIService) GetMeetingsExecute(r ApiGetMeetingsRequest) ([]Meeting, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1876,7 +2069,7 @@ func (a *RootServerApiService) GetMeetingsExecute(r ApiGetMeetingsRequest) ([]Me
 		localVarReturnValue  []Meeting
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.GetMeetings")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.GetMeetings")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1888,16 +2081,16 @@ func (a *RootServerApiService) GetMeetingsExecute(r ApiGetMeetingsRequest) ([]Me
 	localVarFormParams := url.Values{}
 
 	if r.meetingIds != nil {
-		localVarQueryParams.Add("meetingIds", parameterToString(*r.meetingIds, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "meetingIds", r.meetingIds, "")
 	}
 	if r.days != nil {
-		localVarQueryParams.Add("days", parameterToString(*r.days, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "days", r.days, "")
 	}
 	if r.serviceBodyIds != nil {
-		localVarQueryParams.Add("serviceBodyIds", parameterToString(*r.serviceBodyIds, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "serviceBodyIds", r.serviceBodyIds, "")
 	}
 	if r.searchString != nil {
-		localVarQueryParams.Add("searchString", parameterToString(*r.searchString, ""))
+		parameterAddToHeaderOrQuery(localVarQueryParams, "searchString", r.searchString, "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1926,9 +2119,9 @@ func (a *RootServerApiService) GetMeetingsExecute(r ApiGetMeetingsRequest) ([]Me
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -1945,7 +2138,8 @@ func (a *RootServerApiService) GetMeetingsExecute(r ApiGetMeetingsRequest) ([]Me
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -1955,7 +2149,230 @@ func (a *RootServerApiService) GetMeetingsExecute(r ApiGetMeetingsRequest) ([]Me
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetRootServerRequest struct {
+	ctx context.Context
+	ApiService *RootServerAPIService
+	rootServerId int64
+}
+
+func (r ApiGetRootServerRequest) Execute() (*RootServer, *http.Response, error) {
+	return r.ApiService.GetRootServerExecute(r)
+}
+
+/*
+GetRootServer Retrieves a root server
+
+Retrieve a single root server id.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param rootServerId ID of root server
+ @return ApiGetRootServerRequest
+*/
+func (a *RootServerAPIService) GetRootServer(ctx context.Context, rootServerId int64) ApiGetRootServerRequest {
+	return ApiGetRootServerRequest{
+		ApiService: a,
+		ctx: ctx,
+		rootServerId: rootServerId,
+	}
+}
+
+// Execute executes the request
+//  @return RootServer
+func (a *RootServerAPIService) GetRootServerExecute(r ApiGetRootServerRequest) (*RootServer, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *RootServer
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.GetRootServer")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/rootservers/{rootServerId}"
+	localVarPath = strings.Replace(localVarPath, "{"+"rootServerId"+"}", url.PathEscape(parameterValueToString(r.rootServerId, "rootServerId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v NotFoundError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetRootServersRequest struct {
+	ctx context.Context
+	ApiService *RootServerAPIService
+}
+
+func (r ApiGetRootServersRequest) Execute() ([]RootServer, *http.Response, error) {
+	return r.ApiService.GetRootServersExecute(r)
+}
+
+/*
+GetRootServers Retrieves root servers
+
+Retrieve root servers.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiGetRootServersRequest
+*/
+func (a *RootServerAPIService) GetRootServers(ctx context.Context) ApiGetRootServersRequest {
+	return ApiGetRootServersRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return []RootServer
+func (a *RootServerAPIService) GetRootServersExecute(r ApiGetRootServersRequest) ([]RootServer, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []RootServer
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.GetRootServers")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/rootservers"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v NotFoundError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -1974,7 +2391,7 @@ func (a *RootServerApiService) GetMeetingsExecute(r ApiGetMeetingsRequest) ([]Me
 
 type ApiGetServiceBodiesRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 }
 
 func (r ApiGetServiceBodiesRequest) Execute() ([]ServiceBody, *http.Response, error) {
@@ -1989,7 +2406,7 @@ Retrieve service bodies for authenticated user.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetServiceBodiesRequest
 */
-func (a *RootServerApiService) GetServiceBodies(ctx context.Context) ApiGetServiceBodiesRequest {
+func (a *RootServerAPIService) GetServiceBodies(ctx context.Context) ApiGetServiceBodiesRequest {
 	return ApiGetServiceBodiesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1998,7 +2415,7 @@ func (a *RootServerApiService) GetServiceBodies(ctx context.Context) ApiGetServi
 
 // Execute executes the request
 //  @return []ServiceBody
-func (a *RootServerApiService) GetServiceBodiesExecute(r ApiGetServiceBodiesRequest) ([]ServiceBody, *http.Response, error) {
+func (a *RootServerAPIService) GetServiceBodiesExecute(r ApiGetServiceBodiesRequest) ([]ServiceBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2006,7 +2423,7 @@ func (a *RootServerApiService) GetServiceBodiesExecute(r ApiGetServiceBodiesRequ
 		localVarReturnValue  []ServiceBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.GetServiceBodies")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.GetServiceBodies")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2044,9 +2461,9 @@ func (a *RootServerApiService) GetServiceBodiesExecute(r ApiGetServiceBodiesRequ
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2063,7 +2480,8 @@ func (a *RootServerApiService) GetServiceBodiesExecute(r ApiGetServiceBodiesRequ
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2082,7 +2500,7 @@ func (a *RootServerApiService) GetServiceBodiesExecute(r ApiGetServiceBodiesRequ
 
 type ApiGetServiceBodyRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	serviceBodyId int64
 }
 
@@ -2099,7 +2517,7 @@ Retrieve a single service body by id.
  @param serviceBodyId ID of service body
  @return ApiGetServiceBodyRequest
 */
-func (a *RootServerApiService) GetServiceBody(ctx context.Context, serviceBodyId int64) ApiGetServiceBodyRequest {
+func (a *RootServerAPIService) GetServiceBody(ctx context.Context, serviceBodyId int64) ApiGetServiceBodyRequest {
 	return ApiGetServiceBodyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2109,7 +2527,7 @@ func (a *RootServerApiService) GetServiceBody(ctx context.Context, serviceBodyId
 
 // Execute executes the request
 //  @return ServiceBody
-func (a *RootServerApiService) GetServiceBodyExecute(r ApiGetServiceBodyRequest) (*ServiceBody, *http.Response, error) {
+func (a *RootServerAPIService) GetServiceBodyExecute(r ApiGetServiceBodyRequest) (*ServiceBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2117,13 +2535,13 @@ func (a *RootServerApiService) GetServiceBodyExecute(r ApiGetServiceBodyRequest)
 		localVarReturnValue  *ServiceBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.GetServiceBody")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.GetServiceBody")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/servicebodies/{serviceBodyId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serviceBodyId"+"}", url.PathEscape(parameterToString(r.serviceBodyId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceBodyId"+"}", url.PathEscape(parameterValueToString(r.serviceBodyId, "serviceBodyId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2156,9 +2574,9 @@ func (a *RootServerApiService) GetServiceBodyExecute(r ApiGetServiceBodyRequest)
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2175,7 +2593,8 @@ func (a *RootServerApiService) GetServiceBodyExecute(r ApiGetServiceBodyRequest)
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2185,7 +2604,8 @@ func (a *RootServerApiService) GetServiceBodyExecute(r ApiGetServiceBodyRequest)
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2204,7 +2624,7 @@ func (a *RootServerApiService) GetServiceBodyExecute(r ApiGetServiceBodyRequest)
 
 type ApiGetUserRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	userId int64
 }
 
@@ -2221,7 +2641,7 @@ Retrieve single user.
  @param userId ID of user
  @return ApiGetUserRequest
 */
-func (a *RootServerApiService) GetUser(ctx context.Context, userId int64) ApiGetUserRequest {
+func (a *RootServerAPIService) GetUser(ctx context.Context, userId int64) ApiGetUserRequest {
 	return ApiGetUserRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2231,7 +2651,7 @@ func (a *RootServerApiService) GetUser(ctx context.Context, userId int64) ApiGet
 
 // Execute executes the request
 //  @return User
-func (a *RootServerApiService) GetUserExecute(r ApiGetUserRequest) (*User, *http.Response, error) {
+func (a *RootServerAPIService) GetUserExecute(r ApiGetUserRequest) (*User, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2239,13 +2659,13 @@ func (a *RootServerApiService) GetUserExecute(r ApiGetUserRequest) (*User, *http
 		localVarReturnValue  *User
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.GetUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.GetUser")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/users/{userId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterToString(r.userId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2278,9 +2698,9 @@ func (a *RootServerApiService) GetUserExecute(r ApiGetUserRequest) (*User, *http
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2297,7 +2717,8 @@ func (a *RootServerApiService) GetUserExecute(r ApiGetUserRequest) (*User, *http
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2307,7 +2728,8 @@ func (a *RootServerApiService) GetUserExecute(r ApiGetUserRequest) (*User, *http
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2326,7 +2748,7 @@ func (a *RootServerApiService) GetUserExecute(r ApiGetUserRequest) (*User, *http
 
 type ApiGetUsersRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 }
 
 func (r ApiGetUsersRequest) Execute() ([]User, *http.Response, error) {
@@ -2341,7 +2763,7 @@ Retrieve users for authenticated user.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiGetUsersRequest
 */
-func (a *RootServerApiService) GetUsers(ctx context.Context) ApiGetUsersRequest {
+func (a *RootServerAPIService) GetUsers(ctx context.Context) ApiGetUsersRequest {
 	return ApiGetUsersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2350,7 +2772,7 @@ func (a *RootServerApiService) GetUsers(ctx context.Context) ApiGetUsersRequest 
 
 // Execute executes the request
 //  @return []User
-func (a *RootServerApiService) GetUsersExecute(r ApiGetUsersRequest) ([]User, *http.Response, error) {
+func (a *RootServerAPIService) GetUsersExecute(r ApiGetUsersRequest) ([]User, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -2358,7 +2780,7 @@ func (a *RootServerApiService) GetUsersExecute(r ApiGetUsersRequest) ([]User, *h
 		localVarReturnValue  []User
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.GetUsers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.GetUsers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2396,9 +2818,9 @@ func (a *RootServerApiService) GetUsersExecute(r ApiGetUsersRequest) ([]User, *h
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -2415,7 +2837,8 @@ func (a *RootServerApiService) GetUsersExecute(r ApiGetUsersRequest) ([]User, *h
 				newErr.error = err.Error()
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
@@ -2434,7 +2857,7 @@ func (a *RootServerApiService) GetUsersExecute(r ApiGetUsersRequest) ([]User, *h
 
 type ApiPartialUpdateUserRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	userId int64
 	userPartialUpdate *UserPartialUpdate
 }
@@ -2458,7 +2881,7 @@ Patches a user by id.
  @param userId ID of user
  @return ApiPartialUpdateUserRequest
 */
-func (a *RootServerApiService) PartialUpdateUser(ctx context.Context, userId int64) ApiPartialUpdateUserRequest {
+func (a *RootServerAPIService) PartialUpdateUser(ctx context.Context, userId int64) ApiPartialUpdateUserRequest {
 	return ApiPartialUpdateUserRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2467,20 +2890,20 @@ func (a *RootServerApiService) PartialUpdateUser(ctx context.Context, userId int
 }
 
 // Execute executes the request
-func (a *RootServerApiService) PartialUpdateUserExecute(r ApiPartialUpdateUserRequest) (*http.Response, error) {
+func (a *RootServerAPIService) PartialUpdateUserExecute(r ApiPartialUpdateUserRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.PartialUpdateUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.PartialUpdateUser")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/users/{userId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterToString(r.userId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2518,9 +2941,9 @@ func (a *RootServerApiService) PartialUpdateUserExecute(r ApiPartialUpdateUserRe
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -2537,7 +2960,8 @@ func (a *RootServerApiService) PartialUpdateUserExecute(r ApiPartialUpdateUserRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2547,7 +2971,8 @@ func (a *RootServerApiService) PartialUpdateUserExecute(r ApiPartialUpdateUserRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2557,7 +2982,8 @@ func (a *RootServerApiService) PartialUpdateUserExecute(r ApiPartialUpdateUserRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -2567,7 +2993,8 @@ func (a *RootServerApiService) PartialUpdateUserExecute(r ApiPartialUpdateUserRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -2577,7 +3004,7 @@ func (a *RootServerApiService) PartialUpdateUserExecute(r ApiPartialUpdateUserRe
 
 type ApiPatchFormatRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	formatId int64
 	formatPartialUpdate *FormatPartialUpdate
 }
@@ -2601,7 +3028,7 @@ Patches a single format by id.
  @param formatId ID of format
  @return ApiPatchFormatRequest
 */
-func (a *RootServerApiService) PatchFormat(ctx context.Context, formatId int64) ApiPatchFormatRequest {
+func (a *RootServerAPIService) PatchFormat(ctx context.Context, formatId int64) ApiPatchFormatRequest {
 	return ApiPatchFormatRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2610,20 +3037,20 @@ func (a *RootServerApiService) PatchFormat(ctx context.Context, formatId int64) 
 }
 
 // Execute executes the request
-func (a *RootServerApiService) PatchFormatExecute(r ApiPatchFormatRequest) (*http.Response, error) {
+func (a *RootServerAPIService) PatchFormatExecute(r ApiPatchFormatRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.PatchFormat")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.PatchFormat")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/formats/{formatId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"formatId"+"}", url.PathEscape(parameterToString(r.formatId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"formatId"+"}", url.PathEscape(parameterValueToString(r.formatId, "formatId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2661,9 +3088,9 @@ func (a *RootServerApiService) PatchFormatExecute(r ApiPatchFormatRequest) (*htt
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -2680,7 +3107,8 @@ func (a *RootServerApiService) PatchFormatExecute(r ApiPatchFormatRequest) (*htt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2690,7 +3118,8 @@ func (a *RootServerApiService) PatchFormatExecute(r ApiPatchFormatRequest) (*htt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2700,7 +3129,8 @@ func (a *RootServerApiService) PatchFormatExecute(r ApiPatchFormatRequest) (*htt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -2710,7 +3140,8 @@ func (a *RootServerApiService) PatchFormatExecute(r ApiPatchFormatRequest) (*htt
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -2720,7 +3151,7 @@ func (a *RootServerApiService) PatchFormatExecute(r ApiPatchFormatRequest) (*htt
 
 type ApiPatchMeetingRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	meetingId int64
 	meetingPartialUpdate *MeetingPartialUpdate
 }
@@ -2744,7 +3175,7 @@ Patches a meeting by id
  @param meetingId ID of meeting
  @return ApiPatchMeetingRequest
 */
-func (a *RootServerApiService) PatchMeeting(ctx context.Context, meetingId int64) ApiPatchMeetingRequest {
+func (a *RootServerAPIService) PatchMeeting(ctx context.Context, meetingId int64) ApiPatchMeetingRequest {
 	return ApiPatchMeetingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2753,20 +3184,20 @@ func (a *RootServerApiService) PatchMeeting(ctx context.Context, meetingId int64
 }
 
 // Execute executes the request
-func (a *RootServerApiService) PatchMeetingExecute(r ApiPatchMeetingRequest) (*http.Response, error) {
+func (a *RootServerAPIService) PatchMeetingExecute(r ApiPatchMeetingRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.PatchMeeting")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.PatchMeeting")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/meetings/{meetingId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"meetingId"+"}", url.PathEscape(parameterToString(r.meetingId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"meetingId"+"}", url.PathEscape(parameterValueToString(r.meetingId, "meetingId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2804,9 +3235,9 @@ func (a *RootServerApiService) PatchMeetingExecute(r ApiPatchMeetingRequest) (*h
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -2823,7 +3254,8 @@ func (a *RootServerApiService) PatchMeetingExecute(r ApiPatchMeetingRequest) (*h
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2833,7 +3265,8 @@ func (a *RootServerApiService) PatchMeetingExecute(r ApiPatchMeetingRequest) (*h
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2843,7 +3276,8 @@ func (a *RootServerApiService) PatchMeetingExecute(r ApiPatchMeetingRequest) (*h
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -2853,7 +3287,8 @@ func (a *RootServerApiService) PatchMeetingExecute(r ApiPatchMeetingRequest) (*h
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -2863,7 +3298,7 @@ func (a *RootServerApiService) PatchMeetingExecute(r ApiPatchMeetingRequest) (*h
 
 type ApiPatchServiceBodyRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	serviceBodyId int64
 	serviceBodyPartialUpdate *ServiceBodyPartialUpdate
 }
@@ -2887,7 +3322,7 @@ Patches a single service body by id.
  @param serviceBodyId ID of service body
  @return ApiPatchServiceBodyRequest
 */
-func (a *RootServerApiService) PatchServiceBody(ctx context.Context, serviceBodyId int64) ApiPatchServiceBodyRequest {
+func (a *RootServerAPIService) PatchServiceBody(ctx context.Context, serviceBodyId int64) ApiPatchServiceBodyRequest {
 	return ApiPatchServiceBodyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2896,20 +3331,20 @@ func (a *RootServerApiService) PatchServiceBody(ctx context.Context, serviceBody
 }
 
 // Execute executes the request
-func (a *RootServerApiService) PatchServiceBodyExecute(r ApiPatchServiceBodyRequest) (*http.Response, error) {
+func (a *RootServerAPIService) PatchServiceBodyExecute(r ApiPatchServiceBodyRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPatch
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.PatchServiceBody")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.PatchServiceBody")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/servicebodies/{serviceBodyId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serviceBodyId"+"}", url.PathEscape(parameterToString(r.serviceBodyId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceBodyId"+"}", url.PathEscape(parameterValueToString(r.serviceBodyId, "serviceBodyId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -2947,9 +3382,9 @@ func (a *RootServerApiService) PatchServiceBodyExecute(r ApiPatchServiceBodyRequ
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -2966,7 +3401,8 @@ func (a *RootServerApiService) PatchServiceBodyExecute(r ApiPatchServiceBodyRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -2976,7 +3412,8 @@ func (a *RootServerApiService) PatchServiceBodyExecute(r ApiPatchServiceBodyRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -2986,7 +3423,8 @@ func (a *RootServerApiService) PatchServiceBodyExecute(r ApiPatchServiceBodyRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -2996,7 +3434,8 @@ func (a *RootServerApiService) PatchServiceBodyExecute(r ApiPatchServiceBodyRequ
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -3006,7 +3445,7 @@ func (a *RootServerApiService) PatchServiceBodyExecute(r ApiPatchServiceBodyRequ
 
 type ApiUpdateFormatRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	formatId int64
 	formatUpdate *FormatUpdate
 }
@@ -3030,7 +3469,7 @@ Updates a format.
  @param formatId ID of format
  @return ApiUpdateFormatRequest
 */
-func (a *RootServerApiService) UpdateFormat(ctx context.Context, formatId int64) ApiUpdateFormatRequest {
+func (a *RootServerAPIService) UpdateFormat(ctx context.Context, formatId int64) ApiUpdateFormatRequest {
 	return ApiUpdateFormatRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3039,20 +3478,20 @@ func (a *RootServerApiService) UpdateFormat(ctx context.Context, formatId int64)
 }
 
 // Execute executes the request
-func (a *RootServerApiService) UpdateFormatExecute(r ApiUpdateFormatRequest) (*http.Response, error) {
+func (a *RootServerAPIService) UpdateFormatExecute(r ApiUpdateFormatRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.UpdateFormat")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.UpdateFormat")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/formats/{formatId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"formatId"+"}", url.PathEscape(parameterToString(r.formatId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"formatId"+"}", url.PathEscape(parameterValueToString(r.formatId, "formatId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3090,9 +3529,9 @@ func (a *RootServerApiService) UpdateFormatExecute(r ApiUpdateFormatRequest) (*h
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -3109,7 +3548,8 @@ func (a *RootServerApiService) UpdateFormatExecute(r ApiUpdateFormatRequest) (*h
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -3119,7 +3559,8 @@ func (a *RootServerApiService) UpdateFormatExecute(r ApiUpdateFormatRequest) (*h
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -3129,7 +3570,8 @@ func (a *RootServerApiService) UpdateFormatExecute(r ApiUpdateFormatRequest) (*h
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -3139,7 +3581,8 @@ func (a *RootServerApiService) UpdateFormatExecute(r ApiUpdateFormatRequest) (*h
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -3149,7 +3592,7 @@ func (a *RootServerApiService) UpdateFormatExecute(r ApiUpdateFormatRequest) (*h
 
 type ApiUpdateMeetingRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	meetingId int64
 	meetingUpdate *MeetingUpdate
 }
@@ -3173,7 +3616,7 @@ Updates a meeting.
  @param meetingId ID of meeting
  @return ApiUpdateMeetingRequest
 */
-func (a *RootServerApiService) UpdateMeeting(ctx context.Context, meetingId int64) ApiUpdateMeetingRequest {
+func (a *RootServerAPIService) UpdateMeeting(ctx context.Context, meetingId int64) ApiUpdateMeetingRequest {
 	return ApiUpdateMeetingRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3182,20 +3625,20 @@ func (a *RootServerApiService) UpdateMeeting(ctx context.Context, meetingId int6
 }
 
 // Execute executes the request
-func (a *RootServerApiService) UpdateMeetingExecute(r ApiUpdateMeetingRequest) (*http.Response, error) {
+func (a *RootServerAPIService) UpdateMeetingExecute(r ApiUpdateMeetingRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.UpdateMeeting")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.UpdateMeeting")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/meetings/{meetingId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"meetingId"+"}", url.PathEscape(parameterToString(r.meetingId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"meetingId"+"}", url.PathEscape(parameterValueToString(r.meetingId, "meetingId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3233,9 +3676,9 @@ func (a *RootServerApiService) UpdateMeetingExecute(r ApiUpdateMeetingRequest) (
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -3252,7 +3695,8 @@ func (a *RootServerApiService) UpdateMeetingExecute(r ApiUpdateMeetingRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -3262,7 +3706,8 @@ func (a *RootServerApiService) UpdateMeetingExecute(r ApiUpdateMeetingRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -3272,7 +3717,8 @@ func (a *RootServerApiService) UpdateMeetingExecute(r ApiUpdateMeetingRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -3282,7 +3728,8 @@ func (a *RootServerApiService) UpdateMeetingExecute(r ApiUpdateMeetingRequest) (
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -3292,7 +3739,7 @@ func (a *RootServerApiService) UpdateMeetingExecute(r ApiUpdateMeetingRequest) (
 
 type ApiUpdateServiceBodyRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	serviceBodyId int64
 	serviceBodyUpdate *ServiceBodyUpdate
 }
@@ -3316,7 +3763,7 @@ Updates a single service body.
  @param serviceBodyId ID of service body
  @return ApiUpdateServiceBodyRequest
 */
-func (a *RootServerApiService) UpdateServiceBody(ctx context.Context, serviceBodyId int64) ApiUpdateServiceBodyRequest {
+func (a *RootServerAPIService) UpdateServiceBody(ctx context.Context, serviceBodyId int64) ApiUpdateServiceBodyRequest {
 	return ApiUpdateServiceBodyRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3325,20 +3772,20 @@ func (a *RootServerApiService) UpdateServiceBody(ctx context.Context, serviceBod
 }
 
 // Execute executes the request
-func (a *RootServerApiService) UpdateServiceBodyExecute(r ApiUpdateServiceBodyRequest) (*http.Response, error) {
+func (a *RootServerAPIService) UpdateServiceBodyExecute(r ApiUpdateServiceBodyRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.UpdateServiceBody")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.UpdateServiceBody")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/servicebodies/{serviceBodyId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"serviceBodyId"+"}", url.PathEscape(parameterToString(r.serviceBodyId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"serviceBodyId"+"}", url.PathEscape(parameterValueToString(r.serviceBodyId, "serviceBodyId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3376,9 +3823,9 @@ func (a *RootServerApiService) UpdateServiceBodyExecute(r ApiUpdateServiceBodyRe
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -3395,7 +3842,8 @@ func (a *RootServerApiService) UpdateServiceBodyExecute(r ApiUpdateServiceBodyRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -3405,7 +3853,8 @@ func (a *RootServerApiService) UpdateServiceBodyExecute(r ApiUpdateServiceBodyRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -3415,7 +3864,8 @@ func (a *RootServerApiService) UpdateServiceBodyExecute(r ApiUpdateServiceBodyRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -3425,7 +3875,8 @@ func (a *RootServerApiService) UpdateServiceBodyExecute(r ApiUpdateServiceBodyRe
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}
@@ -3435,7 +3886,7 @@ func (a *RootServerApiService) UpdateServiceBodyExecute(r ApiUpdateServiceBodyRe
 
 type ApiUpdateUserRequest struct {
 	ctx context.Context
-	ApiService *RootServerApiService
+	ApiService *RootServerAPIService
 	userId int64
 	userUpdate *UserUpdate
 }
@@ -3459,7 +3910,7 @@ Updates a user.
  @param userId ID of user
  @return ApiUpdateUserRequest
 */
-func (a *RootServerApiService) UpdateUser(ctx context.Context, userId int64) ApiUpdateUserRequest {
+func (a *RootServerAPIService) UpdateUser(ctx context.Context, userId int64) ApiUpdateUserRequest {
 	return ApiUpdateUserRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3468,20 +3919,20 @@ func (a *RootServerApiService) UpdateUser(ctx context.Context, userId int64) Api
 }
 
 // Execute executes the request
-func (a *RootServerApiService) UpdateUserExecute(r ApiUpdateUserRequest) (*http.Response, error) {
+func (a *RootServerAPIService) UpdateUserExecute(r ApiUpdateUserRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerApiService.UpdateUser")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RootServerAPIService.UpdateUser")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/users/{userId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterToString(r.userId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"userId"+"}", url.PathEscape(parameterValueToString(r.userId, "userId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3519,9 +3970,9 @@ func (a *RootServerApiService) UpdateUserExecute(r ApiUpdateUserRequest) (*http.
 		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
 		return localVarHTTPResponse, err
 	}
@@ -3538,7 +3989,8 @@ func (a *RootServerApiService) UpdateUserExecute(r ApiUpdateUserRequest) (*http.
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
@@ -3548,7 +4000,8 @@ func (a *RootServerApiService) UpdateUserExecute(r ApiUpdateUserRequest) (*http.
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
@@ -3558,7 +4011,8 @@ func (a *RootServerApiService) UpdateUserExecute(r ApiUpdateUserRequest) (*http.
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
@@ -3568,7 +4022,8 @@ func (a *RootServerApiService) UpdateUserExecute(r ApiUpdateUserRequest) (*http.
 				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
 		}
 		return localVarHTTPResponse, newErr
 	}

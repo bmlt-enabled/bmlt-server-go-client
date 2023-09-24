@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FormatUpdate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FormatUpdate{}
+
 // FormatUpdate struct for FormatUpdate
 type FormatUpdate struct {
 	WorldId *string `json:"worldId,omitempty"`
@@ -41,7 +44,7 @@ func NewFormatUpdateWithDefaults() *FormatUpdate {
 
 // GetWorldId returns the WorldId field value if set, zero value otherwise.
 func (o *FormatUpdate) GetWorldId() string {
-	if o == nil || o.WorldId == nil {
+	if o == nil || IsNil(o.WorldId) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *FormatUpdate) GetWorldId() string {
 // GetWorldIdOk returns a tuple with the WorldId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FormatUpdate) GetWorldIdOk() (*string, bool) {
-	if o == nil || o.WorldId == nil {
+	if o == nil || IsNil(o.WorldId) {
 		return nil, false
 	}
 	return o.WorldId, true
@@ -59,7 +62,7 @@ func (o *FormatUpdate) GetWorldIdOk() (*string, bool) {
 
 // HasWorldId returns a boolean if a field has been set.
 func (o *FormatUpdate) HasWorldId() bool {
-	if o != nil && o.WorldId != nil {
+	if o != nil && !IsNil(o.WorldId) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *FormatUpdate) SetWorldId(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *FormatUpdate) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *FormatUpdate) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FormatUpdate) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -91,7 +94,7 @@ func (o *FormatUpdate) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *FormatUpdate) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -128,17 +131,23 @@ func (o *FormatUpdate) SetTranslations(v []FormatTranslation) {
 }
 
 func (o FormatUpdate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.WorldId != nil {
-		toSerialize["worldId"] = o.WorldId
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["translations"] = o.Translations
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o FormatUpdate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.WorldId) {
+		toSerialize["worldId"] = o.WorldId
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	toSerialize["translations"] = o.Translations
+	return toSerialize, nil
 }
 
 type NullableFormatUpdate struct {

@@ -10,6 +10,47 @@ servers:
 - description: this server
   url: http://localhost:8000/main_server/
 paths:
+  /api/v1/errortest:
+    post:
+      description: Tests some errors.
+      operationId: createErrorTest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ErrorTest'
+        description: Pass in error test object.
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorTest'
+          description: Returns when POST is successful.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          description: Returns when user is not authenticated.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          description: Validation error.
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServerError'
+          description: Server error.
+      security:
+      - bmltToken: []
+      summary: Tests some errors
+      tags:
+      - rootServer
   /api/v1/formats:
     get:
       description: Retrieve formats
@@ -565,6 +606,59 @@ paths:
       summary: Updates a meeting
       tags:
       - rootServer
+  /api/v1/rootservers:
+    get:
+      description: Retrieve root servers.
+      operationId: getRootServers
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RootServerCollection'
+          description: Successful response.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Returns when aggregator mode is disabled.
+      security:
+      - bmltToken: []
+      summary: Retrieves root servers
+      tags:
+      - rootServer
+  /api/v1/rootservers/{rootServerId}:
+    get:
+      description: Retrieve a single root server id.
+      operationId: getRootServer
+      parameters:
+      - description: ID of root server
+        example: "1"
+        explode: false
+        in: path
+        name: rootServerId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RootServer'
+          description: Successful response.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Returns when no root server exists.
+      summary: Retrieves a root server
+      tags:
+      - rootServer
   /api/v1/servicebodies:
     get:
       description: Retrieve service bodies for authenticated user.
@@ -669,6 +763,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
           description: Returns when no service body exists.
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictError'
+          description: Returns when service body has children.
       security:
       - bmltToken: []
       summary: Deletes a service body
@@ -830,7 +930,7 @@ paths:
         description: User credentials
         required: true
       responses:
-        "201":
+        "200":
           content:
             application/json:
               schema:
@@ -1152,6 +1252,22 @@ paths:
       - rootServer
 components:
   schemas:
+    ErrorTest:
+      example:
+        arbitrary_int: 123
+        arbitrary_string: string
+        force_server_error: true
+      properties:
+        arbitrary_string:
+          example: string
+          type: string
+        arbitrary_int:
+          example: 123
+          type: integer
+        force_server_error:
+          example: true
+          type: boolean
+      type: object
     AuthenticationError:
       properties:
         message:
@@ -1176,6 +1292,14 @@ components:
       required:
       - message
       type: object
+    ConflictError:
+      properties:
+        message:
+          example: Conflict Error
+          type: string
+      required:
+      - message
+      type: object
     ValidationError:
       properties:
         message:
@@ -1190,6 +1314,14 @@ components:
           type: object
       required:
       - errors
+      - message
+      type: object
+    ServerError:
+      properties:
+        message:
+          example: Server Error
+          type: string
+      required:
       - message
       type: object
     FormatBase:
@@ -1224,7 +1356,10 @@ components:
     Format:
       allOf:
       - $ref: '#/components/schemas/FormatBase'
-      - $ref: '#/components/schemas/Format_allOf'
+      - properties:
+          id:
+            example: 0
+            type: integer
       required:
       - id
       - translations
@@ -1365,7 +1500,10 @@ components:
     Meeting:
       allOf:
       - $ref: '#/components/schemas/MeetingBase'
-      - $ref: '#/components/schemas/Format_allOf'
+      - properties:
+          id:
+            example: 0
+            type: integer
       required:
       - day
       - duration
@@ -1429,6 +1567,44 @@ components:
       items:
         $ref: '#/components/schemas/Meeting'
       type: array
+    RootServerBase:
+      properties:
+        sourceId:
+          example: 0
+          type: integer
+        name:
+          example: string
+          type: string
+        url:
+          example: https://example.com/main_server
+          type: string
+        statistics:
+          $ref: '#/components/schemas/RootServerBase_statistics'
+        serverInfo:
+          example: string
+          type: string
+        lastSuccessfulImport:
+          format: date-time
+          type: string
+      type: object
+    RootServer:
+      allOf:
+      - $ref: '#/components/schemas/RootServerBase'
+      - properties:
+          id:
+            example: 0
+            type: integer
+      required:
+      - id
+      - lastSuccessfulImport
+      - name
+      - sourceId
+      - url
+      type: object
+    RootServerCollection:
+      items:
+        $ref: '#/components/schemas/RootServer'
+      type: array
     ServiceBodyBase:
       properties:
         parentId:
@@ -1467,7 +1643,10 @@ components:
     ServiceBody:
       allOf:
       - $ref: '#/components/schemas/ServiceBodyBase'
-      - $ref: '#/components/schemas/Format_allOf'
+      - properties:
+          id:
+            example: 0
+            type: integer
       required:
       - adminUserId
       - assignedUserIds
@@ -1574,7 +1753,10 @@ components:
     User:
       allOf:
       - $ref: '#/components/schemas/UserBase'
-      - $ref: '#/components/schemas/Format_allOf'
+      - properties:
+          id:
+            example: 0
+            type: integer
       required:
       - description
       - displayName
@@ -1587,7 +1769,10 @@ components:
     UserCreate:
       allOf:
       - $ref: '#/components/schemas/UserBase'
-      - $ref: '#/components/schemas/UserCreate_allOf'
+      - properties:
+          password:
+            example: string
+            type: string
       required:
       - displayName
       - password
@@ -1597,7 +1782,10 @@ components:
     UserUpdate:
       allOf:
       - $ref: '#/components/schemas/UserBase'
-      - $ref: '#/components/schemas/UserCreate_allOf'
+      - properties:
+          password:
+            example: string
+            type: string
       required:
       - displayName
       - type
@@ -1606,24 +1794,69 @@ components:
     UserPartialUpdate:
       allOf:
       - $ref: '#/components/schemas/UserBase'
-      - $ref: '#/components/schemas/UserCreate_allOf'
+      - properties:
+          password:
+            example: string
+            type: string
       type: object
     UserCollection:
       items:
         $ref: '#/components/schemas/User'
       type: array
-    Format_allOf:
+    RootServerBase_statistics_serviceBodies:
       properties:
-        id:
+        numZones:
           example: 0
           type: integer
-      example: null
-    UserCreate_allOf:
+        numRegions:
+          example: 0
+          type: integer
+        numAreas:
+          example: 0
+          type: integer
+        numGroups:
+          example: 0
+          type: integer
+      required:
+      - numAreas
+      - numGroups
+      - numRegions
+      - numZones
+      type: object
+    RootServerBase_statistics_meetings:
       properties:
-        password:
-          example: string
-          type: string
-      example: null
+        numTotal:
+          example: 0
+          type: integer
+        numInPerson:
+          example: 0
+          type: integer
+        numVirtual:
+          example: 0
+          type: integer
+        numHybrid:
+          example: 0
+          type: integer
+        numUnknown:
+          example: 0
+          type: integer
+      required:
+      - numHybrid
+      - numInPerson
+      - numTotal
+      - numUnknown
+      - numVirtual
+      type: object
+    RootServerBase_statistics:
+      properties:
+        serviceBodies:
+          $ref: '#/components/schemas/RootServerBase_statistics_serviceBodies'
+        meetings:
+          $ref: '#/components/schemas/RootServerBase_statistics_meetings'
+      required:
+      - meetings
+      - serviceBodies
+      type: object
   securitySchemes:
     bmltToken:
       flows:

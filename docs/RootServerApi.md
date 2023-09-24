@@ -1,36 +1,39 @@
-# \RootServerApi
+# \RootServerAPI
 
 All URIs are relative to *http://localhost:8000/main_server*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**AuthLogout**](RootServerApi.md#AuthLogout) | **Post** /api/v1/auth/logout | Revokes a token
-[**AuthRefresh**](RootServerApi.md#AuthRefresh) | **Post** /api/v1/auth/refresh | Revokes and issues a new token
-[**AuthToken**](RootServerApi.md#AuthToken) | **Post** /api/v1/auth/token | Creates a token
-[**CreateFormat**](RootServerApi.md#CreateFormat) | **Post** /api/v1/formats | Creates a format
-[**CreateMeeting**](RootServerApi.md#CreateMeeting) | **Post** /api/v1/meetings | Creates a meeting
-[**CreateServiceBody**](RootServerApi.md#CreateServiceBody) | **Post** /api/v1/servicebodies | Creates a service body
-[**CreateUser**](RootServerApi.md#CreateUser) | **Post** /api/v1/users | Creates a user
-[**DeleteFormat**](RootServerApi.md#DeleteFormat) | **Delete** /api/v1/formats/{formatId} | Deletes a format
-[**DeleteMeeting**](RootServerApi.md#DeleteMeeting) | **Delete** /api/v1/meetings/{meetingId} | Deletes a meeting
-[**DeleteServiceBody**](RootServerApi.md#DeleteServiceBody) | **Delete** /api/v1/servicebodies/{serviceBodyId} | Deletes a service body
-[**DeleteUser**](RootServerApi.md#DeleteUser) | **Delete** /api/v1/users/{userId} | Deletes a user
-[**GetFormat**](RootServerApi.md#GetFormat) | **Get** /api/v1/formats/{formatId} | Retrieves a format
-[**GetFormats**](RootServerApi.md#GetFormats) | **Get** /api/v1/formats | Retrieves formats
-[**GetMeeting**](RootServerApi.md#GetMeeting) | **Get** /api/v1/meetings/{meetingId} | Retrieves a meeting
-[**GetMeetings**](RootServerApi.md#GetMeetings) | **Get** /api/v1/meetings | Retrieves meetings
-[**GetServiceBodies**](RootServerApi.md#GetServiceBodies) | **Get** /api/v1/servicebodies | Retrieves service bodies
-[**GetServiceBody**](RootServerApi.md#GetServiceBody) | **Get** /api/v1/servicebodies/{serviceBodyId} | Retrieves a service body
-[**GetUser**](RootServerApi.md#GetUser) | **Get** /api/v1/users/{userId} | Retrieves a single user
-[**GetUsers**](RootServerApi.md#GetUsers) | **Get** /api/v1/users | Retrieves users
-[**PartialUpdateUser**](RootServerApi.md#PartialUpdateUser) | **Patch** /api/v1/users/{userId} | Patches a user
-[**PatchFormat**](RootServerApi.md#PatchFormat) | **Patch** /api/v1/formats/{formatId} | Patches a format
-[**PatchMeeting**](RootServerApi.md#PatchMeeting) | **Patch** /api/v1/meetings/{meetingId} | Patches a meeting
-[**PatchServiceBody**](RootServerApi.md#PatchServiceBody) | **Patch** /api/v1/servicebodies/{serviceBodyId} | Patches a service body
-[**UpdateFormat**](RootServerApi.md#UpdateFormat) | **Put** /api/v1/formats/{formatId} | Updates a format
-[**UpdateMeeting**](RootServerApi.md#UpdateMeeting) | **Put** /api/v1/meetings/{meetingId} | Updates a meeting
-[**UpdateServiceBody**](RootServerApi.md#UpdateServiceBody) | **Put** /api/v1/servicebodies/{serviceBodyId} | Updates a Service Body
-[**UpdateUser**](RootServerApi.md#UpdateUser) | **Put** /api/v1/users/{userId} | Update single user
+[**AuthLogout**](RootServerAPI.md#AuthLogout) | **Post** /api/v1/auth/logout | Revokes a token
+[**AuthRefresh**](RootServerAPI.md#AuthRefresh) | **Post** /api/v1/auth/refresh | Revokes and issues a new token
+[**AuthToken**](RootServerAPI.md#AuthToken) | **Post** /api/v1/auth/token | Creates a token
+[**CreateErrorTest**](RootServerAPI.md#CreateErrorTest) | **Post** /api/v1/errortest | Tests some errors
+[**CreateFormat**](RootServerAPI.md#CreateFormat) | **Post** /api/v1/formats | Creates a format
+[**CreateMeeting**](RootServerAPI.md#CreateMeeting) | **Post** /api/v1/meetings | Creates a meeting
+[**CreateServiceBody**](RootServerAPI.md#CreateServiceBody) | **Post** /api/v1/servicebodies | Creates a service body
+[**CreateUser**](RootServerAPI.md#CreateUser) | **Post** /api/v1/users | Creates a user
+[**DeleteFormat**](RootServerAPI.md#DeleteFormat) | **Delete** /api/v1/formats/{formatId} | Deletes a format
+[**DeleteMeeting**](RootServerAPI.md#DeleteMeeting) | **Delete** /api/v1/meetings/{meetingId} | Deletes a meeting
+[**DeleteServiceBody**](RootServerAPI.md#DeleteServiceBody) | **Delete** /api/v1/servicebodies/{serviceBodyId} | Deletes a service body
+[**DeleteUser**](RootServerAPI.md#DeleteUser) | **Delete** /api/v1/users/{userId} | Deletes a user
+[**GetFormat**](RootServerAPI.md#GetFormat) | **Get** /api/v1/formats/{formatId} | Retrieves a format
+[**GetFormats**](RootServerAPI.md#GetFormats) | **Get** /api/v1/formats | Retrieves formats
+[**GetMeeting**](RootServerAPI.md#GetMeeting) | **Get** /api/v1/meetings/{meetingId} | Retrieves a meeting
+[**GetMeetings**](RootServerAPI.md#GetMeetings) | **Get** /api/v1/meetings | Retrieves meetings
+[**GetRootServer**](RootServerAPI.md#GetRootServer) | **Get** /api/v1/rootservers/{rootServerId} | Retrieves a root server
+[**GetRootServers**](RootServerAPI.md#GetRootServers) | **Get** /api/v1/rootservers | Retrieves root servers
+[**GetServiceBodies**](RootServerAPI.md#GetServiceBodies) | **Get** /api/v1/servicebodies | Retrieves service bodies
+[**GetServiceBody**](RootServerAPI.md#GetServiceBody) | **Get** /api/v1/servicebodies/{serviceBodyId} | Retrieves a service body
+[**GetUser**](RootServerAPI.md#GetUser) | **Get** /api/v1/users/{userId} | Retrieves a single user
+[**GetUsers**](RootServerAPI.md#GetUsers) | **Get** /api/v1/users | Retrieves users
+[**PartialUpdateUser**](RootServerAPI.md#PartialUpdateUser) | **Patch** /api/v1/users/{userId} | Patches a user
+[**PatchFormat**](RootServerAPI.md#PatchFormat) | **Patch** /api/v1/formats/{formatId} | Patches a format
+[**PatchMeeting**](RootServerAPI.md#PatchMeeting) | **Patch** /api/v1/meetings/{meetingId} | Patches a meeting
+[**PatchServiceBody**](RootServerAPI.md#PatchServiceBody) | **Patch** /api/v1/servicebodies/{serviceBodyId} | Patches a service body
+[**UpdateFormat**](RootServerAPI.md#UpdateFormat) | **Put** /api/v1/formats/{formatId} | Updates a format
+[**UpdateMeeting**](RootServerAPI.md#UpdateMeeting) | **Put** /api/v1/meetings/{meetingId} | Updates a meeting
+[**UpdateServiceBody**](RootServerAPI.md#UpdateServiceBody) | **Put** /api/v1/servicebodies/{serviceBodyId} | Updates a Service Body
+[**UpdateUser**](RootServerAPI.md#UpdateUser) | **Put** /api/v1/users/{userId} | Update single user
 
 
 
@@ -51,16 +54,16 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.AuthLogout(context.Background()).Execute()
+    r, err := apiClient.RootServerAPI.AuthLogout(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.AuthLogout``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.AuthLogout``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -110,20 +113,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.AuthRefresh(context.Background()).Execute()
+    resp, r, err := apiClient.RootServerAPI.AuthRefresh(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.AuthRefresh``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.AuthRefresh``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `AuthRefresh`: Token
-    fmt.Fprintf(os.Stdout, "Response from `RootServerApi.AuthRefresh`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.AuthRefresh`: %v\n", resp)
 }
 ```
 
@@ -171,7 +174,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -179,13 +182,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.AuthToken(context.Background()).TokenCredentials(tokenCredentials).Execute()
+    resp, r, err := apiClient.RootServerAPI.AuthToken(context.Background()).TokenCredentials(tokenCredentials).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.AuthToken``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.AuthToken``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `AuthToken`: Token
-    fmt.Fprintf(os.Stdout, "Response from `RootServerApi.AuthToken`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.AuthToken`: %v\n", resp)
 }
 ```
 
@@ -220,6 +223,72 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## CreateErrorTest
+
+> ErrorTest CreateErrorTest(ctx).ErrorTest(errorTest).Execute()
+
+Tests some errors
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
+)
+
+func main() {
+    errorTest := *openapiclient.NewErrorTest() // ErrorTest | Pass in error test object.
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RootServerAPI.CreateErrorTest(context.Background()).ErrorTest(errorTest).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.CreateErrorTest``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `CreateErrorTest`: ErrorTest
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.CreateErrorTest`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateErrorTestRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **errorTest** | [**ErrorTest**](ErrorTest.md) | Pass in error test object. | 
+
+### Return type
+
+[**ErrorTest**](ErrorTest.md)
+
+### Authorization
+
+[bmltToken](../README.md#bmltToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateFormat
 
 > Format CreateFormat(ctx).FormatCreate(formatCreate).Execute()
@@ -237,7 +306,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -245,13 +314,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.CreateFormat(context.Background()).FormatCreate(formatCreate).Execute()
+    resp, r, err := apiClient.RootServerAPI.CreateFormat(context.Background()).FormatCreate(formatCreate).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.CreateFormat``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.CreateFormat``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateFormat`: Format
-    fmt.Fprintf(os.Stdout, "Response from `RootServerApi.CreateFormat`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.CreateFormat`: %v\n", resp)
 }
 ```
 
@@ -303,7 +372,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -311,13 +380,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.CreateMeeting(context.Background()).MeetingCreate(meetingCreate).Execute()
+    resp, r, err := apiClient.RootServerAPI.CreateMeeting(context.Background()).MeetingCreate(meetingCreate).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.CreateMeeting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.CreateMeeting``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateMeeting`: Meeting
-    fmt.Fprintf(os.Stdout, "Response from `RootServerApi.CreateMeeting`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.CreateMeeting`: %v\n", resp)
 }
 ```
 
@@ -369,7 +438,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -377,13 +446,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.CreateServiceBody(context.Background()).ServiceBodyCreate(serviceBodyCreate).Execute()
+    resp, r, err := apiClient.RootServerAPI.CreateServiceBody(context.Background()).ServiceBodyCreate(serviceBodyCreate).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.CreateServiceBody``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.CreateServiceBody``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateServiceBody`: ServiceBody
-    fmt.Fprintf(os.Stdout, "Response from `RootServerApi.CreateServiceBody`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.CreateServiceBody`: %v\n", resp)
 }
 ```
 
@@ -435,7 +504,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -443,13 +512,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.CreateUser(context.Background()).UserCreate(userCreate).Execute()
+    resp, r, err := apiClient.RootServerAPI.CreateUser(context.Background()).UserCreate(userCreate).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.CreateUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.CreateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateUser`: User
-    fmt.Fprintf(os.Stdout, "Response from `RootServerApi.CreateUser`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.CreateUser`: %v\n", resp)
 }
 ```
 
@@ -501,7 +570,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -509,9 +578,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.DeleteFormat(context.Background(), formatId).Execute()
+    r, err := apiClient.RootServerAPI.DeleteFormat(context.Background(), formatId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.DeleteFormat``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.DeleteFormat``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -569,7 +638,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -577,9 +646,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.DeleteMeeting(context.Background(), meetingId).Execute()
+    r, err := apiClient.RootServerAPI.DeleteMeeting(context.Background(), meetingId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.DeleteMeeting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.DeleteMeeting``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -637,7 +706,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -645,9 +714,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.DeleteServiceBody(context.Background(), serviceBodyId).Execute()
+    r, err := apiClient.RootServerAPI.DeleteServiceBody(context.Background(), serviceBodyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.DeleteServiceBody``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.DeleteServiceBody``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -705,7 +774,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -713,9 +782,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.DeleteUser(context.Background(), userId).Execute()
+    r, err := apiClient.RootServerAPI.DeleteUser(context.Background(), userId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.DeleteUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.DeleteUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -773,7 +842,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -781,13 +850,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.GetFormat(context.Background(), formatId).Execute()
+    resp, r, err := apiClient.RootServerAPI.GetFormat(context.Background(), formatId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.GetFormat``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.GetFormat``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetFormat`: Format
-    fmt.Fprintf(os.Stdout, "Response from `RootServerApi.GetFormat`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.GetFormat`: %v\n", resp)
 }
 ```
 
@@ -843,20 +912,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.GetFormats(context.Background()).Execute()
+    resp, r, err := apiClient.RootServerAPI.GetFormats(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.GetFormats``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.GetFormats``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetFormats`: []Format
-    fmt.Fprintf(os.Stdout, "Response from `RootServerApi.GetFormats`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.GetFormats`: %v\n", resp)
 }
 ```
 
@@ -904,7 +973,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -912,13 +981,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.GetMeeting(context.Background(), meetingId).Execute()
+    resp, r, err := apiClient.RootServerAPI.GetMeeting(context.Background(), meetingId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.GetMeeting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.GetMeeting``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetMeeting`: Meeting
-    fmt.Fprintf(os.Stdout, "Response from `RootServerApi.GetMeeting`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.GetMeeting`: %v\n", resp)
 }
 ```
 
@@ -974,7 +1043,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -985,13 +1054,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.GetMeetings(context.Background()).MeetingIds(meetingIds).Days(days).ServiceBodyIds(serviceBodyIds).SearchString(searchString).Execute()
+    resp, r, err := apiClient.RootServerAPI.GetMeetings(context.Background()).MeetingIds(meetingIds).Days(days).ServiceBodyIds(serviceBodyIds).SearchString(searchString).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.GetMeetings``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.GetMeetings``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetMeetings`: []Meeting
-    fmt.Fprintf(os.Stdout, "Response from `RootServerApi.GetMeetings`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.GetMeetings`: %v\n", resp)
 }
 ```
 
@@ -1029,6 +1098,137 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetRootServer
+
+> RootServer GetRootServer(ctx, rootServerId).Execute()
+
+Retrieves a root server
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
+)
+
+func main() {
+    rootServerId := int64(1) // int64 | ID of root server
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RootServerAPI.GetRootServer(context.Background(), rootServerId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.GetRootServer``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetRootServer`: RootServer
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.GetRootServer`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**rootServerId** | **int64** | ID of root server | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetRootServerRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**RootServer**](RootServer.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetRootServers
+
+> []RootServer GetRootServers(ctx).Execute()
+
+Retrieves root servers
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
+)
+
+func main() {
+
+    configuration := openapiclient.NewConfiguration()
+    apiClient := openapiclient.NewAPIClient(configuration)
+    resp, r, err := apiClient.RootServerAPI.GetRootServers(context.Background()).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.GetRootServers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetRootServers`: []RootServer
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.GetRootServers`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetRootServersRequest struct via the builder pattern
+
+
+### Return type
+
+[**[]RootServer**](RootServer.md)
+
+### Authorization
+
+[bmltToken](../README.md#bmltToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetServiceBodies
 
 > []ServiceBody GetServiceBodies(ctx).Execute()
@@ -1046,20 +1246,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.GetServiceBodies(context.Background()).Execute()
+    resp, r, err := apiClient.RootServerAPI.GetServiceBodies(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.GetServiceBodies``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.GetServiceBodies``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetServiceBodies`: []ServiceBody
-    fmt.Fprintf(os.Stdout, "Response from `RootServerApi.GetServiceBodies`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.GetServiceBodies`: %v\n", resp)
 }
 ```
 
@@ -1107,7 +1307,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -1115,13 +1315,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.GetServiceBody(context.Background(), serviceBodyId).Execute()
+    resp, r, err := apiClient.RootServerAPI.GetServiceBody(context.Background(), serviceBodyId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.GetServiceBody``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.GetServiceBody``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetServiceBody`: ServiceBody
-    fmt.Fprintf(os.Stdout, "Response from `RootServerApi.GetServiceBody`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.GetServiceBody`: %v\n", resp)
 }
 ```
 
@@ -1177,7 +1377,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -1185,13 +1385,13 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.GetUser(context.Background(), userId).Execute()
+    resp, r, err := apiClient.RootServerAPI.GetUser(context.Background(), userId).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.GetUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.GetUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUser`: User
-    fmt.Fprintf(os.Stdout, "Response from `RootServerApi.GetUser`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.GetUser`: %v\n", resp)
 }
 ```
 
@@ -1247,20 +1447,20 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.GetUsers(context.Background()).Execute()
+    resp, r, err := apiClient.RootServerAPI.GetUsers(context.Background()).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.GetUsers``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.GetUsers``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetUsers`: []User
-    fmt.Fprintf(os.Stdout, "Response from `RootServerApi.GetUsers`: %v\n", resp)
+    fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.GetUsers`: %v\n", resp)
 }
 ```
 
@@ -1308,7 +1508,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -1317,9 +1517,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.PartialUpdateUser(context.Background(), userId).UserPartialUpdate(userPartialUpdate).Execute()
+    r, err := apiClient.RootServerAPI.PartialUpdateUser(context.Background(), userId).UserPartialUpdate(userPartialUpdate).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.PartialUpdateUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.PartialUpdateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -1378,7 +1578,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -1387,9 +1587,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.PatchFormat(context.Background(), formatId).FormatPartialUpdate(formatPartialUpdate).Execute()
+    r, err := apiClient.RootServerAPI.PatchFormat(context.Background(), formatId).FormatPartialUpdate(formatPartialUpdate).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.PatchFormat``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.PatchFormat``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -1448,7 +1648,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -1457,9 +1657,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.PatchMeeting(context.Background(), meetingId).MeetingPartialUpdate(meetingPartialUpdate).Execute()
+    r, err := apiClient.RootServerAPI.PatchMeeting(context.Background(), meetingId).MeetingPartialUpdate(meetingPartialUpdate).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.PatchMeeting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.PatchMeeting``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -1518,7 +1718,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -1527,9 +1727,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.PatchServiceBody(context.Background(), serviceBodyId).ServiceBodyPartialUpdate(serviceBodyPartialUpdate).Execute()
+    r, err := apiClient.RootServerAPI.PatchServiceBody(context.Background(), serviceBodyId).ServiceBodyPartialUpdate(serviceBodyPartialUpdate).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.PatchServiceBody``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.PatchServiceBody``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -1588,7 +1788,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -1597,9 +1797,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.UpdateFormat(context.Background(), formatId).FormatUpdate(formatUpdate).Execute()
+    r, err := apiClient.RootServerAPI.UpdateFormat(context.Background(), formatId).FormatUpdate(formatUpdate).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.UpdateFormat``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.UpdateFormat``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -1658,7 +1858,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -1667,9 +1867,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.UpdateMeeting(context.Background(), meetingId).MeetingUpdate(meetingUpdate).Execute()
+    r, err := apiClient.RootServerAPI.UpdateMeeting(context.Background(), meetingId).MeetingUpdate(meetingUpdate).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.UpdateMeeting``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.UpdateMeeting``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -1728,7 +1928,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -1737,9 +1937,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.UpdateServiceBody(context.Background(), serviceBodyId).ServiceBodyUpdate(serviceBodyUpdate).Execute()
+    r, err := apiClient.RootServerAPI.UpdateServiceBody(context.Background(), serviceBodyId).ServiceBodyUpdate(serviceBodyUpdate).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.UpdateServiceBody``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.UpdateServiceBody``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -1798,7 +1998,7 @@ import (
     "context"
     "fmt"
     "os"
-    openapiclient "./openapi"
+    openapiclient "github.com/bmlt-enabled/bmlt-root-server-go-client"
 )
 
 func main() {
@@ -1807,9 +2007,9 @@ func main() {
 
     configuration := openapiclient.NewConfiguration()
     apiClient := openapiclient.NewAPIClient(configuration)
-    resp, r, err := apiClient.RootServerApi.UpdateUser(context.Background(), userId).UserUpdate(userUpdate).Execute()
+    r, err := apiClient.RootServerAPI.UpdateUser(context.Background(), userId).UserUpdate(userUpdate).Execute()
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `RootServerApi.UpdateUser``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.UpdateUser``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }

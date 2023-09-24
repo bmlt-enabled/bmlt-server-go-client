@@ -14,34 +14,34 @@ import (
 	"encoding/json"
 )
 
-// checks if the NotFoundError type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &NotFoundError{}
+// checks if the ServerError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServerError{}
 
-// NotFoundError struct for NotFoundError
-type NotFoundError struct {
+// ServerError struct for ServerError
+type ServerError struct {
 	Message string `json:"message"`
 }
 
-// NewNotFoundError instantiates a new NotFoundError object
+// NewServerError instantiates a new ServerError object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewNotFoundError(message string) *NotFoundError {
-	this := NotFoundError{}
+func NewServerError(message string) *ServerError {
+	this := ServerError{}
 	this.Message = message
 	return &this
 }
 
-// NewNotFoundErrorWithDefaults instantiates a new NotFoundError object
+// NewServerErrorWithDefaults instantiates a new ServerError object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewNotFoundErrorWithDefaults() *NotFoundError {
-	this := NotFoundError{}
+func NewServerErrorWithDefaults() *ServerError {
+	this := ServerError{}
 	return &this
 }
 
 // GetMessage returns the Message field value
-func (o *NotFoundError) GetMessage() string {
+func (o *ServerError) GetMessage() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -52,7 +52,7 @@ func (o *NotFoundError) GetMessage() string {
 
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
-func (o *NotFoundError) GetMessageOk() (*string, bool) {
+func (o *ServerError) GetMessageOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -60,11 +60,11 @@ func (o *NotFoundError) GetMessageOk() (*string, bool) {
 }
 
 // SetMessage sets field value
-func (o *NotFoundError) SetMessage(v string) {
+func (o *ServerError) SetMessage(v string) {
 	o.Message = v
 }
 
-func (o NotFoundError) MarshalJSON() ([]byte, error) {
+func (o ServerError) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -72,44 +72,44 @@ func (o NotFoundError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o NotFoundError) ToMap() (map[string]interface{}, error) {
+func (o ServerError) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["message"] = o.Message
 	return toSerialize, nil
 }
 
-type NullableNotFoundError struct {
-	value *NotFoundError
+type NullableServerError struct {
+	value *ServerError
 	isSet bool
 }
 
-func (v NullableNotFoundError) Get() *NotFoundError {
+func (v NullableServerError) Get() *ServerError {
 	return v.value
 }
 
-func (v *NullableNotFoundError) Set(val *NotFoundError) {
+func (v *NullableServerError) Set(val *ServerError) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableNotFoundError) IsSet() bool {
+func (v NullableServerError) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableNotFoundError) Unset() {
+func (v *NullableServerError) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableNotFoundError(val *NotFoundError) *NullableNotFoundError {
-	return &NullableNotFoundError{value: val, isSet: true}
+func NewNullableServerError(val *ServerError) *NullableServerError {
+	return &NullableServerError{value: val, isSet: true}
 }
 
-func (v NullableNotFoundError) MarshalJSON() ([]byte, error) {
+func (v NullableServerError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableNotFoundError) UnmarshalJSON(src []byte) error {
+func (v *NullableServerError) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

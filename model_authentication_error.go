@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the AuthenticationError type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AuthenticationError{}
+
 // AuthenticationError struct for AuthenticationError
 type AuthenticationError struct {
 	Message string `json:"message"`
@@ -62,11 +65,17 @@ func (o *AuthenticationError) SetMessage(v string) {
 }
 
 func (o AuthenticationError) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["message"] = o.Message
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o AuthenticationError) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["message"] = o.Message
+	return toSerialize, nil
 }
 
 type NullableAuthenticationError struct {

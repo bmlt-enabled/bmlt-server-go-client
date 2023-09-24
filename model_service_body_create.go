@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ServiceBodyCreate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ServiceBodyCreate{}
+
 // ServiceBodyCreate struct for ServiceBodyCreate
 type ServiceBodyCreate struct {
 	ParentId int32 `json:"parentId"`
@@ -197,7 +200,7 @@ func (o *ServiceBodyCreate) SetAssignedUserIds(v []int32) {
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *ServiceBodyCreate) GetUrl() string {
-	if o == nil || o.Url == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
@@ -207,7 +210,7 @@ func (o *ServiceBodyCreate) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceBodyCreate) GetUrlOk() (*string, bool) {
-	if o == nil || o.Url == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
 	return o.Url, true
@@ -215,7 +218,7 @@ func (o *ServiceBodyCreate) GetUrlOk() (*string, bool) {
 
 // HasUrl returns a boolean if a field has been set.
 func (o *ServiceBodyCreate) HasUrl() bool {
-	if o != nil && o.Url != nil {
+	if o != nil && !IsNil(o.Url) {
 		return true
 	}
 
@@ -229,7 +232,7 @@ func (o *ServiceBodyCreate) SetUrl(v string) {
 
 // GetHelpline returns the Helpline field value if set, zero value otherwise.
 func (o *ServiceBodyCreate) GetHelpline() string {
-	if o == nil || o.Helpline == nil {
+	if o == nil || IsNil(o.Helpline) {
 		var ret string
 		return ret
 	}
@@ -239,7 +242,7 @@ func (o *ServiceBodyCreate) GetHelpline() string {
 // GetHelplineOk returns a tuple with the Helpline field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceBodyCreate) GetHelplineOk() (*string, bool) {
-	if o == nil || o.Helpline == nil {
+	if o == nil || IsNil(o.Helpline) {
 		return nil, false
 	}
 	return o.Helpline, true
@@ -247,7 +250,7 @@ func (o *ServiceBodyCreate) GetHelplineOk() (*string, bool) {
 
 // HasHelpline returns a boolean if a field has been set.
 func (o *ServiceBodyCreate) HasHelpline() bool {
-	if o != nil && o.Helpline != nil {
+	if o != nil && !IsNil(o.Helpline) {
 		return true
 	}
 
@@ -261,7 +264,7 @@ func (o *ServiceBodyCreate) SetHelpline(v string) {
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *ServiceBodyCreate) GetEmail() string {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		var ret string
 		return ret
 	}
@@ -271,7 +274,7 @@ func (o *ServiceBodyCreate) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceBodyCreate) GetEmailOk() (*string, bool) {
-	if o == nil || o.Email == nil {
+	if o == nil || IsNil(o.Email) {
 		return nil, false
 	}
 	return o.Email, true
@@ -279,7 +282,7 @@ func (o *ServiceBodyCreate) GetEmailOk() (*string, bool) {
 
 // HasEmail returns a boolean if a field has been set.
 func (o *ServiceBodyCreate) HasEmail() bool {
-	if o != nil && o.Email != nil {
+	if o != nil && !IsNil(o.Email) {
 		return true
 	}
 
@@ -293,7 +296,7 @@ func (o *ServiceBodyCreate) SetEmail(v string) {
 
 // GetWorldId returns the WorldId field value if set, zero value otherwise.
 func (o *ServiceBodyCreate) GetWorldId() string {
-	if o == nil || o.WorldId == nil {
+	if o == nil || IsNil(o.WorldId) {
 		var ret string
 		return ret
 	}
@@ -303,7 +306,7 @@ func (o *ServiceBodyCreate) GetWorldId() string {
 // GetWorldIdOk returns a tuple with the WorldId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ServiceBodyCreate) GetWorldIdOk() (*string, bool) {
-	if o == nil || o.WorldId == nil {
+	if o == nil || IsNil(o.WorldId) {
 		return nil, false
 	}
 	return o.WorldId, true
@@ -311,7 +314,7 @@ func (o *ServiceBodyCreate) GetWorldIdOk() (*string, bool) {
 
 // HasWorldId returns a boolean if a field has been set.
 func (o *ServiceBodyCreate) HasWorldId() bool {
-	if o != nil && o.WorldId != nil {
+	if o != nil && !IsNil(o.WorldId) {
 		return true
 	}
 
@@ -324,38 +327,34 @@ func (o *ServiceBodyCreate) SetWorldId(v string) {
 }
 
 func (o ServiceBodyCreate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["parentId"] = o.ParentId
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["adminUserId"] = o.AdminUserId
-	}
-	if true {
-		toSerialize["assignedUserIds"] = o.AssignedUserIds
-	}
-	if o.Url != nil {
-		toSerialize["url"] = o.Url
-	}
-	if o.Helpline != nil {
-		toSerialize["helpline"] = o.Helpline
-	}
-	if o.Email != nil {
-		toSerialize["email"] = o.Email
-	}
-	if o.WorldId != nil {
-		toSerialize["worldId"] = o.WorldId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ServiceBodyCreate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["parentId"] = o.ParentId
+	toSerialize["name"] = o.Name
+	toSerialize["description"] = o.Description
+	toSerialize["type"] = o.Type
+	toSerialize["adminUserId"] = o.AdminUserId
+	toSerialize["assignedUserIds"] = o.AssignedUserIds
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+	if !IsNil(o.Helpline) {
+		toSerialize["helpline"] = o.Helpline
+	}
+	if !IsNil(o.Email) {
+		toSerialize["email"] = o.Email
+	}
+	if !IsNil(o.WorldId) {
+		toSerialize["worldId"] = o.WorldId
+	}
+	return toSerialize, nil
 }
 
 type NullableServiceBodyCreate struct {

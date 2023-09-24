@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Format type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Format{}
+
 // Format struct for Format
 type Format struct {
 	WorldId string `json:"worldId"`
@@ -140,20 +143,20 @@ func (o *Format) SetId(v int32) {
 }
 
 func (o Format) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["worldId"] = o.WorldId
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["translations"] = o.Translations
-	}
-	if true {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Format) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["worldId"] = o.WorldId
+	toSerialize["type"] = o.Type
+	toSerialize["translations"] = o.Translations
+	toSerialize["id"] = o.Id
+	return toSerialize, nil
 }
 
 type NullableFormat struct {

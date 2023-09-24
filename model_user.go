@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the User type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &User{}
+
 // User struct for User
 type User struct {
 	Username string `json:"username"`
@@ -218,29 +221,23 @@ func (o *User) SetId(v int32) {
 }
 
 func (o User) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["username"] = o.Username
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["displayName"] = o.DisplayName
-	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
-	if true {
-		toSerialize["email"] = o.Email
-	}
-	if true {
-		toSerialize["ownerId"] = o.OwnerId
-	}
-	if true {
-		toSerialize["id"] = o.Id
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o User) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["username"] = o.Username
+	toSerialize["type"] = o.Type
+	toSerialize["displayName"] = o.DisplayName
+	toSerialize["description"] = o.Description
+	toSerialize["email"] = o.Email
+	toSerialize["ownerId"] = o.OwnerId
+	toSerialize["id"] = o.Id
+	return toSerialize, nil
 }
 
 type NullableUser struct {

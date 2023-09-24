@@ -14,6 +14,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the FormatTranslation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &FormatTranslation{}
+
 // FormatTranslation struct for FormatTranslation
 type FormatTranslation struct {
 	Key string `json:"key"`
@@ -140,20 +143,20 @@ func (o *FormatTranslation) SetLanguage(v string) {
 }
 
 func (o FormatTranslation) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["key"] = o.Key
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
-	if true {
-		toSerialize["language"] = o.Language
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o FormatTranslation) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["key"] = o.Key
+	toSerialize["name"] = o.Name
+	toSerialize["description"] = o.Description
+	toSerialize["language"] = o.Language
+	return toSerialize, nil
 }
 
 type NullableFormatTranslation struct {
