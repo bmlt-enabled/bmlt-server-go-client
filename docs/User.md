@@ -9,14 +9,14 @@ Name | Type | Description | Notes
 **DisplayName** | **string** |  | 
 **Description** | **string** |  | 
 **Email** | **string** |  | 
-**OwnerId** | **string** |  | 
+**OwnerId** | **int32** |  | 
 **Id** | **int32** |  | 
 
 ## Methods
 
 ### NewUser
 
-`func NewUser(username string, type_ string, displayName string, description string, email string, ownerId string, id int32, ) *User`
+`func NewUser(username string, type_ string, displayName string, description string, email string, ownerId int32, id int32, ) *User`
 
 NewUser instantiates a new User object
 This constructor will assign default values to properties that have it defined,
@@ -133,20 +133,20 @@ SetEmail sets Email field to given value.
 
 ### GetOwnerId
 
-`func (o *User) GetOwnerId() string`
+`func (o *User) GetOwnerId() int32`
 
 GetOwnerId returns the OwnerId field if non-nil, zero value otherwise.
 
 ### GetOwnerIdOk
 
-`func (o *User) GetOwnerIdOk() (*string, bool)`
+`func (o *User) GetOwnerIdOk() (*int32, bool)`
 
 GetOwnerIdOk returns a tuple with the OwnerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOwnerId
 
-`func (o *User) SetOwnerId(v string)`
+`func (o *User) SetOwnerId(v int32)`
 
 SetOwnerId sets OwnerId field to given value.
 

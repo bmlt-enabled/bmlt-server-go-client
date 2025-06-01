@@ -12,6 +12,8 @@ package bmlt
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the MeetingUpdate type satisfies the MappedNullable interface at compile time
@@ -53,9 +55,12 @@ type MeetingUpdate struct {
 	ContactEmail1 *string `json:"contact_email_1,omitempty"`
 	ContactEmail2 *string `json:"contact_email_2,omitempty"`
 	BusLines *string `json:"bus_lines,omitempty"`
-	TrainLine *string `json:"train_line,omitempty"`
+	TrainLines *string `json:"train_lines,omitempty"`
 	Comments *string `json:"comments,omitempty"`
+	CustomFields *map[string]string `json:"customFields,omitempty"`
 }
+
+type _MeetingUpdate MeetingUpdate
 
 // NewMeetingUpdate instantiates a new MeetingUpdate object
 // This constructor will assign default values to properties that have it defined,
@@ -1092,36 +1097,36 @@ func (o *MeetingUpdate) SetBusLines(v string) {
 	o.BusLines = &v
 }
 
-// GetTrainLine returns the TrainLine field value if set, zero value otherwise.
-func (o *MeetingUpdate) GetTrainLine() string {
-	if o == nil || IsNil(o.TrainLine) {
+// GetTrainLines returns the TrainLines field value if set, zero value otherwise.
+func (o *MeetingUpdate) GetTrainLines() string {
+	if o == nil || IsNil(o.TrainLines) {
 		var ret string
 		return ret
 	}
-	return *o.TrainLine
+	return *o.TrainLines
 }
 
-// GetTrainLineOk returns a tuple with the TrainLine field value if set, nil otherwise
+// GetTrainLinesOk returns a tuple with the TrainLines field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MeetingUpdate) GetTrainLineOk() (*string, bool) {
-	if o == nil || IsNil(o.TrainLine) {
+func (o *MeetingUpdate) GetTrainLinesOk() (*string, bool) {
+	if o == nil || IsNil(o.TrainLines) {
 		return nil, false
 	}
-	return o.TrainLine, true
+	return o.TrainLines, true
 }
 
-// HasTrainLine returns a boolean if a field has been set.
-func (o *MeetingUpdate) HasTrainLine() bool {
-	if o != nil && !IsNil(o.TrainLine) {
+// HasTrainLines returns a boolean if a field has been set.
+func (o *MeetingUpdate) HasTrainLines() bool {
+	if o != nil && !IsNil(o.TrainLines) {
 		return true
 	}
 
 	return false
 }
 
-// SetTrainLine gets a reference to the given string and assigns it to the TrainLine field.
-func (o *MeetingUpdate) SetTrainLine(v string) {
-	o.TrainLine = &v
+// SetTrainLines gets a reference to the given string and assigns it to the TrainLines field.
+func (o *MeetingUpdate) SetTrainLines(v string) {
+	o.TrainLines = &v
 }
 
 // GetComments returns the Comments field value if set, zero value otherwise.
@@ -1154,6 +1159,38 @@ func (o *MeetingUpdate) HasComments() bool {
 // SetComments gets a reference to the given string and assigns it to the Comments field.
 func (o *MeetingUpdate) SetComments(v string) {
 	o.Comments = &v
+}
+
+// GetCustomFields returns the CustomFields field value if set, zero value otherwise.
+func (o *MeetingUpdate) GetCustomFields() map[string]string {
+	if o == nil || IsNil(o.CustomFields) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.CustomFields
+}
+
+// GetCustomFieldsOk returns a tuple with the CustomFields field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MeetingUpdate) GetCustomFieldsOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.CustomFields) {
+		return nil, false
+	}
+	return o.CustomFields, true
+}
+
+// HasCustomFields returns a boolean if a field has been set.
+func (o *MeetingUpdate) HasCustomFields() bool {
+	if o != nil && !IsNil(o.CustomFields) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomFields gets a reference to the given map[string]string and assigns it to the CustomFields field.
+func (o *MeetingUpdate) SetCustomFields(v map[string]string) {
+	o.CustomFields = &v
 }
 
 func (o MeetingUpdate) MarshalJSON() ([]byte, error) {
@@ -1248,13 +1285,62 @@ func (o MeetingUpdate) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BusLines) {
 		toSerialize["bus_lines"] = o.BusLines
 	}
-	if !IsNil(o.TrainLine) {
-		toSerialize["train_line"] = o.TrainLine
+	if !IsNil(o.TrainLines) {
+		toSerialize["train_lines"] = o.TrainLines
 	}
 	if !IsNil(o.Comments) {
 		toSerialize["comments"] = o.Comments
 	}
+	if !IsNil(o.CustomFields) {
+		toSerialize["customFields"] = o.CustomFields
+	}
 	return toSerialize, nil
+}
+
+func (o *MeetingUpdate) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"serviceBodyId",
+		"formatIds",
+		"venueType",
+		"day",
+		"startTime",
+		"duration",
+		"latitude",
+		"longitude",
+		"published",
+		"name",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varMeetingUpdate := _MeetingUpdate{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varMeetingUpdate)
+
+	if err != nil {
+		return err
+	}
+
+	*o = MeetingUpdate(varMeetingUpdate)
+
+	return err
 }
 
 type NullableMeetingUpdate struct {

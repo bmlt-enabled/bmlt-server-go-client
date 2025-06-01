@@ -12,6 +12,8 @@ package bmlt
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the RootServerBaseStatistics type satisfies the MappedNullable interface at compile time
@@ -22,6 +24,8 @@ type RootServerBaseStatistics struct {
 	ServiceBodies RootServerBaseStatisticsServiceBodies `json:"serviceBodies"`
 	Meetings RootServerBaseStatisticsMeetings `json:"meetings"`
 }
+
+type _RootServerBaseStatistics RootServerBaseStatistics
 
 // NewRootServerBaseStatistics instantiates a new RootServerBaseStatistics object
 // This constructor will assign default values to properties that have it defined,
@@ -103,6 +107,44 @@ func (o RootServerBaseStatistics) ToMap() (map[string]interface{}, error) {
 	toSerialize["serviceBodies"] = o.ServiceBodies
 	toSerialize["meetings"] = o.Meetings
 	return toSerialize, nil
+}
+
+func (o *RootServerBaseStatistics) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"serviceBodies",
+		"meetings",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varRootServerBaseStatistics := _RootServerBaseStatistics{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varRootServerBaseStatistics)
+
+	if err != nil {
+		return err
+	}
+
+	*o = RootServerBaseStatistics(varRootServerBaseStatistics)
+
+	return err
 }
 
 type NullableRootServerBaseStatistics struct {

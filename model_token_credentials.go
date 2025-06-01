@@ -12,6 +12,8 @@ package bmlt
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the TokenCredentials type satisfies the MappedNullable interface at compile time
@@ -19,18 +21,20 @@ var _ MappedNullable = &TokenCredentials{}
 
 // TokenCredentials struct for TokenCredentials
 type TokenCredentials struct {
-	Password string `json:"password"`
 	Username string `json:"username"`
+	Password string `json:"password"`
 }
+
+type _TokenCredentials TokenCredentials
 
 // NewTokenCredentials instantiates a new TokenCredentials object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTokenCredentials(password string, username string) *TokenCredentials {
+func NewTokenCredentials(username string, password string) *TokenCredentials {
 	this := TokenCredentials{}
-	this.Password = password
 	this.Username = username
+	this.Password = password
 	return &this
 }
 
@@ -40,30 +44,6 @@ func NewTokenCredentials(password string, username string) *TokenCredentials {
 func NewTokenCredentialsWithDefaults() *TokenCredentials {
 	this := TokenCredentials{}
 	return &this
-}
-
-// GetPassword returns the Password field value
-func (o *TokenCredentials) GetPassword() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Password
-}
-
-// GetPasswordOk returns a tuple with the Password field value
-// and a boolean to check if the value has been set.
-func (o *TokenCredentials) GetPasswordOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Password, true
-}
-
-// SetPassword sets field value
-func (o *TokenCredentials) SetPassword(v string) {
-	o.Password = v
 }
 
 // GetUsername returns the Username field value
@@ -90,6 +70,30 @@ func (o *TokenCredentials) SetUsername(v string) {
 	o.Username = v
 }
 
+// GetPassword returns the Password field value
+func (o *TokenCredentials) GetPassword() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Password
+}
+
+// GetPasswordOk returns a tuple with the Password field value
+// and a boolean to check if the value has been set.
+func (o *TokenCredentials) GetPasswordOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Password, true
+}
+
+// SetPassword sets field value
+func (o *TokenCredentials) SetPassword(v string) {
+	o.Password = v
+}
+
 func (o TokenCredentials) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -100,9 +104,47 @@ func (o TokenCredentials) MarshalJSON() ([]byte, error) {
 
 func (o TokenCredentials) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["password"] = o.Password
 	toSerialize["username"] = o.Username
+	toSerialize["password"] = o.Password
 	return toSerialize, nil
+}
+
+func (o *TokenCredentials) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"username",
+		"password",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varTokenCredentials := _TokenCredentials{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varTokenCredentials)
+
+	if err != nil {
+		return err
+	}
+
+	*o = TokenCredentials(varTokenCredentials)
+
+	return err
 }
 
 type NullableTokenCredentials struct {

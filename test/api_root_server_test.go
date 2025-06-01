@@ -1,7 +1,7 @@
 /*
 BMLT
 
-Testing RootServerApiService
+Testing RootServerAPIService
 
 */
 
@@ -10,372 +10,423 @@ Testing RootServerApiService
 package bmlt
 
 import (
-    "context"
-    "github.com/stretchr/testify/assert"
-    "github.com/stretchr/testify/require"
-    "testing"
-    openapiclient "./openapi"
+	"context"
+	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/bmlt-enabled/bmlt-server-go-client"
 )
 
-func Test_bmlt_RootServerApiService(t *testing.T) {
+func Test_bmlt_RootServerAPIService(t *testing.T) {
 
-    configuration := openapiclient.NewConfiguration()
-    apiClient := openapiclient.NewAPIClient(configuration)
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
 
-    t.Run("Test RootServerApiService AuthLogout", func(t *testing.T) {
+	t.Run("Test RootServerAPIService AuthLogout", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.RootServerApi.AuthLogout(context.Background()).Execute()
+		httpRes, err := apiClient.RootServerAPI.AuthLogout(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RootServerApiService AuthRefresh", func(t *testing.T) {
+	t.Run("Test RootServerAPIService AuthRefresh", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.RootServerApi.AuthRefresh(context.Background()).Execute()
+		resp, httpRes, err := apiClient.RootServerAPI.AuthRefresh(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RootServerApiService AuthToken", func(t *testing.T) {
+	t.Run("Test RootServerAPIService AuthToken", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.RootServerApi.AuthToken(context.Background()).Execute()
+		resp, httpRes, err := apiClient.RootServerAPI.AuthToken(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RootServerApiService CreateFormat", func(t *testing.T) {
+	t.Run("Test RootServerAPIService CreateErrorTest", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.RootServerApi.CreateFormat(context.Background()).Execute()
+		resp, httpRes, err := apiClient.RootServerAPI.CreateErrorTest(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RootServerApiService CreateMeeting", func(t *testing.T) {
+	t.Run("Test RootServerAPIService CreateFormat", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.RootServerApi.CreateMeeting(context.Background()).Execute()
+		resp, httpRes, err := apiClient.RootServerAPI.CreateFormat(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RootServerApiService CreateServiceBody", func(t *testing.T) {
+	t.Run("Test RootServerAPIService CreateMeeting", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.RootServerApi.CreateServiceBody(context.Background()).Execute()
+		resp, httpRes, err := apiClient.RootServerAPI.CreateMeeting(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RootServerApiService CreateUser", func(t *testing.T) {
+	t.Run("Test RootServerAPIService CreateServiceBody", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        resp, httpRes, err := apiClient.RootServerApi.CreateUser(context.Background()).Execute()
+		resp, httpRes, err := apiClient.RootServerAPI.CreateServiceBody(context.Background()).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RootServerApiService DeleteFormat", func(t *testing.T) {
+	t.Run("Test RootServerAPIService CreateUser", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var formatId int64
+		resp, httpRes, err := apiClient.RootServerAPI.CreateUser(context.Background()).Execute()
 
-        resp, httpRes, err := apiClient.RootServerApi.DeleteFormat(context.Background(), formatId).Execute()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+	})
 
-    })
+	t.Run("Test RootServerAPIService DeleteFormat", func(t *testing.T) {
 
-    t.Run("Test RootServerApiService DeleteMeeting", func(t *testing.T) {
+		t.Skip("skip test")  // remove to run test
 
-        t.Skip("skip test")  // remove to run test
+		var formatId int64
 
-        var meetingId int64
+		httpRes, err := apiClient.RootServerAPI.DeleteFormat(context.Background(), formatId).Execute()
 
-        resp, httpRes, err := apiClient.RootServerApi.DeleteMeeting(context.Background(), meetingId).Execute()
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+	})
 
-    })
+	t.Run("Test RootServerAPIService DeleteMeeting", func(t *testing.T) {
 
-    t.Run("Test RootServerApiService DeleteServiceBody", func(t *testing.T) {
+		t.Skip("skip test")  // remove to run test
 
-        t.Skip("skip test")  // remove to run test
+		var meetingId int64
 
-        var serviceBodyId int64
+		httpRes, err := apiClient.RootServerAPI.DeleteMeeting(context.Background(), meetingId).Execute()
 
-        resp, httpRes, err := apiClient.RootServerApi.DeleteServiceBody(context.Background(), serviceBodyId).Execute()
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+	})
 
-    })
+	t.Run("Test RootServerAPIService DeleteServiceBody", func(t *testing.T) {
 
-    t.Run("Test RootServerApiService DeleteUser", func(t *testing.T) {
+		t.Skip("skip test")  // remove to run test
 
-        t.Skip("skip test")  // remove to run test
+		var serviceBodyId int64
 
-        var userId int64
+		httpRes, err := apiClient.RootServerAPI.DeleteServiceBody(context.Background(), serviceBodyId).Execute()
 
-        resp, httpRes, err := apiClient.RootServerApi.DeleteUser(context.Background(), userId).Execute()
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+	})
 
-    })
+	t.Run("Test RootServerAPIService DeleteUser", func(t *testing.T) {
 
-    t.Run("Test RootServerApiService GetFormat", func(t *testing.T) {
+		t.Skip("skip test")  // remove to run test
 
-        t.Skip("skip test")  // remove to run test
+		var userId int64
 
-        var formatId int64
+		httpRes, err := apiClient.RootServerAPI.DeleteUser(context.Background(), userId).Execute()
 
-        resp, httpRes, err := apiClient.RootServerApi.GetFormat(context.Background(), formatId).Execute()
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+	})
 
-    })
+	t.Run("Test RootServerAPIService GetFormat", func(t *testing.T) {
 
-    t.Run("Test RootServerApiService GetFormats", func(t *testing.T) {
+		t.Skip("skip test")  // remove to run test
 
-        t.Skip("skip test")  // remove to run test
+		var formatId int64
 
-        resp, httpRes, err := apiClient.RootServerApi.GetFormats(context.Background()).Execute()
+		resp, httpRes, err := apiClient.RootServerAPI.GetFormat(context.Background(), formatId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RootServerApiService GetMeeting", func(t *testing.T) {
+	t.Run("Test RootServerAPIService GetFormats", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var meetingId int64
+		resp, httpRes, err := apiClient.RootServerAPI.GetFormats(context.Background()).Execute()
 
-        resp, httpRes, err := apiClient.RootServerApi.GetMeeting(context.Background(), meetingId).Execute()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+	})
 
-    })
+	t.Run("Test RootServerAPIService GetLaravelLog", func(t *testing.T) {
 
-    t.Run("Test RootServerApiService GetMeetings", func(t *testing.T) {
+		t.Skip("skip test")  // remove to run test
 
-        t.Skip("skip test")  // remove to run test
+		resp, httpRes, err := apiClient.RootServerAPI.GetLaravelLog(context.Background()).Execute()
 
-        resp, httpRes, err := apiClient.RootServerApi.GetMeetings(context.Background()).Execute()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+	})
 
-    })
+	t.Run("Test RootServerAPIService GetMeeting", func(t *testing.T) {
 
-    t.Run("Test RootServerApiService GetServiceBodies", func(t *testing.T) {
+		t.Skip("skip test")  // remove to run test
 
-        t.Skip("skip test")  // remove to run test
+		var meetingId int64
 
-        resp, httpRes, err := apiClient.RootServerApi.GetServiceBodies(context.Background()).Execute()
+		resp, httpRes, err := apiClient.RootServerAPI.GetMeeting(context.Background(), meetingId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RootServerApiService GetServiceBody", func(t *testing.T) {
+	t.Run("Test RootServerAPIService GetMeetingChanges", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var serviceBodyId int64
+		var meetingId int64
 
-        resp, httpRes, err := apiClient.RootServerApi.GetServiceBody(context.Background(), serviceBodyId).Execute()
+		resp, httpRes, err := apiClient.RootServerAPI.GetMeetingChanges(context.Background(), meetingId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RootServerApiService GetUser", func(t *testing.T) {
+	t.Run("Test RootServerAPIService GetMeetings", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var userId int64
+		resp, httpRes, err := apiClient.RootServerAPI.GetMeetings(context.Background()).Execute()
 
-        resp, httpRes, err := apiClient.RootServerApi.GetUser(context.Background(), userId).Execute()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+	})
 
-    })
+	t.Run("Test RootServerAPIService GetRootServer", func(t *testing.T) {
 
-    t.Run("Test RootServerApiService GetUsers", func(t *testing.T) {
+		t.Skip("skip test")  // remove to run test
 
-        t.Skip("skip test")  // remove to run test
+		var rootServerId int64
 
-        resp, httpRes, err := apiClient.RootServerApi.GetUsers(context.Background()).Execute()
+		resp, httpRes, err := apiClient.RootServerAPI.GetRootServer(context.Background(), rootServerId).Execute()
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-    })
+	})
 
-    t.Run("Test RootServerApiService PartialUpdateUser", func(t *testing.T) {
+	t.Run("Test RootServerAPIService GetRootServers", func(t *testing.T) {
 
-        t.Skip("skip test")  // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-        var userId int64
+		resp, httpRes, err := apiClient.RootServerAPI.GetRootServers(context.Background()).Execute()
 
-        resp, httpRes, err := apiClient.RootServerApi.PartialUpdateUser(context.Background(), userId).Execute()
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+	})
 
-    })
+	t.Run("Test RootServerAPIService GetServiceBodies", func(t *testing.T) {
 
-    t.Run("Test RootServerApiService PatchFormat", func(t *testing.T) {
+		t.Skip("skip test")  // remove to run test
 
-        t.Skip("skip test")  // remove to run test
+		resp, httpRes, err := apiClient.RootServerAPI.GetServiceBodies(context.Background()).Execute()
 
-        var formatId int64
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-        resp, httpRes, err := apiClient.RootServerApi.PatchFormat(context.Background(), formatId).Execute()
+	})
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+	t.Run("Test RootServerAPIService GetServiceBody", func(t *testing.T) {
 
-    })
+		t.Skip("skip test")  // remove to run test
 
-    t.Run("Test RootServerApiService PatchMeeting", func(t *testing.T) {
+		var serviceBodyId int64
 
-        t.Skip("skip test")  // remove to run test
+		resp, httpRes, err := apiClient.RootServerAPI.GetServiceBody(context.Background(), serviceBodyId).Execute()
 
-        var meetingId int64
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-        resp, httpRes, err := apiClient.RootServerApi.PatchMeeting(context.Background(), meetingId).Execute()
+	})
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+	t.Run("Test RootServerAPIService GetUser", func(t *testing.T) {
 
-    })
+		t.Skip("skip test")  // remove to run test
 
-    t.Run("Test RootServerApiService PatchServiceBody", func(t *testing.T) {
+		var userId int64
 
-        t.Skip("skip test")  // remove to run test
+		resp, httpRes, err := apiClient.RootServerAPI.GetUser(context.Background(), userId).Execute()
 
-        var serviceBodyId int64
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-        resp, httpRes, err := apiClient.RootServerApi.PatchServiceBody(context.Background(), serviceBodyId).Execute()
+	})
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+	t.Run("Test RootServerAPIService GetUsers", func(t *testing.T) {
 
-    })
+		t.Skip("skip test")  // remove to run test
 
-    t.Run("Test RootServerApiService UpdateFormat", func(t *testing.T) {
+		resp, httpRes, err := apiClient.RootServerAPI.GetUsers(context.Background()).Execute()
 
-        t.Skip("skip test")  // remove to run test
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-        var formatId int64
+	})
 
-        resp, httpRes, err := apiClient.RootServerApi.UpdateFormat(context.Background(), formatId).Execute()
+	t.Run("Test RootServerAPIService PartialUpdateUser", func(t *testing.T) {
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		t.Skip("skip test")  // remove to run test
 
-    })
+		var userId int64
 
-    t.Run("Test RootServerApiService UpdateMeeting", func(t *testing.T) {
+		httpRes, err := apiClient.RootServerAPI.PartialUpdateUser(context.Background(), userId).Execute()
 
-        t.Skip("skip test")  // remove to run test
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-        var meetingId int64
+	})
 
-        resp, httpRes, err := apiClient.RootServerApi.UpdateMeeting(context.Background(), meetingId).Execute()
+	t.Run("Test RootServerAPIService PatchFormat", func(t *testing.T) {
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		t.Skip("skip test")  // remove to run test
 
-    })
+		var formatId int64
 
-    t.Run("Test RootServerApiService UpdateServiceBody", func(t *testing.T) {
+		httpRes, err := apiClient.RootServerAPI.PatchFormat(context.Background(), formatId).Execute()
 
-        t.Skip("skip test")  // remove to run test
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-        var serviceBodyId int64
+	})
 
-        resp, httpRes, err := apiClient.RootServerApi.UpdateServiceBody(context.Background(), serviceBodyId).Execute()
+	t.Run("Test RootServerAPIService PatchMeeting", func(t *testing.T) {
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		t.Skip("skip test")  // remove to run test
 
-    })
+		var meetingId int64
 
-    t.Run("Test RootServerApiService UpdateUser", func(t *testing.T) {
+		httpRes, err := apiClient.RootServerAPI.PatchMeeting(context.Background(), meetingId).Execute()
 
-        t.Skip("skip test")  // remove to run test
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
 
-        var userId int64
+	})
 
-        resp, httpRes, err := apiClient.RootServerApi.UpdateUser(context.Background(), userId).Execute()
+	t.Run("Test RootServerAPIService PatchServiceBody", func(t *testing.T) {
 
-        require.Nil(t, err)
-        require.NotNil(t, resp)
-        assert.Equal(t, 200, httpRes.StatusCode)
+		t.Skip("skip test")  // remove to run test
 
-    })
+		var serviceBodyId int64
+
+		httpRes, err := apiClient.RootServerAPI.PatchServiceBody(context.Background(), serviceBodyId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RootServerAPIService UpdateFormat", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var formatId int64
+
+		httpRes, err := apiClient.RootServerAPI.UpdateFormat(context.Background(), formatId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RootServerAPIService UpdateMeeting", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var meetingId int64
+
+		httpRes, err := apiClient.RootServerAPI.UpdateMeeting(context.Background(), meetingId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RootServerAPIService UpdateServiceBody", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var serviceBodyId int64
+
+		httpRes, err := apiClient.RootServerAPI.UpdateServiceBody(context.Background(), serviceBodyId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test RootServerAPIService UpdateUser", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var userId int64
+
+		httpRes, err := apiClient.RootServerAPI.UpdateUser(context.Background(), userId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
 
 }

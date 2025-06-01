@@ -24,7 +24,7 @@ type UserBase struct {
 	DisplayName *string `json:"displayName,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Email *string `json:"email,omitempty"`
-	OwnerId *string `json:"ownerId,omitempty"`
+	OwnerId *int32 `json:"ownerId,omitempty"`
 }
 
 // NewUserBase instantiates a new UserBase object
@@ -205,9 +205,9 @@ func (o *UserBase) SetEmail(v string) {
 }
 
 // GetOwnerId returns the OwnerId field value if set, zero value otherwise.
-func (o *UserBase) GetOwnerId() string {
+func (o *UserBase) GetOwnerId() int32 {
 	if o == nil || IsNil(o.OwnerId) {
-		var ret string
+		var ret int32
 		return ret
 	}
 	return *o.OwnerId
@@ -215,7 +215,7 @@ func (o *UserBase) GetOwnerId() string {
 
 // GetOwnerIdOk returns a tuple with the OwnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserBase) GetOwnerIdOk() (*string, bool) {
+func (o *UserBase) GetOwnerIdOk() (*int32, bool) {
 	if o == nil || IsNil(o.OwnerId) {
 		return nil, false
 	}
@@ -231,8 +231,8 @@ func (o *UserBase) HasOwnerId() bool {
 	return false
 }
 
-// SetOwnerId gets a reference to the given string and assigns it to the OwnerId field.
-func (o *UserBase) SetOwnerId(v string) {
+// SetOwnerId gets a reference to the given int32 and assigns it to the OwnerId field.
+func (o *UserBase) SetOwnerId(v int32) {
 	o.OwnerId = &v
 }
 

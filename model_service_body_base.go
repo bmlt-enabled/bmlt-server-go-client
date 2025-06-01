@@ -19,7 +19,7 @@ var _ MappedNullable = &ServiceBodyBase{}
 
 // ServiceBodyBase struct for ServiceBodyBase
 type ServiceBodyBase struct {
-	ParentId *int32 `json:"parentId,omitempty"`
+	ParentId NullableInt32 `json:"parentId,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Type *string `json:"type,omitempty"`
@@ -48,36 +48,46 @@ func NewServiceBodyBaseWithDefaults() *ServiceBodyBase {
 	return &this
 }
 
-// GetParentId returns the ParentId field value if set, zero value otherwise.
+// GetParentId returns the ParentId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ServiceBodyBase) GetParentId() int32 {
-	if o == nil || IsNil(o.ParentId) {
+	if o == nil || IsNil(o.ParentId.Get()) {
 		var ret int32
 		return ret
 	}
-	return *o.ParentId
+	return *o.ParentId.Get()
 }
 
 // GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ServiceBodyBase) GetParentIdOk() (*int32, bool) {
-	if o == nil || IsNil(o.ParentId) {
+	if o == nil {
 		return nil, false
 	}
-	return o.ParentId, true
+	return o.ParentId.Get(), o.ParentId.IsSet()
 }
 
 // HasParentId returns a boolean if a field has been set.
 func (o *ServiceBodyBase) HasParentId() bool {
-	if o != nil && !IsNil(o.ParentId) {
+	if o != nil && o.ParentId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetParentId gets a reference to the given int32 and assigns it to the ParentId field.
+// SetParentId gets a reference to the given NullableInt32 and assigns it to the ParentId field.
 func (o *ServiceBodyBase) SetParentId(v int32) {
-	o.ParentId = &v
+	o.ParentId.Set(&v)
+}
+// SetParentIdNil sets the value for ParentId to be an explicit nil
+func (o *ServiceBodyBase) SetParentIdNil() {
+	o.ParentId.Set(nil)
+}
+
+// UnsetParentId ensures that no value is present for ParentId, not even an explicit nil
+func (o *ServiceBodyBase) UnsetParentId() {
+	o.ParentId.Unset()
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -378,8 +388,8 @@ func (o ServiceBodyBase) MarshalJSON() ([]byte, error) {
 
 func (o ServiceBodyBase) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ParentId) {
-		toSerialize["parentId"] = o.ParentId
+	if o.ParentId.IsSet() {
+		toSerialize["parentId"] = o.ParentId.Get()
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name

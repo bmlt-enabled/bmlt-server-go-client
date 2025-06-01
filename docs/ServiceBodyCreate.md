@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ParentId** | **int32** |  | 
+**ParentId** | **NullableInt32** |  | 
 **Name** | **string** |  | 
 **Description** | **string** |  | 
 **Type** | **string** |  | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewServiceBodyCreate
 
-`func NewServiceBodyCreate(parentId int32, name string, description string, type_ string, adminUserId int32, assignedUserIds []int32, ) *ServiceBodyCreate`
+`func NewServiceBodyCreate(parentId NullableInt32, name string, description string, type_ string, adminUserId int32, assignedUserIds []int32, ) *ServiceBodyCreate`
 
 NewServiceBodyCreate instantiates a new ServiceBodyCreate object
 This constructor will assign default values to properties that have it defined,
@@ -54,6 +54,16 @@ and a boolean to check if the value has been set.
 SetParentId sets ParentId field to given value.
 
 
+### SetParentIdNil
+
+`func (o *ServiceBodyCreate) SetParentIdNil(b bool)`
+
+ SetParentIdNil sets the value for ParentId to be an explicit nil
+
+### UnsetParentId
+`func (o *ServiceBodyCreate) UnsetParentId()`
+
+UnsetParentId ensures that no value is present for ParentId, not even an explicit nil
 ### GetName
 
 `func (o *ServiceBodyCreate) GetName() string`

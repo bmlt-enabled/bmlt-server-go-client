@@ -1,4 +1,4 @@
-module github.com/bmlt-enabled/bmlt-root-server-go-client
+module github.com/bmlt-enabled/bmlt-server-go-client
 
 go 1.18
 

@@ -17,6 +17,7 @@ docs/FormatTranslation.md
 docs/FormatUpdate.md
 docs/Meeting.md
 docs/MeetingBase.md
+docs/MeetingChangeResource.md
 docs/MeetingCreate.md
 docs/MeetingPartialUpdate.md
 docs/MeetingUpdate.md
@@ -56,6 +57,7 @@ model_format_translation.go
 model_format_update.go
 model_meeting.go
 model_meeting_base.go
+model_meeting_change_resource.go
 model_meeting_create.go
 model_meeting_partial_update.go
 model_meeting_update.go
@@ -80,4 +82,5 @@ model_user_partial_update.go
 model_user_update.go
 model_validation_error.go
 response.go
+test/api_root_server_test.go
 utils.go

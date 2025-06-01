@@ -24,7 +24,7 @@ type UserPartialUpdate struct {
 	DisplayName *string `json:"displayName,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Email *string `json:"email,omitempty"`
-	OwnerId *string `json:"ownerId,omitempty"`
+	OwnerId *int32 `json:"ownerId,omitempty"`
 	Password *string `json:"password,omitempty"`
 }
 
@@ -206,9 +206,9 @@ func (o *UserPartialUpdate) SetEmail(v string) {
 }
 
 // GetOwnerId returns the OwnerId field value if set, zero value otherwise.
-func (o *UserPartialUpdate) GetOwnerId() string {
+func (o *UserPartialUpdate) GetOwnerId() int32 {
 	if o == nil || IsNil(o.OwnerId) {
-		var ret string
+		var ret int32
 		return ret
 	}
 	return *o.OwnerId
@@ -216,7 +216,7 @@ func (o *UserPartialUpdate) GetOwnerId() string {
 
 // GetOwnerIdOk returns a tuple with the OwnerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserPartialUpdate) GetOwnerIdOk() (*string, bool) {
+func (o *UserPartialUpdate) GetOwnerIdOk() (*int32, bool) {
 	if o == nil || IsNil(o.OwnerId) {
 		return nil, false
 	}
@@ -232,8 +232,8 @@ func (o *UserPartialUpdate) HasOwnerId() bool {
 	return false
 }
 
-// SetOwnerId gets a reference to the given string and assigns it to the OwnerId field.
-func (o *UserPartialUpdate) SetOwnerId(v string) {
+// SetOwnerId gets a reference to the given int32 and assigns it to the OwnerId field.
+func (o *UserPartialUpdate) SetOwnerId(v int32) {
 	o.OwnerId = &v
 }
 

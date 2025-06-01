@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **DisplayName** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
-**OwnerId** | Pointer to **string** |  | [optional] 
+**OwnerId** | Pointer to **int32** |  | [optional] 
 **Password** | **string** |  | 
 
 ## Methods
@@ -143,20 +143,20 @@ HasEmail returns a boolean if a field has been set.
 
 ### GetOwnerId
 
-`func (o *UserCreate) GetOwnerId() string`
+`func (o *UserCreate) GetOwnerId() int32`
 
 GetOwnerId returns the OwnerId field if non-nil, zero value otherwise.
 
 ### GetOwnerIdOk
 
-`func (o *UserCreate) GetOwnerIdOk() (*string, bool)`
+`func (o *UserCreate) GetOwnerIdOk() (*int32, bool)`
 
 GetOwnerIdOk returns a tuple with the OwnerId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOwnerId
 
-`func (o *UserCreate) SetOwnerId(v string)`
+`func (o *UserCreate) SetOwnerId(v int32)`
 
 SetOwnerId sets OwnerId field to given value.
 

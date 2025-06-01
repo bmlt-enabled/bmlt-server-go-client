@@ -12,6 +12,8 @@ package bmlt
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the ServiceBodyUpdate type satisfies the MappedNullable interface at compile time
@@ -19,7 +21,7 @@ var _ MappedNullable = &ServiceBodyUpdate{}
 
 // ServiceBodyUpdate struct for ServiceBodyUpdate
 type ServiceBodyUpdate struct {
-	ParentId int32 `json:"parentId"`
+	ParentId NullableInt32 `json:"parentId"`
 	Name string `json:"name"`
 	Description string `json:"description"`
 	Type string `json:"type"`
@@ -31,11 +33,13 @@ type ServiceBodyUpdate struct {
 	WorldId *string `json:"worldId,omitempty"`
 }
 
+type _ServiceBodyUpdate ServiceBodyUpdate
+
 // NewServiceBodyUpdate instantiates a new ServiceBodyUpdate object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServiceBodyUpdate(parentId int32, name string, description string, type_ string, adminUserId int32, assignedUserIds []int32) *ServiceBodyUpdate {
+func NewServiceBodyUpdate(parentId NullableInt32, name string, description string, type_ string, adminUserId int32, assignedUserIds []int32) *ServiceBodyUpdate {
 	this := ServiceBodyUpdate{}
 	this.ParentId = parentId
 	this.Name = name
@@ -55,27 +59,29 @@ func NewServiceBodyUpdateWithDefaults() *ServiceBodyUpdate {
 }
 
 // GetParentId returns the ParentId field value
+// If the value is explicit nil, the zero value for int32 will be returned
 func (o *ServiceBodyUpdate) GetParentId() int32 {
-	if o == nil {
+	if o == nil || o.ParentId.Get() == nil {
 		var ret int32
 		return ret
 	}
 
-	return o.ParentId
+	return *o.ParentId.Get()
 }
 
 // GetParentIdOk returns a tuple with the ParentId field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ServiceBodyUpdate) GetParentIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ParentId, true
+	return o.ParentId.Get(), o.ParentId.IsSet()
 }
 
 // SetParentId sets field value
 func (o *ServiceBodyUpdate) SetParentId(v int32) {
-	o.ParentId = v
+	o.ParentId.Set(&v)
 }
 
 // GetName returns the Name field value
@@ -336,7 +342,7 @@ func (o ServiceBodyUpdate) MarshalJSON() ([]byte, error) {
 
 func (o ServiceBodyUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["parentId"] = o.ParentId
+	toSerialize["parentId"] = o.ParentId.Get()
 	toSerialize["name"] = o.Name
 	toSerialize["description"] = o.Description
 	toSerialize["type"] = o.Type
@@ -355,6 +361,48 @@ func (o ServiceBodyUpdate) ToMap() (map[string]interface{}, error) {
 		toSerialize["worldId"] = o.WorldId
 	}
 	return toSerialize, nil
+}
+
+func (o *ServiceBodyUpdate) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"parentId",
+		"name",
+		"description",
+		"type",
+		"adminUserId",
+		"assignedUserIds",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varServiceBodyUpdate := _ServiceBodyUpdate{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varServiceBodyUpdate)
+
+	if err != nil {
+		return err
+	}
+
+	*o = ServiceBodyUpdate(varServiceBodyUpdate)
+
+	return err
 }
 
 type NullableServiceBodyUpdate struct {

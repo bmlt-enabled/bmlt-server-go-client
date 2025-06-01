@@ -12,6 +12,8 @@ package bmlt
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the User type satisfies the MappedNullable interface at compile time
@@ -24,15 +26,17 @@ type User struct {
 	DisplayName string `json:"displayName"`
 	Description string `json:"description"`
 	Email string `json:"email"`
-	OwnerId string `json:"ownerId"`
+	OwnerId int32 `json:"ownerId"`
 	Id int32 `json:"id"`
 }
+
+type _User User
 
 // NewUser instantiates a new User object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUser(username string, type_ string, displayName string, description string, email string, ownerId string, id int32) *User {
+func NewUser(username string, type_ string, displayName string, description string, email string, ownerId int32, id int32) *User {
 	this := User{}
 	this.Username = username
 	this.Type = type_
@@ -173,9 +177,9 @@ func (o *User) SetEmail(v string) {
 }
 
 // GetOwnerId returns the OwnerId field value
-func (o *User) GetOwnerId() string {
+func (o *User) GetOwnerId() int32 {
 	if o == nil {
-		var ret string
+		var ret int32
 		return ret
 	}
 
@@ -184,7 +188,7 @@ func (o *User) GetOwnerId() string {
 
 // GetOwnerIdOk returns a tuple with the OwnerId field value
 // and a boolean to check if the value has been set.
-func (o *User) GetOwnerIdOk() (*string, bool) {
+func (o *User) GetOwnerIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -192,7 +196,7 @@ func (o *User) GetOwnerIdOk() (*string, bool) {
 }
 
 // SetOwnerId sets field value
-func (o *User) SetOwnerId(v string) {
+func (o *User) SetOwnerId(v int32) {
 	o.OwnerId = v
 }
 
@@ -238,6 +242,49 @@ func (o User) ToMap() (map[string]interface{}, error) {
 	toSerialize["ownerId"] = o.OwnerId
 	toSerialize["id"] = o.Id
 	return toSerialize, nil
+}
+
+func (o *User) UnmarshalJSON(data []byte) (err error) {
+	// This validates that all required properties are included in the JSON object
+	// by unmarshalling the object into a generic map with string keys and checking
+	// that every required field exists as a key in the generic map.
+	requiredProperties := []string{
+		"username",
+		"type",
+		"displayName",
+		"description",
+		"email",
+		"ownerId",
+		"id",
+	}
+
+	allProperties := make(map[string]interface{})
+
+	err = json.Unmarshal(data, &allProperties)
+
+	if err != nil {
+		return err;
+	}
+
+	for _, requiredProperty := range(requiredProperties) {
+		if _, exists := allProperties[requiredProperty]; !exists {
+			return fmt.Errorf("no value given for required property %v", requiredProperty)
+		}
+	}
+
+	varUser := _User{}
+
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	decoder.DisallowUnknownFields()
+	err = decoder.Decode(&varUser)
+
+	if err != nil {
+		return err
+	}
+
+	*o = User(varUser)
+
+	return err
 }
 
 type NullableUser struct {

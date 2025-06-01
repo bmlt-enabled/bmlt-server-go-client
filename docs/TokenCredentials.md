@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Password** | **string** |  | 
 **Username** | **string** |  | 
+**Password** | **string** |  | 
 
 ## Methods
 
 ### NewTokenCredentials
 
-`func NewTokenCredentials(password string, username string, ) *TokenCredentials`
+`func NewTokenCredentials(username string, password string, ) *TokenCredentials`
 
 NewTokenCredentials instantiates a new TokenCredentials object
 This constructor will assign default values to properties that have it defined,
@@ -25,26 +25,6 @@ will change when the set of required properties is changed
 NewTokenCredentialsWithDefaults instantiates a new TokenCredentials object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetPassword
-
-`func (o *TokenCredentials) GetPassword() string`
-
-GetPassword returns the Password field if non-nil, zero value otherwise.
-
-### GetPasswordOk
-
-`func (o *TokenCredentials) GetPasswordOk() (*string, bool)`
-
-GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPassword
-
-`func (o *TokenCredentials) SetPassword(v string)`
-
-SetPassword sets Password field to given value.
-
 
 ### GetUsername
 
@@ -64,6 +44,26 @@ and a boolean to check if the value has been set.
 `func (o *TokenCredentials) SetUsername(v string)`
 
 SetUsername sets Username field to given value.
+
+
+### GetPassword
+
+`func (o *TokenCredentials) GetPassword() string`
+
+GetPassword returns the Password field if non-nil, zero value otherwise.
+
+### GetPasswordOk
+
+`func (o *TokenCredentials) GetPasswordOk() (*string, bool)`
+
+GetPasswordOk returns a tuple with the Password field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPassword
+
+`func (o *TokenCredentials) SetPassword(v string)`
+
+SetPassword sets Password field to given value.
 
 
 

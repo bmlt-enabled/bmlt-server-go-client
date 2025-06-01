@@ -9,6 +9,9 @@ info:
 servers:
 - description: this server
   url: http://localhost:8000/main_server/
+tags:
+- description: rootServer
+  name: rootServer
 paths:
   /api/v1/errortest:
     post:
@@ -155,6 +158,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
           description: Returns when no format exists.
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictError'
+          description: Returns when format has meetings assigned.
         "422":
           content:
             application/json:
@@ -308,6 +317,88 @@ paths:
       security:
       - bmltToken: []
       summary: Updates a format
+      tags:
+      - rootServer
+  /api/v1/logs/laravel:
+    get:
+      description: Retrieve the laravel log if it exists.
+      operationId: getLaravelLog
+      responses:
+        "200":
+          content:
+            application/gzip:
+              schema:
+                format: binary
+                type: string
+          description: Returns when user is authenticated.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          description: Returns when user is not authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationError'
+          description: Returns when user is unauthorized to perform action.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Returns when no laravel log file exists.
+      security:
+      - bmltToken: []
+      summary: Retrieves laravel log
+      tags:
+      - rootServer
+  /api/v1/meetings/{meetingId}/changes:
+    get:
+      description: Retrieve all changes made to a specific meeting.
+      operationId: getMeetingChanges
+      parameters:
+      - description: ID of the meeting
+        example: "1"
+        explode: false
+        in: path
+        name: meetingId
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/MeetingChangeResource'
+                type: array
+          description: List of changes for the meeting.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          description: Unauthorized.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationError'
+          description: Returns when unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotFoundError'
+          description: Meeting not found.
+      security:
+      - bmltToken: []
+      summary: Retrieve changes for a meeting
       tags:
       - rootServer
   /api/v1/meetings:
@@ -623,8 +714,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
           description: Returns when aggregator mode is disabled.
-      security:
-      - bmltToken: []
       summary: Retrieves root servers
       tags:
       - rootServer
@@ -942,6 +1031,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/AuthenticationError'
           description: Returns when credentials are incorrect.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizationError'
+          description: Returns when unauthorized.
         "422":
           content:
             application/json:
@@ -1095,12 +1190,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/NotFoundError'
           description: Returns when no user exists.
-        "422":
+        "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
-          description: Validation error.
+                $ref: '#/components/schemas/ConflictError'
+          description: Returns when user is still referenced by service bodies.
       security:
       - bmltToken: []
       summary: Deletes a user
@@ -1269,6 +1364,8 @@ components:
           type: boolean
       type: object
     AuthenticationError:
+      example:
+        message: Unauthenticated.
       properties:
         message:
           example: Unauthenticated.
@@ -1277,6 +1374,8 @@ components:
       - message
       type: object
     AuthorizationError:
+      example:
+        message: This action is unauthorized.
       properties:
         message:
           example: This action is unauthorized.
@@ -1285,6 +1384,8 @@ components:
       - message
       type: object
     NotFoundError:
+      example:
+        message: The requested resource was not found.
       properties:
         message:
           example: The requested resource was not found.
@@ -1293,6 +1394,8 @@ components:
       - message
       type: object
     ConflictError:
+      example:
+        message: Conflict Error
       properties:
         message:
           example: Conflict Error
@@ -1301,6 +1404,12 @@ components:
       - message
       type: object
     ValidationError:
+      example:
+        message: The field is required. (and 1 more error)
+        errors:
+          key:
+          - error details
+          - error details
       properties:
         message:
           example: The field is required. (and 1 more error)
@@ -1317,6 +1426,8 @@ components:
       - message
       type: object
     ServerError:
+      example:
+        message: Server Error
       properties:
         message:
           example: Server Error
@@ -1338,6 +1449,11 @@ components:
           type: array
       type: object
     FormatTranslation:
+      example:
+        name: name
+        description: description
+        language: language
+        key: key
       properties:
         key:
           type: string
@@ -1360,6 +1476,20 @@ components:
           id:
             example: 0
             type: integer
+        type: object
+      example:
+        worldId: string
+        translations:
+        - name: name
+          description: description
+          language: language
+          key: key
+        - name: name
+          description: description
+          language: language
+          key: key
+        id: 0
+        type: string
       required:
       - id
       - translations
@@ -1369,20 +1499,84 @@ components:
     FormatCreate:
       allOf:
       - $ref: '#/components/schemas/FormatBase'
+      example:
+        worldId: string
+        translations:
+        - name: name
+          description: description
+          language: language
+          key: key
+        - name: name
+          description: description
+          language: language
+          key: key
+        type: string
       required:
       - translations
     FormatUpdate:
       allOf:
       - $ref: '#/components/schemas/FormatBase'
+      example:
+        worldId: string
+        translations:
+        - name: name
+          description: description
+          language: language
+          key: key
+        - name: name
+          description: description
+          language: language
+          key: key
+        type: string
       required:
       - translations
     FormatPartialUpdate:
       allOf:
       - $ref: '#/components/schemas/FormatBase'
+      example:
+        worldId: string
+        translations:
+        - name: name
+          description: description
+          language: language
+          key: key
+        - name: name
+          description: description
+          language: language
+          key: key
+        type: string
     FormatCollection:
       items:
         $ref: '#/components/schemas/Format'
       type: array
+    MeetingChangeResource:
+      example:
+        serviceBodyName: Bronx Area Service
+        dateString: "3:35 PM, 10/14/2024"
+        details:
+        - email_contact was deleted.
+        - email_contact was deleted.
+        userName: Greater New York Regional Administrator
+      properties:
+        dateString:
+          description: Human-readable date and time.
+          example: "3:35 PM, 10/14/2024"
+          type: string
+        userName:
+          description: Name of the user who made the change.
+          example: Greater New York Regional Administrator
+          type: string
+        serviceBodyName:
+          description: Name of the service body related to the meeting.
+          example: Bronx Area Service
+          type: string
+        details:
+          description: List of details about the changes.
+          items:
+            example: email_contact was deleted.
+            type: string
+          type: array
+      type: object
     MeetingBase:
       properties:
         serviceBodyId:
@@ -1490,12 +1684,19 @@ components:
         bus_lines:
           example: string
           type: string
-        train_line:
+        train_lines:
           example: string
           type: string
         comments:
           example: string
           type: string
+        customFields:
+          additionalProperties:
+            type: string
+          example:
+            key1: value1
+            key2: value2
+          type: object
       type: object
     Meeting:
       allOf:
@@ -1504,6 +1705,50 @@ components:
           id:
             example: 0
             type: integer
+        type: object
+      example:
+        phone_meeting_number: string
+        train_lines: string
+        customFields:
+          key1: value1
+          key2: value2
+        latitude: 35.698741
+        location_nation: string
+        bus_lines: string
+        virtual_meeting_link: string
+        temporarilyVirtual: false
+        duration: 01:00
+        startTime: string
+        id: 0
+        day: 0
+        location_info: string
+        email: string
+        location_text: string
+        virtual_meeting_additional_info: string
+        longitude: -81.26273
+        contact_email_1: string
+        comments: string
+        venueType: 1
+        location_street: string
+        worldId: string
+        timeZone: America/New_York
+        location_sub_province: string
+        published: true
+        location_municipality: string
+        contact_name_2: string
+        contact_phone_2: string
+        contact_name_1: string
+        location_province: string
+        contact_phone_1: string
+        location_city_subsection: string
+        location_neighborhood: string
+        serviceBodyId: 0
+        name: string
+        formatIds:
+        - 0
+        - 0
+        location_postal_code_1: string
+        contact_email_2: string
       required:
       - day
       - duration
@@ -1524,6 +1769,48 @@ components:
     MeetingCreate:
       allOf:
       - $ref: '#/components/schemas/MeetingBase'
+      example:
+        phone_meeting_number: string
+        train_lines: string
+        customFields:
+          key1: value1
+          key2: value2
+        latitude: 35.698741
+        location_nation: string
+        bus_lines: string
+        virtual_meeting_link: string
+        temporarilyVirtual: false
+        duration: 01:00
+        startTime: string
+        day: 0
+        location_info: string
+        email: string
+        location_text: string
+        virtual_meeting_additional_info: string
+        longitude: -81.26273
+        contact_email_1: string
+        comments: string
+        venueType: 1
+        location_street: string
+        worldId: string
+        timeZone: America/New_York
+        location_sub_province: string
+        published: true
+        location_municipality: string
+        contact_name_2: string
+        contact_phone_2: string
+        contact_name_1: string
+        location_province: string
+        contact_phone_1: string
+        location_city_subsection: string
+        location_neighborhood: string
+        serviceBodyId: 0
+        name: string
+        formatIds:
+        - 0
+        - 0
+        location_postal_code_1: string
+        contact_email_2: string
       required:
       - day
       - duration
@@ -1538,6 +1825,48 @@ components:
     MeetingUpdate:
       allOf:
       - $ref: '#/components/schemas/MeetingBase'
+      example:
+        phone_meeting_number: string
+        train_lines: string
+        customFields:
+          key1: value1
+          key2: value2
+        latitude: 35.698741
+        location_nation: string
+        bus_lines: string
+        virtual_meeting_link: string
+        temporarilyVirtual: false
+        duration: 01:00
+        startTime: string
+        day: 0
+        location_info: string
+        email: string
+        location_text: string
+        virtual_meeting_additional_info: string
+        longitude: -81.26273
+        contact_email_1: string
+        comments: string
+        venueType: 1
+        location_street: string
+        worldId: string
+        timeZone: America/New_York
+        location_sub_province: string
+        published: true
+        location_municipality: string
+        contact_name_2: string
+        contact_phone_2: string
+        contact_name_1: string
+        location_province: string
+        contact_phone_1: string
+        location_city_subsection: string
+        location_neighborhood: string
+        serviceBodyId: 0
+        name: string
+        formatIds:
+        - 0
+        - 0
+        location_postal_code_1: string
+        contact_email_2: string
       required:
       - day
       - duration
@@ -1552,6 +1881,48 @@ components:
     MeetingPartialUpdate:
       allOf:
       - $ref: '#/components/schemas/MeetingBase'
+      example:
+        phone_meeting_number: string
+        train_lines: string
+        customFields:
+          key1: value1
+          key2: value2
+        latitude: 35.698741
+        location_nation: string
+        bus_lines: string
+        virtual_meeting_link: string
+        temporarilyVirtual: false
+        duration: 01:00
+        startTime: string
+        day: 0
+        location_info: string
+        email: string
+        location_text: string
+        virtual_meeting_additional_info: string
+        longitude: -81.26273
+        contact_email_1: string
+        comments: string
+        venueType: 1
+        location_street: string
+        worldId: string
+        timeZone: America/New_York
+        location_sub_province: string
+        published: true
+        location_municipality: string
+        contact_name_2: string
+        contact_phone_2: string
+        contact_name_1: string
+        location_province: string
+        contact_phone_1: string
+        location_city_subsection: string
+        location_neighborhood: string
+        serviceBodyId: 0
+        name: string
+        formatIds:
+        - 0
+        - 0
+        location_postal_code_1: string
+        contact_email_2: string
       required:
       - day
       - duration
@@ -1594,6 +1965,26 @@ components:
           id:
             example: 0
             type: integer
+        type: object
+      example:
+        sourceId: 0
+        serverInfo: string
+        name: string
+        lastSuccessfulImport: 2000-01-23T04:56:07.000+00:00
+        id: 0
+        url: https://example.com/main_server
+        statistics:
+          meetings:
+            numTotal: 0
+            numVirtual: 0
+            numInPerson: 0
+            numUnknown: 0
+            numHybrid: 0
+          serviceBodies:
+            numGroups: 0
+            numZones: 0
+            numRegions: 0
+            numAreas: 0
       required:
       - id
       - lastSuccessfulImport
@@ -1609,6 +2000,7 @@ components:
       properties:
         parentId:
           example: 0
+          nullable: true
           type: integer
         name:
           example: string
@@ -1647,6 +2039,21 @@ components:
           id:
             example: 0
             type: integer
+        type: object
+      example:
+        adminUserId: 0
+        helpline: string
+        worldId: string
+        assignedUserIds:
+        - 0
+        - 0
+        name: string
+        description: string
+        id: 0
+        type: string
+        parentId: 0
+        url: string
+        email: string
       required:
       - adminUserId
       - assignedUserIds
@@ -1663,6 +2070,19 @@ components:
     ServiceBodyCreate:
       allOf:
       - $ref: '#/components/schemas/ServiceBodyBase'
+      example:
+        adminUserId: 0
+        helpline: string
+        worldId: string
+        assignedUserIds:
+        - 0
+        - 0
+        name: string
+        description: string
+        type: string
+        parentId: 0
+        url: string
+        email: string
       required:
       - adminUserId
       - assignedUserIds
@@ -1673,6 +2093,19 @@ components:
     ServiceBodyUpdate:
       allOf:
       - $ref: '#/components/schemas/ServiceBodyBase'
+      example:
+        adminUserId: 0
+        helpline: string
+        worldId: string
+        assignedUserIds:
+        - 0
+        - 0
+        name: string
+        description: string
+        type: string
+        parentId: 0
+        url: string
+        email: string
       required:
       - adminUserId
       - assignedUserIds
@@ -1683,6 +2116,19 @@ components:
     ServiceBodyPartialUpdate:
       allOf:
       - $ref: '#/components/schemas/ServiceBodyBase'
+      example:
+        adminUserId: 0
+        helpline: string
+        worldId: string
+        assignedUserIds:
+        - 0
+        - 0
+        name: string
+        description: string
+        type: string
+        parentId: 0
+        url: string
+        email: string
     ServiceBodyCollection:
       items:
         $ref: '#/components/schemas/ServiceBody'
@@ -1717,13 +2163,13 @@ components:
         password: PassWord12345
         username: MyUsername
       properties:
-        password:
-          example: PassWord12345
-          format: password
-          type: string
         username:
           example: MyUsername
           format: username
+          type: string
+        password:
+          example: PassWord12345
+          format: password
           type: string
       required:
       - password
@@ -1747,8 +2193,8 @@ components:
           example: string
           type: string
         ownerId:
-          example: "0"
-          type: string
+          example: 0
+          type: integer
       type: object
     User:
       allOf:
@@ -1757,6 +2203,15 @@ components:
           id:
             example: 0
             type: integer
+        type: object
+      example:
+        displayName: string
+        description: string
+        id: 0
+        type: string
+        ownerId: 0
+        email: string
+        username: string
       required:
       - description
       - displayName
@@ -1773,6 +2228,15 @@ components:
           password:
             example: string
             type: string
+        type: object
+      example:
+        password: string
+        displayName: string
+        description: string
+        type: string
+        ownerId: 0
+        email: string
+        username: string
       required:
       - displayName
       - password
@@ -1786,6 +2250,15 @@ components:
           password:
             example: string
             type: string
+        type: object
+      example:
+        password: string
+        displayName: string
+        description: string
+        type: string
+        ownerId: 0
+        email: string
+        username: string
       required:
       - displayName
       - type
@@ -1798,12 +2271,26 @@ components:
           password:
             example: string
             type: string
+        type: object
+      example:
+        password: string
+        displayName: string
+        description: string
+        type: string
+        ownerId: 0
+        email: string
+        username: string
       type: object
     UserCollection:
       items:
         $ref: '#/components/schemas/User'
       type: array
     RootServerBase_statistics_serviceBodies:
+      example:
+        numGroups: 0
+        numZones: 0
+        numRegions: 0
+        numAreas: 0
       properties:
         numZones:
           example: 0
@@ -1824,6 +2311,12 @@ components:
       - numZones
       type: object
     RootServerBase_statistics_meetings:
+      example:
+        numTotal: 0
+        numVirtual: 0
+        numInPerson: 0
+        numUnknown: 0
+        numHybrid: 0
       properties:
         numTotal:
           example: 0
@@ -1848,6 +2341,18 @@ components:
       - numVirtual
       type: object
     RootServerBase_statistics:
+      example:
+        meetings:
+          numTotal: 0
+          numVirtual: 0
+          numInPerson: 0
+          numUnknown: 0
+          numHybrid: 0
+        serviceBodies:
+          numGroups: 0
+          numZones: 0
+          numRegions: 0
+          numAreas: 0
       properties:
         serviceBodies:
           $ref: '#/components/schemas/RootServerBase_statistics_serviceBodies'

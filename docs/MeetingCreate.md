@@ -38,8 +38,9 @@ Name | Type | Description | Notes
 **ContactEmail1** | Pointer to **string** |  | [optional] 
 **ContactEmail2** | Pointer to **string** |  | [optional] 
 **BusLines** | Pointer to **string** |  | [optional] 
-**TrainLine** | Pointer to **string** |  | [optional] 
+**TrainLines** | Pointer to **string** |  | [optional] 
 **Comments** | Pointer to **string** |  | [optional] 
+**CustomFields** | Pointer to **map[string]string** |  | [optional] 
 
 ## Methods
 
@@ -860,30 +861,30 @@ SetBusLines sets BusLines field to given value.
 
 HasBusLines returns a boolean if a field has been set.
 
-### GetTrainLine
+### GetTrainLines
 
-`func (o *MeetingCreate) GetTrainLine() string`
+`func (o *MeetingCreate) GetTrainLines() string`
 
-GetTrainLine returns the TrainLine field if non-nil, zero value otherwise.
+GetTrainLines returns the TrainLines field if non-nil, zero value otherwise.
 
-### GetTrainLineOk
+### GetTrainLinesOk
 
-`func (o *MeetingCreate) GetTrainLineOk() (*string, bool)`
+`func (o *MeetingCreate) GetTrainLinesOk() (*string, bool)`
 
-GetTrainLineOk returns a tuple with the TrainLine field if it's non-nil, zero value otherwise
+GetTrainLinesOk returns a tuple with the TrainLines field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTrainLine
+### SetTrainLines
 
-`func (o *MeetingCreate) SetTrainLine(v string)`
+`func (o *MeetingCreate) SetTrainLines(v string)`
 
-SetTrainLine sets TrainLine field to given value.
+SetTrainLines sets TrainLines field to given value.
 
-### HasTrainLine
+### HasTrainLines
 
-`func (o *MeetingCreate) HasTrainLine() bool`
+`func (o *MeetingCreate) HasTrainLines() bool`
 
-HasTrainLine returns a boolean if a field has been set.
+HasTrainLines returns a boolean if a field has been set.
 
 ### GetComments
 
@@ -909,6 +910,31 @@ SetComments sets Comments field to given value.
 `func (o *MeetingCreate) HasComments() bool`
 
 HasComments returns a boolean if a field has been set.
+
+### GetCustomFields
+
+`func (o *MeetingCreate) GetCustomFields() map[string]string`
+
+GetCustomFields returns the CustomFields field if non-nil, zero value otherwise.
+
+### GetCustomFieldsOk
+
+`func (o *MeetingCreate) GetCustomFieldsOk() (*map[string]string, bool)`
+
+GetCustomFieldsOk returns a tuple with the CustomFields field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomFields
+
+`func (o *MeetingCreate) SetCustomFields(v map[string]string)`
+
+SetCustomFields sets CustomFields field to given value.
+
+### HasCustomFields
+
+`func (o *MeetingCreate) HasCustomFields() bool`
+
+HasCustomFields returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
