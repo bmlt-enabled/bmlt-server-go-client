@@ -3443,11 +3443,18 @@ type ApiPatchMeetingRequest struct {
 	ApiService *RootServerAPIService
 	meetingId int64
 	meetingPartialUpdate *MeetingPartialUpdate
+	skipVenueTypeLocationValidation *bool
 }
 
 // Pass in fields you want to update.
 func (r ApiPatchMeetingRequest) MeetingPartialUpdate(meetingPartialUpdate MeetingPartialUpdate) ApiPatchMeetingRequest {
 	r.meetingPartialUpdate = &meetingPartialUpdate
+	return r
+}
+
+// specify true to skip venue type location validation
+func (r ApiPatchMeetingRequest) SkipVenueTypeLocationValidation(skipVenueTypeLocationValidation bool) ApiPatchMeetingRequest {
+	r.skipVenueTypeLocationValidation = &skipVenueTypeLocationValidation
 	return r
 }
 
@@ -3495,6 +3502,9 @@ func (a *RootServerAPIService) PatchMeetingExecute(r ApiPatchMeetingRequest) (*h
 		return nil, reportError("meetingPartialUpdate is required and must be specified")
 	}
 
+	if r.skipVenueTypeLocationValidation != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "skipVenueTypeLocationValidation", r.skipVenueTypeLocationValidation, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

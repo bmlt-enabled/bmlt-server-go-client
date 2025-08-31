@@ -21,7 +21,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ErrorTest'
+              $ref: "#/components/schemas/ErrorTest"
         description: Pass in error test object.
         required: true
       responses:
@@ -29,25 +29,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorTest'
+                $ref: "#/components/schemas/ErrorTest"
           description: Returns when POST is successful.
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Validation error.
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServerError'
+                $ref: "#/components/schemas/ServerError"
           description: Server error.
       security:
       - bmltToken: []
@@ -63,13 +63,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FormatCollection'
+                $ref: "#/components/schemas/FormatCollection"
           description: Returns when user is authenticated.
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when not authenticated
       security:
       - bmltToken: []
@@ -83,7 +83,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FormatCreate'
+              $ref: "#/components/schemas/FormatCreate"
         description: Pass in format object
         required: true
       responses:
@@ -91,31 +91,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Format'
+                $ref: "#/components/schemas/Format"
           description: Returns when POST is successful.
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is unauthorized to perform action.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no format exists.
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Validation error.
       security:
       - bmltToken: []
@@ -144,31 +144,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when not authenticated
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthorizationError'
+                $ref: "#/components/schemas/AuthorizationError"
           description: Returns when unauthorized
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no format exists.
         "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ConflictError'
+                $ref: "#/components/schemas/ConflictError"
           description: Returns when format has meetings assigned.
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Validation error.
       security:
       - bmltToken: []
@@ -194,19 +194,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Format'
+                $ref: "#/components/schemas/Format"
           description: Returns when user is authenticated.
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when not authenticated.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no format exists.
       security:
       - bmltToken: []
@@ -231,7 +231,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FormatPartialUpdate'
+              $ref: "#/components/schemas/FormatPartialUpdate"
         description: Pass in fields you want to update.
         required: true
       responses:
@@ -241,25 +241,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when not authenticated
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthorizationError'
+                $ref: "#/components/schemas/AuthorizationError"
           description: Returns when unauthorized
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no format exists.
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Validation error.
       security:
       - bmltToken: []
@@ -284,7 +284,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FormatUpdate'
+              $ref: "#/components/schemas/FormatUpdate"
         description: Pass in format object
         required: true
       responses:
@@ -294,25 +294,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is unauthorized to perform action.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no format exists.
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Validation error.
       security:
       - bmltToken: []
@@ -335,19 +335,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthorizationError'
+                $ref: "#/components/schemas/AuthorizationError"
           description: Returns when user is unauthorized to perform action.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no laravel log file exists.
       security:
       - bmltToken: []
@@ -375,26 +375,26 @@ paths:
             application/json:
               schema:
                 items:
-                  $ref: '#/components/schemas/MeetingChangeResource'
+                  $ref: "#/components/schemas/MeetingChangeResource"
                 type: array
           description: List of changes for the meeting.
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Unauthorized.
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthorizationError'
+                $ref: "#/components/schemas/AuthorizationError"
           description: Returns when unauthorized
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Meeting not found.
       security:
       - bmltToken: []
@@ -447,19 +447,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MeetingCollection'
+                $ref: "#/components/schemas/MeetingCollection"
           description: List of meetings.
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Validation error.
       security:
       - bmltToken: []
@@ -473,7 +473,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MeetingCreate'
+              $ref: "#/components/schemas/MeetingCreate"
         description: Pass in meeting object
         required: true
       responses:
@@ -481,31 +481,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Meeting'
+                $ref: "#/components/schemas/Meeting"
           description: Returns when POST is successful.
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthorizationError'
+                $ref: "#/components/schemas/AuthorizationError"
           description: Returns when user is unauthorized to perform action.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no meeting body exists.
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Validation error.
       security:
       - bmltToken: []
@@ -534,19 +534,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthorizationError'
+                $ref: "#/components/schemas/AuthorizationError"
           description: Returns when user is unauthorized to perform action.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no meeting exists.
       security:
       - bmltToken: []
@@ -572,19 +572,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Meeting'
+                $ref: "#/components/schemas/Meeting"
           description: Returns when user is authenticated.
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no meeting exists.
       security:
       - bmltToken: []
@@ -605,11 +605,20 @@ paths:
           format: int64
           type: integer
         style: simple
+      - description: specify true to skip venue type location validation
+        example: "true"
+        explode: true
+        in: query
+        name: skipVenueTypeLocationValidation
+        required: false
+        schema:
+          type: boolean
+        style: form
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MeetingPartialUpdate'
+              $ref: "#/components/schemas/MeetingPartialUpdate"
         description: Pass in fields you want to update.
         required: true
       responses:
@@ -619,25 +628,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthorizationError'
+                $ref: "#/components/schemas/AuthorizationError"
           description: Returns when user is unauthorized to perform action.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no meeting exists.
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Validation error.
       security:
       - bmltToken: []
@@ -662,7 +671,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/MeetingUpdate'
+              $ref: "#/components/schemas/MeetingUpdate"
         description: Pass in meeting object
         required: true
       responses:
@@ -672,25 +681,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthorizationError'
+                $ref: "#/components/schemas/AuthorizationError"
           description: Returns when user is unauthorized to perform action.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no meeting exists.
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Validation error.
       security:
       - bmltToken: []
@@ -706,13 +715,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RootServerCollection'
+                $ref: "#/components/schemas/RootServerCollection"
           description: Successful response.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when aggregator mode is disabled.
       summary: Retrieves root servers
       tags:
@@ -737,13 +746,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RootServer'
+                $ref: "#/components/schemas/RootServer"
           description: Successful response.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no root server exists.
       summary: Retrieves a root server
       tags:
@@ -757,13 +766,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServiceBodyCollection'
+                $ref: "#/components/schemas/ServiceBodyCollection"
           description: Returns when user is authenticated.
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when not authenticated.
       security:
       - bmltToken: []
@@ -777,7 +786,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ServiceBodyCreate'
+              $ref: "#/components/schemas/ServiceBodyCreate"
         description: Pass in service body object
         required: true
       responses:
@@ -785,31 +794,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServiceBody'
+                $ref: "#/components/schemas/ServiceBody"
           description: Returns when POST is successful.
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthorizationError'
+                $ref: "#/components/schemas/AuthorizationError"
           description: Returns when user is unauthorized to perform action.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no service body exists.
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Validation error.
       security:
       - bmltToken: []
@@ -838,25 +847,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthorizationError'
+                $ref: "#/components/schemas/AuthorizationError"
           description: Returns when user is unauthorized to perform action.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no service body exists.
         "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ConflictError'
+                $ref: "#/components/schemas/ConflictError"
           description: Returns when service body has children.
       security:
       - bmltToken: []
@@ -882,19 +891,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ServiceBody'
+                $ref: "#/components/schemas/ServiceBody"
           description: Returns when user is authenticated.
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no service body exists.
       security:
       - bmltToken: []
@@ -919,7 +928,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ServiceBodyPartialUpdate'
+              $ref: "#/components/schemas/ServiceBodyPartialUpdate"
         description: Pass in fields you want to update.
         required: true
       responses:
@@ -929,25 +938,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthorizationError'
+                $ref: "#/components/schemas/AuthorizationError"
           description: Returns when user is unauthorized to perform action.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no service body exists.
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Validation error.
       security:
       - bmltToken: []
@@ -972,7 +981,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ServiceBodyUpdate'
+              $ref: "#/components/schemas/ServiceBodyUpdate"
         description: Pass in service body object
         required: true
       responses:
@@ -982,25 +991,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthorizationError'
+                $ref: "#/components/schemas/AuthorizationError"
           description: Returns when user is unauthorized to perform action.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no service body exists.
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Validation error.
       security:
       - bmltToken: []
@@ -1015,7 +1024,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TokenCredentials'
+              $ref: "#/components/schemas/TokenCredentials"
         description: User credentials
         required: true
       responses:
@@ -1023,25 +1032,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Token'
+                $ref: "#/components/schemas/Token"
           description: Returns when POST is successful.
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when credentials are incorrect.
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthorizationError'
+                $ref: "#/components/schemas/AuthorizationError"
           description: Returns when unauthorized.
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Validation error.
       summary: Creates a token
       tags:
@@ -1055,13 +1064,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Token'
+                $ref: "#/components/schemas/Token"
           description: Returns when refresh is successful.
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when request is unauthenticated.
       security:
       - bmltToken: []
@@ -1079,7 +1088,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when request is unauthenticated.
       security:
       - bmltToken: []
@@ -1095,13 +1104,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserCollection'
+                $ref: "#/components/schemas/UserCollection"
           description: Returns when user is authenticated.
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when not authenticated
       security:
       - bmltToken: []
@@ -1115,7 +1124,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserCreate'
+              $ref: "#/components/schemas/UserCreate"
         description: Pass in user object
         required: true
       responses:
@@ -1123,31 +1132,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
           description: Returns when POST is successful.
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is unauthorized to perform action.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no user exists.
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Validation error.
       security:
       - bmltToken: []
@@ -1176,25 +1185,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when not authenticated
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthorizationError'
+                $ref: "#/components/schemas/AuthorizationError"
           description: Returns when unauthorized
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no user exists.
         "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ConflictError'
+                $ref: "#/components/schemas/ConflictError"
           description: Returns when user is still referenced by service bodies.
       security:
       - bmltToken: []
@@ -1220,19 +1229,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/User'
+                $ref: "#/components/schemas/User"
           description: Returns when user is authenticated.
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when not authenticated.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no user exists.
       security:
       - bmltToken: []
@@ -1257,7 +1266,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserPartialUpdate'
+              $ref: "#/components/schemas/UserPartialUpdate"
         description: Pass in fields you want to update.
         required: true
       responses:
@@ -1267,25 +1276,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when not authenticated
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthorizationError'
+                $ref: "#/components/schemas/AuthorizationError"
           description: Returns when unauthorized
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no user exists.
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Validation error.
       security:
       - bmltToken: []
@@ -1310,7 +1319,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UserUpdate'
+              $ref: "#/components/schemas/UserUpdate"
         description: Pass in user object
         required: true
       responses:
@@ -1320,25 +1329,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is not authenticated.
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthenticationError'
+                $ref: "#/components/schemas/AuthenticationError"
           description: Returns when user is unauthorized to perform action.
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/NotFoundError'
+                $ref: "#/components/schemas/NotFoundError"
           description: Returns when no user exists.
         "422":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ValidationError'
+                $ref: "#/components/schemas/ValidationError"
           description: Validation error.
       security:
       - bmltToken: []
@@ -1445,7 +1454,7 @@ components:
           type: string
         translations:
           items:
-            $ref: '#/components/schemas/FormatTranslation'
+            $ref: "#/components/schemas/FormatTranslation"
           type: array
       type: object
     FormatTranslation:
@@ -1471,7 +1480,7 @@ components:
       type: object
     Format:
       allOf:
-      - $ref: '#/components/schemas/FormatBase'
+      - $ref: "#/components/schemas/FormatBase"
       - properties:
           id:
             example: 0
@@ -1498,7 +1507,7 @@ components:
       type: object
     FormatCreate:
       allOf:
-      - $ref: '#/components/schemas/FormatBase'
+      - $ref: "#/components/schemas/FormatBase"
       example:
         worldId: string
         translations:
@@ -1515,7 +1524,7 @@ components:
       - translations
     FormatUpdate:
       allOf:
-      - $ref: '#/components/schemas/FormatBase'
+      - $ref: "#/components/schemas/FormatBase"
       example:
         worldId: string
         translations:
@@ -1532,7 +1541,7 @@ components:
       - translations
     FormatPartialUpdate:
       allOf:
-      - $ref: '#/components/schemas/FormatBase'
+      - $ref: "#/components/schemas/FormatBase"
       example:
         worldId: string
         translations:
@@ -1547,7 +1556,7 @@ components:
         type: string
     FormatCollection:
       items:
-        $ref: '#/components/schemas/Format'
+        $ref: "#/components/schemas/Format"
       type: array
     MeetingChangeResource:
       example:
@@ -1700,7 +1709,7 @@ components:
       type: object
     Meeting:
       allOf:
-      - $ref: '#/components/schemas/MeetingBase'
+      - $ref: "#/components/schemas/MeetingBase"
       - properties:
           id:
             example: 0
@@ -1768,7 +1777,7 @@ components:
       type: object
     MeetingCreate:
       allOf:
-      - $ref: '#/components/schemas/MeetingBase'
+      - $ref: "#/components/schemas/MeetingBase"
       example:
         phone_meeting_number: string
         train_lines: string
@@ -1824,7 +1833,7 @@ components:
       - venueType
     MeetingUpdate:
       allOf:
-      - $ref: '#/components/schemas/MeetingBase'
+      - $ref: "#/components/schemas/MeetingBase"
       example:
         phone_meeting_number: string
         train_lines: string
@@ -1880,7 +1889,7 @@ components:
       - venueType
     MeetingPartialUpdate:
       allOf:
-      - $ref: '#/components/schemas/MeetingBase'
+      - $ref: "#/components/schemas/MeetingBase"
       example:
         phone_meeting_number: string
         train_lines: string
@@ -1923,20 +1932,9 @@ components:
         - 0
         location_postal_code_1: string
         contact_email_2: string
-      required:
-      - day
-      - duration
-      - formatIds
-      - latitude
-      - longitude
-      - name
-      - published
-      - serviceBodyId
-      - startTime
-      - venueType
     MeetingCollection:
       items:
-        $ref: '#/components/schemas/Meeting'
+        $ref: "#/components/schemas/Meeting"
       type: array
     RootServerBase:
       properties:
@@ -1950,7 +1948,7 @@ components:
           example: https://example.com/main_server
           type: string
         statistics:
-          $ref: '#/components/schemas/RootServerBase_statistics'
+          $ref: "#/components/schemas/RootServerBase_statistics"
         serverInfo:
           example: string
           type: string
@@ -1960,7 +1958,7 @@ components:
       type: object
     RootServer:
       allOf:
-      - $ref: '#/components/schemas/RootServerBase'
+      - $ref: "#/components/schemas/RootServerBase"
       - properties:
           id:
             example: 0
@@ -1994,7 +1992,7 @@ components:
       type: object
     RootServerCollection:
       items:
-        $ref: '#/components/schemas/RootServer'
+        $ref: "#/components/schemas/RootServer"
       type: array
     ServiceBodyBase:
       properties:
@@ -2034,7 +2032,7 @@ components:
       type: object
     ServiceBody:
       allOf:
-      - $ref: '#/components/schemas/ServiceBodyBase'
+      - $ref: "#/components/schemas/ServiceBodyBase"
       - properties:
           id:
             example: 0
@@ -2069,7 +2067,7 @@ components:
       type: object
     ServiceBodyCreate:
       allOf:
-      - $ref: '#/components/schemas/ServiceBodyBase'
+      - $ref: "#/components/schemas/ServiceBodyBase"
       example:
         adminUserId: 0
         helpline: string
@@ -2092,7 +2090,7 @@ components:
       - type
     ServiceBodyUpdate:
       allOf:
-      - $ref: '#/components/schemas/ServiceBodyBase'
+      - $ref: "#/components/schemas/ServiceBodyBase"
       example:
         adminUserId: 0
         helpline: string
@@ -2115,7 +2113,7 @@ components:
       - type
     ServiceBodyPartialUpdate:
       allOf:
-      - $ref: '#/components/schemas/ServiceBodyBase'
+      - $ref: "#/components/schemas/ServiceBodyBase"
       example:
         adminUserId: 0
         helpline: string
@@ -2131,7 +2129,7 @@ components:
         email: string
     ServiceBodyCollection:
       items:
-        $ref: '#/components/schemas/ServiceBody'
+        $ref: "#/components/schemas/ServiceBody"
       type: array
     Token:
       example:
@@ -2198,7 +2196,7 @@ components:
       type: object
     User:
       allOf:
-      - $ref: '#/components/schemas/UserBase'
+      - $ref: "#/components/schemas/UserBase"
       - properties:
           id:
             example: 0
@@ -2223,7 +2221,7 @@ components:
       type: object
     UserCreate:
       allOf:
-      - $ref: '#/components/schemas/UserBase'
+      - $ref: "#/components/schemas/UserBase"
       - properties:
           password:
             example: string
@@ -2245,7 +2243,7 @@ components:
       type: object
     UserUpdate:
       allOf:
-      - $ref: '#/components/schemas/UserBase'
+      - $ref: "#/components/schemas/UserBase"
       - properties:
           password:
             example: string
@@ -2266,7 +2264,7 @@ components:
       type: object
     UserPartialUpdate:
       allOf:
-      - $ref: '#/components/schemas/UserBase'
+      - $ref: "#/components/schemas/UserBase"
       - properties:
           password:
             example: string
@@ -2283,7 +2281,7 @@ components:
       type: object
     UserCollection:
       items:
-        $ref: '#/components/schemas/User'
+        $ref: "#/components/schemas/User"
       type: array
     RootServerBase_statistics_serviceBodies:
       example:
@@ -2355,9 +2353,9 @@ components:
           numAreas: 0
       properties:
         serviceBodies:
-          $ref: '#/components/schemas/RootServerBase_statistics_serviceBodies'
+          $ref: "#/components/schemas/RootServerBase_statistics_serviceBodies"
         meetings:
-          $ref: '#/components/schemas/RootServerBase_statistics_meetings'
+          $ref: "#/components/schemas/RootServerBase_statistics_meetings"
       required:
       - meetings
       - serviceBodies

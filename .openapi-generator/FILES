@@ -82,5 +82,4 @@ model_user_partial_update.go
 model_user_update.go
 model_validation_error.go
 response.go
-test/api_root_server_test.go
 utils.go

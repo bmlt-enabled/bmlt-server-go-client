@@ -12,8 +12,6 @@ package bmlt
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the MeetingPartialUpdate type satisfies the MappedNullable interface at compile time
@@ -21,20 +19,20 @@ var _ MappedNullable = &MeetingPartialUpdate{}
 
 // MeetingPartialUpdate struct for MeetingPartialUpdate
 type MeetingPartialUpdate struct {
-	ServiceBodyId int32 `json:"serviceBodyId"`
-	FormatIds []int32 `json:"formatIds"`
-	VenueType int32 `json:"venueType"`
+	ServiceBodyId *int32 `json:"serviceBodyId,omitempty"`
+	FormatIds []int32 `json:"formatIds,omitempty"`
+	VenueType *int32 `json:"venueType,omitempty"`
 	TemporarilyVirtual *bool `json:"temporarilyVirtual,omitempty"`
-	Day int32 `json:"day"`
-	StartTime string `json:"startTime"`
-	Duration string `json:"duration"`
+	Day *int32 `json:"day,omitempty"`
+	StartTime *string `json:"startTime,omitempty"`
+	Duration *string `json:"duration,omitempty"`
 	TimeZone *string `json:"timeZone,omitempty"`
-	Latitude float32 `json:"latitude"`
-	Longitude float32 `json:"longitude"`
-	Published bool `json:"published"`
+	Latitude *float32 `json:"latitude,omitempty"`
+	Longitude *float32 `json:"longitude,omitempty"`
+	Published *bool `json:"published,omitempty"`
 	Email *string `json:"email,omitempty"`
 	WorldId *string `json:"worldId,omitempty"`
-	Name string `json:"name"`
+	Name *string `json:"name,omitempty"`
 	LocationText *string `json:"location_text,omitempty"`
 	LocationInfo *string `json:"location_info,omitempty"`
 	LocationStreet *string `json:"location_street,omitempty"`
@@ -60,24 +58,12 @@ type MeetingPartialUpdate struct {
 	CustomFields *map[string]string `json:"customFields,omitempty"`
 }
 
-type _MeetingPartialUpdate MeetingPartialUpdate
-
 // NewMeetingPartialUpdate instantiates a new MeetingPartialUpdate object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMeetingPartialUpdate(serviceBodyId int32, formatIds []int32, venueType int32, day int32, startTime string, duration string, latitude float32, longitude float32, published bool, name string) *MeetingPartialUpdate {
+func NewMeetingPartialUpdate() *MeetingPartialUpdate {
 	this := MeetingPartialUpdate{}
-	this.ServiceBodyId = serviceBodyId
-	this.FormatIds = formatIds
-	this.VenueType = venueType
-	this.Day = day
-	this.StartTime = startTime
-	this.Duration = duration
-	this.Latitude = latitude
-	this.Longitude = longitude
-	this.Published = published
-	this.Name = name
 	return &this
 }
 
@@ -89,76 +75,100 @@ func NewMeetingPartialUpdateWithDefaults() *MeetingPartialUpdate {
 	return &this
 }
 
-// GetServiceBodyId returns the ServiceBodyId field value
+// GetServiceBodyId returns the ServiceBodyId field value if set, zero value otherwise.
 func (o *MeetingPartialUpdate) GetServiceBodyId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ServiceBodyId) {
 		var ret int32
 		return ret
 	}
-
-	return o.ServiceBodyId
+	return *o.ServiceBodyId
 }
 
-// GetServiceBodyIdOk returns a tuple with the ServiceBodyId field value
+// GetServiceBodyIdOk returns a tuple with the ServiceBodyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingPartialUpdate) GetServiceBodyIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ServiceBodyId) {
 		return nil, false
 	}
-	return &o.ServiceBodyId, true
+	return o.ServiceBodyId, true
 }
 
-// SetServiceBodyId sets field value
+// HasServiceBodyId returns a boolean if a field has been set.
+func (o *MeetingPartialUpdate) HasServiceBodyId() bool {
+	if o != nil && !IsNil(o.ServiceBodyId) {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceBodyId gets a reference to the given int32 and assigns it to the ServiceBodyId field.
 func (o *MeetingPartialUpdate) SetServiceBodyId(v int32) {
-	o.ServiceBodyId = v
+	o.ServiceBodyId = &v
 }
 
-// GetFormatIds returns the FormatIds field value
+// GetFormatIds returns the FormatIds field value if set, zero value otherwise.
 func (o *MeetingPartialUpdate) GetFormatIds() []int32 {
-	if o == nil {
+	if o == nil || IsNil(o.FormatIds) {
 		var ret []int32
 		return ret
 	}
-
 	return o.FormatIds
 }
 
-// GetFormatIdsOk returns a tuple with the FormatIds field value
+// GetFormatIdsOk returns a tuple with the FormatIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingPartialUpdate) GetFormatIdsOk() ([]int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FormatIds) {
 		return nil, false
 	}
 	return o.FormatIds, true
 }
 
-// SetFormatIds sets field value
+// HasFormatIds returns a boolean if a field has been set.
+func (o *MeetingPartialUpdate) HasFormatIds() bool {
+	if o != nil && !IsNil(o.FormatIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetFormatIds gets a reference to the given []int32 and assigns it to the FormatIds field.
 func (o *MeetingPartialUpdate) SetFormatIds(v []int32) {
 	o.FormatIds = v
 }
 
-// GetVenueType returns the VenueType field value
+// GetVenueType returns the VenueType field value if set, zero value otherwise.
 func (o *MeetingPartialUpdate) GetVenueType() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.VenueType) {
 		var ret int32
 		return ret
 	}
-
-	return o.VenueType
+	return *o.VenueType
 }
 
-// GetVenueTypeOk returns a tuple with the VenueType field value
+// GetVenueTypeOk returns a tuple with the VenueType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingPartialUpdate) GetVenueTypeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.VenueType) {
 		return nil, false
 	}
-	return &o.VenueType, true
+	return o.VenueType, true
 }
 
-// SetVenueType sets field value
+// HasVenueType returns a boolean if a field has been set.
+func (o *MeetingPartialUpdate) HasVenueType() bool {
+	if o != nil && !IsNil(o.VenueType) {
+		return true
+	}
+
+	return false
+}
+
+// SetVenueType gets a reference to the given int32 and assigns it to the VenueType field.
 func (o *MeetingPartialUpdate) SetVenueType(v int32) {
-	o.VenueType = v
+	o.VenueType = &v
 }
 
 // GetTemporarilyVirtual returns the TemporarilyVirtual field value if set, zero value otherwise.
@@ -193,76 +203,100 @@ func (o *MeetingPartialUpdate) SetTemporarilyVirtual(v bool) {
 	o.TemporarilyVirtual = &v
 }
 
-// GetDay returns the Day field value
+// GetDay returns the Day field value if set, zero value otherwise.
 func (o *MeetingPartialUpdate) GetDay() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Day) {
 		var ret int32
 		return ret
 	}
-
-	return o.Day
+	return *o.Day
 }
 
-// GetDayOk returns a tuple with the Day field value
+// GetDayOk returns a tuple with the Day field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingPartialUpdate) GetDayOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Day) {
 		return nil, false
 	}
-	return &o.Day, true
+	return o.Day, true
 }
 
-// SetDay sets field value
+// HasDay returns a boolean if a field has been set.
+func (o *MeetingPartialUpdate) HasDay() bool {
+	if o != nil && !IsNil(o.Day) {
+		return true
+	}
+
+	return false
+}
+
+// SetDay gets a reference to the given int32 and assigns it to the Day field.
 func (o *MeetingPartialUpdate) SetDay(v int32) {
-	o.Day = v
+	o.Day = &v
 }
 
-// GetStartTime returns the StartTime field value
+// GetStartTime returns the StartTime field value if set, zero value otherwise.
 func (o *MeetingPartialUpdate) GetStartTime() string {
-	if o == nil {
+	if o == nil || IsNil(o.StartTime) {
 		var ret string
 		return ret
 	}
-
-	return o.StartTime
+	return *o.StartTime
 }
 
-// GetStartTimeOk returns a tuple with the StartTime field value
+// GetStartTimeOk returns a tuple with the StartTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingPartialUpdate) GetStartTimeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.StartTime) {
 		return nil, false
 	}
-	return &o.StartTime, true
+	return o.StartTime, true
 }
 
-// SetStartTime sets field value
+// HasStartTime returns a boolean if a field has been set.
+func (o *MeetingPartialUpdate) HasStartTime() bool {
+	if o != nil && !IsNil(o.StartTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetStartTime gets a reference to the given string and assigns it to the StartTime field.
 func (o *MeetingPartialUpdate) SetStartTime(v string) {
-	o.StartTime = v
+	o.StartTime = &v
 }
 
-// GetDuration returns the Duration field value
+// GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *MeetingPartialUpdate) GetDuration() string {
-	if o == nil {
+	if o == nil || IsNil(o.Duration) {
 		var ret string
 		return ret
 	}
-
-	return o.Duration
+	return *o.Duration
 }
 
-// GetDurationOk returns a tuple with the Duration field value
+// GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingPartialUpdate) GetDurationOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Duration) {
 		return nil, false
 	}
-	return &o.Duration, true
+	return o.Duration, true
 }
 
-// SetDuration sets field value
+// HasDuration returns a boolean if a field has been set.
+func (o *MeetingPartialUpdate) HasDuration() bool {
+	if o != nil && !IsNil(o.Duration) {
+		return true
+	}
+
+	return false
+}
+
+// SetDuration gets a reference to the given string and assigns it to the Duration field.
 func (o *MeetingPartialUpdate) SetDuration(v string) {
-	o.Duration = v
+	o.Duration = &v
 }
 
 // GetTimeZone returns the TimeZone field value if set, zero value otherwise.
@@ -297,76 +331,100 @@ func (o *MeetingPartialUpdate) SetTimeZone(v string) {
 	o.TimeZone = &v
 }
 
-// GetLatitude returns the Latitude field value
+// GetLatitude returns the Latitude field value if set, zero value otherwise.
 func (o *MeetingPartialUpdate) GetLatitude() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.Latitude) {
 		var ret float32
 		return ret
 	}
-
-	return o.Latitude
+	return *o.Latitude
 }
 
-// GetLatitudeOk returns a tuple with the Latitude field value
+// GetLatitudeOk returns a tuple with the Latitude field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingPartialUpdate) GetLatitudeOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Latitude) {
 		return nil, false
 	}
-	return &o.Latitude, true
+	return o.Latitude, true
 }
 
-// SetLatitude sets field value
+// HasLatitude returns a boolean if a field has been set.
+func (o *MeetingPartialUpdate) HasLatitude() bool {
+	if o != nil && !IsNil(o.Latitude) {
+		return true
+	}
+
+	return false
+}
+
+// SetLatitude gets a reference to the given float32 and assigns it to the Latitude field.
 func (o *MeetingPartialUpdate) SetLatitude(v float32) {
-	o.Latitude = v
+	o.Latitude = &v
 }
 
-// GetLongitude returns the Longitude field value
+// GetLongitude returns the Longitude field value if set, zero value otherwise.
 func (o *MeetingPartialUpdate) GetLongitude() float32 {
-	if o == nil {
+	if o == nil || IsNil(o.Longitude) {
 		var ret float32
 		return ret
 	}
-
-	return o.Longitude
+	return *o.Longitude
 }
 
-// GetLongitudeOk returns a tuple with the Longitude field value
+// GetLongitudeOk returns a tuple with the Longitude field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingPartialUpdate) GetLongitudeOk() (*float32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Longitude) {
 		return nil, false
 	}
-	return &o.Longitude, true
+	return o.Longitude, true
 }
 
-// SetLongitude sets field value
+// HasLongitude returns a boolean if a field has been set.
+func (o *MeetingPartialUpdate) HasLongitude() bool {
+	if o != nil && !IsNil(o.Longitude) {
+		return true
+	}
+
+	return false
+}
+
+// SetLongitude gets a reference to the given float32 and assigns it to the Longitude field.
 func (o *MeetingPartialUpdate) SetLongitude(v float32) {
-	o.Longitude = v
+	o.Longitude = &v
 }
 
-// GetPublished returns the Published field value
+// GetPublished returns the Published field value if set, zero value otherwise.
 func (o *MeetingPartialUpdate) GetPublished() bool {
-	if o == nil {
+	if o == nil || IsNil(o.Published) {
 		var ret bool
 		return ret
 	}
-
-	return o.Published
+	return *o.Published
 }
 
-// GetPublishedOk returns a tuple with the Published field value
+// GetPublishedOk returns a tuple with the Published field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingPartialUpdate) GetPublishedOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Published) {
 		return nil, false
 	}
-	return &o.Published, true
+	return o.Published, true
 }
 
-// SetPublished sets field value
+// HasPublished returns a boolean if a field has been set.
+func (o *MeetingPartialUpdate) HasPublished() bool {
+	if o != nil && !IsNil(o.Published) {
+		return true
+	}
+
+	return false
+}
+
+// SetPublished gets a reference to the given bool and assigns it to the Published field.
 func (o *MeetingPartialUpdate) SetPublished(v bool) {
-	o.Published = v
+	o.Published = &v
 }
 
 // GetEmail returns the Email field value if set, zero value otherwise.
@@ -433,28 +491,36 @@ func (o *MeetingPartialUpdate) SetWorldId(v string) {
 	o.WorldId = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *MeetingPartialUpdate) GetName() string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MeetingPartialUpdate) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *MeetingPartialUpdate) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *MeetingPartialUpdate) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
 // GetLocationText returns the LocationText field value if set, zero value otherwise.
@@ -1203,28 +1269,48 @@ func (o MeetingPartialUpdate) MarshalJSON() ([]byte, error) {
 
 func (o MeetingPartialUpdate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["serviceBodyId"] = o.ServiceBodyId
-	toSerialize["formatIds"] = o.FormatIds
-	toSerialize["venueType"] = o.VenueType
+	if !IsNil(o.ServiceBodyId) {
+		toSerialize["serviceBodyId"] = o.ServiceBodyId
+	}
+	if !IsNil(o.FormatIds) {
+		toSerialize["formatIds"] = o.FormatIds
+	}
+	if !IsNil(o.VenueType) {
+		toSerialize["venueType"] = o.VenueType
+	}
 	if !IsNil(o.TemporarilyVirtual) {
 		toSerialize["temporarilyVirtual"] = o.TemporarilyVirtual
 	}
-	toSerialize["day"] = o.Day
-	toSerialize["startTime"] = o.StartTime
-	toSerialize["duration"] = o.Duration
+	if !IsNil(o.Day) {
+		toSerialize["day"] = o.Day
+	}
+	if !IsNil(o.StartTime) {
+		toSerialize["startTime"] = o.StartTime
+	}
+	if !IsNil(o.Duration) {
+		toSerialize["duration"] = o.Duration
+	}
 	if !IsNil(o.TimeZone) {
 		toSerialize["timeZone"] = o.TimeZone
 	}
-	toSerialize["latitude"] = o.Latitude
-	toSerialize["longitude"] = o.Longitude
-	toSerialize["published"] = o.Published
+	if !IsNil(o.Latitude) {
+		toSerialize["latitude"] = o.Latitude
+	}
+	if !IsNil(o.Longitude) {
+		toSerialize["longitude"] = o.Longitude
+	}
+	if !IsNil(o.Published) {
+		toSerialize["published"] = o.Published
+	}
 	if !IsNil(o.Email) {
 		toSerialize["email"] = o.Email
 	}
 	if !IsNil(o.WorldId) {
 		toSerialize["worldId"] = o.WorldId
 	}
-	toSerialize["name"] = o.Name
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
 	if !IsNil(o.LocationText) {
 		toSerialize["location_text"] = o.LocationText
 	}
@@ -1295,52 +1381,6 @@ func (o MeetingPartialUpdate) ToMap() (map[string]interface{}, error) {
 		toSerialize["customFields"] = o.CustomFields
 	}
 	return toSerialize, nil
-}
-
-func (o *MeetingPartialUpdate) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"serviceBodyId",
-		"formatIds",
-		"venueType",
-		"day",
-		"startTime",
-		"duration",
-		"latitude",
-		"longitude",
-		"published",
-		"name",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varMeetingPartialUpdate := _MeetingPartialUpdate{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMeetingPartialUpdate)
-
-	if err != nil {
-		return err
-	}
-
-	*o = MeetingPartialUpdate(varMeetingPartialUpdate)
-
-	return err
 }
 
 type NullableMeetingPartialUpdate struct {

@@ -1766,7 +1766,7 @@ Name | Type | Description  | Notes
 
 ## PatchMeeting
 
-> PatchMeeting(ctx, meetingId).MeetingPartialUpdate(meetingPartialUpdate).Execute()
+> PatchMeeting(ctx, meetingId).MeetingPartialUpdate(meetingPartialUpdate).SkipVenueTypeLocationValidation(skipVenueTypeLocationValidation).Execute()
 
 Patches a meeting
 
@@ -1786,11 +1786,12 @@ import (
 
 func main() {
 	meetingId := int64(1) // int64 | ID of meeting
-	meetingPartialUpdate := *openapiclient.NewMeetingPartialUpdate(int32(0), []int32{int32(123)}, int32(1), int32(0), "string", "01:00", float32(35.698741), float32(-81.26273), true, "string") // MeetingPartialUpdate | Pass in fields you want to update.
+	meetingPartialUpdate := *openapiclient.NewMeetingPartialUpdate() // MeetingPartialUpdate | Pass in fields you want to update.
+	skipVenueTypeLocationValidation := true // bool | specify true to skip venue type location validation (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.RootServerAPI.PatchMeeting(context.Background(), meetingId).MeetingPartialUpdate(meetingPartialUpdate).Execute()
+	r, err := apiClient.RootServerAPI.PatchMeeting(context.Background(), meetingId).MeetingPartialUpdate(meetingPartialUpdate).SkipVenueTypeLocationValidation(skipVenueTypeLocationValidation).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.PatchMeeting``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -1815,6 +1816,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **meetingPartialUpdate** | [**MeetingPartialUpdate**](MeetingPartialUpdate.md) | Pass in fields you want to update. | 
+ **skipVenueTypeLocationValidation** | **bool** | specify true to skip venue type location validation | 
 
 ### Return type
 

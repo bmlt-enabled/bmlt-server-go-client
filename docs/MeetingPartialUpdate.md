@@ -4,20 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ServiceBodyId** | **int32** |  | 
-**FormatIds** | **[]int32** |  | 
-**VenueType** | **int32** |  | 
+**ServiceBodyId** | Pointer to **int32** |  | [optional] 
+**FormatIds** | Pointer to **[]int32** |  | [optional] 
+**VenueType** | Pointer to **int32** |  | [optional] 
 **TemporarilyVirtual** | Pointer to **bool** |  | [optional] 
-**Day** | **int32** |  | 
-**StartTime** | **string** |  | 
-**Duration** | **string** |  | 
+**Day** | Pointer to **int32** |  | [optional] 
+**StartTime** | Pointer to **string** |  | [optional] 
+**Duration** | Pointer to **string** |  | [optional] 
 **TimeZone** | Pointer to **string** |  | [optional] 
-**Latitude** | **float32** |  | 
-**Longitude** | **float32** |  | 
-**Published** | **bool** |  | 
+**Latitude** | Pointer to **float32** |  | [optional] 
+**Longitude** | Pointer to **float32** |  | [optional] 
+**Published** | Pointer to **bool** |  | [optional] 
 **Email** | Pointer to **string** |  | [optional] 
 **WorldId** | Pointer to **string** |  | [optional] 
-**Name** | **string** |  | 
+**Name** | Pointer to **string** |  | [optional] 
 **LocationText** | Pointer to **string** |  | [optional] 
 **LocationInfo** | Pointer to **string** |  | [optional] 
 **LocationStreet** | Pointer to **string** |  | [optional] 
@@ -46,7 +46,7 @@ Name | Type | Description | Notes
 
 ### NewMeetingPartialUpdate
 
-`func NewMeetingPartialUpdate(serviceBodyId int32, formatIds []int32, venueType int32, day int32, startTime string, duration string, latitude float32, longitude float32, published bool, name string, ) *MeetingPartialUpdate`
+`func NewMeetingPartialUpdate() *MeetingPartialUpdate`
 
 NewMeetingPartialUpdate instantiates a new MeetingPartialUpdate object
 This constructor will assign default values to properties that have it defined,
@@ -80,6 +80,11 @@ and a boolean to check if the value has been set.
 
 SetServiceBodyId sets ServiceBodyId field to given value.
 
+### HasServiceBodyId
+
+`func (o *MeetingPartialUpdate) HasServiceBodyId() bool`
+
+HasServiceBodyId returns a boolean if a field has been set.
 
 ### GetFormatIds
 
@@ -100,6 +105,11 @@ and a boolean to check if the value has been set.
 
 SetFormatIds sets FormatIds field to given value.
 
+### HasFormatIds
+
+`func (o *MeetingPartialUpdate) HasFormatIds() bool`
+
+HasFormatIds returns a boolean if a field has been set.
 
 ### GetVenueType
 
@@ -120,6 +130,11 @@ and a boolean to check if the value has been set.
 
 SetVenueType sets VenueType field to given value.
 
+### HasVenueType
+
+`func (o *MeetingPartialUpdate) HasVenueType() bool`
+
+HasVenueType returns a boolean if a field has been set.
 
 ### GetTemporarilyVirtual
 
@@ -165,6 +180,11 @@ and a boolean to check if the value has been set.
 
 SetDay sets Day field to given value.
 
+### HasDay
+
+`func (o *MeetingPartialUpdate) HasDay() bool`
+
+HasDay returns a boolean if a field has been set.
 
 ### GetStartTime
 
@@ -185,6 +205,11 @@ and a boolean to check if the value has been set.
 
 SetStartTime sets StartTime field to given value.
 
+### HasStartTime
+
+`func (o *MeetingPartialUpdate) HasStartTime() bool`
+
+HasStartTime returns a boolean if a field has been set.
 
 ### GetDuration
 
@@ -205,6 +230,11 @@ and a boolean to check if the value has been set.
 
 SetDuration sets Duration field to given value.
 
+### HasDuration
+
+`func (o *MeetingPartialUpdate) HasDuration() bool`
+
+HasDuration returns a boolean if a field has been set.
 
 ### GetTimeZone
 
@@ -250,6 +280,11 @@ and a boolean to check if the value has been set.
 
 SetLatitude sets Latitude field to given value.
 
+### HasLatitude
+
+`func (o *MeetingPartialUpdate) HasLatitude() bool`
+
+HasLatitude returns a boolean if a field has been set.
 
 ### GetLongitude
 
@@ -270,6 +305,11 @@ and a boolean to check if the value has been set.
 
 SetLongitude sets Longitude field to given value.
 
+### HasLongitude
+
+`func (o *MeetingPartialUpdate) HasLongitude() bool`
+
+HasLongitude returns a boolean if a field has been set.
 
 ### GetPublished
 
@@ -290,6 +330,11 @@ and a boolean to check if the value has been set.
 
 SetPublished sets Published field to given value.
 
+### HasPublished
+
+`func (o *MeetingPartialUpdate) HasPublished() bool`
+
+HasPublished returns a boolean if a field has been set.
 
 ### GetEmail
 
@@ -360,6 +405,11 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
+### HasName
+
+`func (o *MeetingPartialUpdate) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 ### GetLocationText
 
