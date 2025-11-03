@@ -2201,8 +2201,14 @@ components:
           id:
             example: 0
             type: integer
+          lastLoginAt:
+            example: 2019-05-02T05:05:00Z
+            format: date-time
+            nullable: true
+            type: string
         type: object
       example:
+        lastLoginAt: 2019-05-02T05:05:00Z
         displayName: string
         description: string
         id: 0

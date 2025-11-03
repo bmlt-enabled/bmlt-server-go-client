@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **Email** | **string** |  | 
 **OwnerId** | **int32** |  | 
 **Id** | **int32** |  | 
+**LastLoginAt** | Pointer to **NullableTime** |  | [optional] 
 
 ## Methods
 
@@ -171,6 +172,41 @@ and a boolean to check if the value has been set.
 SetId sets Id field to given value.
 
 
+### GetLastLoginAt
+
+`func (o *User) GetLastLoginAt() time.Time`
+
+GetLastLoginAt returns the LastLoginAt field if non-nil, zero value otherwise.
+
+### GetLastLoginAtOk
+
+`func (o *User) GetLastLoginAtOk() (*time.Time, bool)`
+
+GetLastLoginAtOk returns a tuple with the LastLoginAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLastLoginAt
+
+`func (o *User) SetLastLoginAt(v time.Time)`
+
+SetLastLoginAt sets LastLoginAt field to given value.
+
+### HasLastLoginAt
+
+`func (o *User) HasLastLoginAt() bool`
+
+HasLastLoginAt returns a boolean if a field has been set.
+
+### SetLastLoginAtNil
+
+`func (o *User) SetLastLoginAtNil(b bool)`
+
+ SetLastLoginAtNil sets the value for LastLoginAt to be an explicit nil
+
+### UnsetLastLoginAt
+`func (o *User) UnsetLastLoginAt()`
+
+UnsetLastLoginAt ensures that no value is present for LastLoginAt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

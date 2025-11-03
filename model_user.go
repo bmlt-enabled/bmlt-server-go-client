@@ -12,6 +12,7 @@ package bmlt
 
 import (
 	"encoding/json"
+	"time"
 	"bytes"
 	"fmt"
 )
@@ -28,6 +29,7 @@ type User struct {
 	Email string `json:"email"`
 	OwnerId int32 `json:"ownerId"`
 	Id int32 `json:"id"`
+	LastLoginAt NullableTime `json:"lastLoginAt,omitempty"`
 }
 
 type _User User
@@ -224,6 +226,48 @@ func (o *User) SetId(v int32) {
 	o.Id = v
 }
 
+// GetLastLoginAt returns the LastLoginAt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *User) GetLastLoginAt() time.Time {
+	if o == nil || IsNil(o.LastLoginAt.Get()) {
+		var ret time.Time
+		return ret
+	}
+	return *o.LastLoginAt.Get()
+}
+
+// GetLastLoginAtOk returns a tuple with the LastLoginAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *User) GetLastLoginAtOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LastLoginAt.Get(), o.LastLoginAt.IsSet()
+}
+
+// HasLastLoginAt returns a boolean if a field has been set.
+func (o *User) HasLastLoginAt() bool {
+	if o != nil && o.LastLoginAt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastLoginAt gets a reference to the given NullableTime and assigns it to the LastLoginAt field.
+func (o *User) SetLastLoginAt(v time.Time) {
+	o.LastLoginAt.Set(&v)
+}
+// SetLastLoginAtNil sets the value for LastLoginAt to be an explicit nil
+func (o *User) SetLastLoginAtNil() {
+	o.LastLoginAt.Set(nil)
+}
+
+// UnsetLastLoginAt ensures that no value is present for LastLoginAt, not even an explicit nil
+func (o *User) UnsetLastLoginAt() {
+	o.LastLoginAt.Unset()
+}
+
 func (o User) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -241,6 +285,9 @@ func (o User) ToMap() (map[string]interface{}, error) {
 	toSerialize["email"] = o.Email
 	toSerialize["ownerId"] = o.OwnerId
 	toSerialize["id"] = o.Id
+	if o.LastLoginAt.IsSet() {
+		toSerialize["lastLoginAt"] = o.LastLoginAt.Get()
+	}
 	return toSerialize, nil
 }
 
