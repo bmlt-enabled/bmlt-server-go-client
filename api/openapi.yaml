@@ -1016,6 +1016,71 @@ paths:
       summary: Updates a Service Body
       tags:
       - rootServer
+  /api/v1/settings:
+    get:
+      description: Retrieve all server settings. Only accessible to server administrators.
+      operationId: getSettings
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SettingsObject"
+          description: Returns when user is authenticated as admin.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthenticationError"
+          description: Returns when not authenticated
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthorizationError"
+          description: Returns when user is not an admin
+      security:
+      - bmltToken: []
+      summary: Retrieves all settings
+      tags:
+      - rootServer
+    patch:
+      description: Updates one or more server settings. Only accessible to server
+        administrators.
+      operationId: updateSettings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SettingsUpdate"
+        description: Pass in settings object with values to update
+        required: true
+      responses:
+        "204":
+          description: Success.
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthenticationError"
+          description: Returns when user is not authenticated.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AuthorizationError"
+          description: Returns when user is not an admin.
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationError"
+          description: Validation error.
+      security:
+      - bmltToken: []
+      summary: Update settings
+      tags:
+      - rootServer
   /api/v1/auth/token:
     post:
       description: Exchange credentials for a new token
@@ -2131,6 +2196,190 @@ components:
       items:
         $ref: "#/components/schemas/ServiceBody"
       type: array
+    SettingsBase:
+      properties:
+        googleApiKey:
+          type: string
+        changeDepthForMeetings:
+          type: integer
+        defaultSortKey:
+          nullable: true
+          type: string
+        language:
+          type: string
+        defaultDurationTime:
+          type: string
+        regionBias:
+          type: string
+        distanceUnits:
+          type: string
+        meetingStatesAndProvinces:
+          items:
+            type: string
+          type: array
+        meetingCountiesAndSubProvinces:
+          items:
+            type: string
+          type: array
+        searchSpecMapCenterLongitude:
+          format: float
+          type: number
+        searchSpecMapCenterLatitude:
+          format: float
+          type: number
+        searchSpecMapCenterZoom:
+          type: integer
+        numberOfMeetingsForAuto:
+          type: integer
+        autoGeocodingEnabled:
+          type: boolean
+        countyAutoGeocodingEnabled:
+          type: boolean
+        zipAutoGeocodingEnabled:
+          type: boolean
+        defaultClosedStatus:
+          type: boolean
+        enableLanguageSelector:
+          type: boolean
+        includeServiceBodyEmailInSemantic:
+          type: boolean
+        bmltTitle:
+          type: string
+        bmltNotice:
+          type: string
+        formatLangNames:
+          type: object
+      type: object
+    SettingsObject:
+      example:
+        googleApiKey: ""
+        countyAutoGeocodingEnabled: false
+        searchSpecMapCenterLatitude: 34.235918
+        defaultSortKey: defaultSortKey
+        autoGeocodingEnabled: true
+        enableLanguageSelector: false
+        language: en
+        meetingStatesAndProvinces: []
+        formatLangNames: []
+        defaultClosedStatus: true
+        searchSpecMapCenterZoom: 6
+        bmltTitle: ""
+        includeServiceBodyEmailInSemantic: false
+        bmltNotice: ""
+        meetingCountiesAndSubProvinces: []
+        zipAutoGeocodingEnabled: false
+        defaultDurationTime: 01:00
+        distanceUnits: mi
+        searchSpecMapCenterLongitude: -118.563659
+        numberOfMeetingsForAuto: 10
+        changeDepthForMeetings: 0
+        regionBias: us
+      properties:
+        googleApiKey:
+          example: ""
+          type: string
+        changeDepthForMeetings:
+          example: 0
+          type: integer
+        defaultSortKey:
+          nullable: true
+          type: string
+          example: null
+        language:
+          example: en
+          type: string
+        defaultDurationTime:
+          example: 01:00
+          type: string
+        regionBias:
+          example: us
+          type: string
+        distanceUnits:
+          example: mi
+          type: string
+        meetingStatesAndProvinces:
+          example: []
+          items:
+            type: string
+          type: array
+        meetingCountiesAndSubProvinces:
+          example: []
+          items:
+            type: string
+          type: array
+        searchSpecMapCenterLongitude:
+          example: -118.563659
+          format: float
+          type: number
+        searchSpecMapCenterLatitude:
+          example: 34.235918
+          format: float
+          type: number
+        searchSpecMapCenterZoom:
+          example: 6
+          type: integer
+        numberOfMeetingsForAuto:
+          example: 10
+          type: integer
+        autoGeocodingEnabled:
+          example: true
+          type: boolean
+        countyAutoGeocodingEnabled:
+          example: false
+          type: boolean
+        zipAutoGeocodingEnabled:
+          example: false
+          type: boolean
+        defaultClosedStatus:
+          example: true
+          type: boolean
+        enableLanguageSelector:
+          example: false
+          type: boolean
+        includeServiceBodyEmailInSemantic:
+          example: false
+          type: boolean
+        bmltTitle:
+          example: ""
+          type: string
+        bmltNotice:
+          example: ""
+          type: string
+        formatLangNames:
+          example: []
+          type: object
+      type: object
+    SettingsUpdate:
+      allOf:
+      - $ref: "#/components/schemas/SettingsBase"
+      description: Partial update object - include only the settings you want to update
+      example:
+        googleApiKey: googleApiKey
+        countyAutoGeocodingEnabled: true
+        searchSpecMapCenterLatitude: 1.4658129
+        defaultSortKey: defaultSortKey
+        autoGeocodingEnabled: true
+        enableLanguageSelector: true
+        language: language
+        meetingStatesAndProvinces:
+        - meetingStatesAndProvinces
+        - meetingStatesAndProvinces
+        formatLangNames: "{}"
+        defaultClosedStatus: true
+        searchSpecMapCenterZoom: 5
+        bmltTitle: bmltTitle
+        includeServiceBodyEmailInSemantic: true
+        bmltNotice: bmltNotice
+        meetingCountiesAndSubProvinces:
+        - meetingCountiesAndSubProvinces
+        - meetingCountiesAndSubProvinces
+        zipAutoGeocodingEnabled: true
+        defaultDurationTime: defaultDurationTime
+        distanceUnits: distanceUnits
+        searchSpecMapCenterLongitude: 6.0274563
+        numberOfMeetingsForAuto: 5
+        changeDepthForMeetings: 0
+        regionBias: regionBias
     Token:
       example:
         access_token: 2|tR6PIqa8tiBJWMu4zyb3qw4eECuERjLd7xeLKgBu

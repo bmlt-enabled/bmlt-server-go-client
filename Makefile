@@ -8,7 +8,7 @@ generate: openapi.json
 	    -i openapi.json \
 	    -g go \
 	    -p packageName=bmlt \
-	    -p packageVersion=1.3.0 \
+	    -p packageVersion=1.4.0 \
 		--git-repo-id=bmlt-server-go-client \
 		--git-user-id=bmlt-enabled \
 	    -o .

@@ -34,6 +34,9 @@ docs/ServiceBodyBase.md
 docs/ServiceBodyCreate.md
 docs/ServiceBodyPartialUpdate.md
 docs/ServiceBodyUpdate.md
+docs/SettingsBase.md
+docs/SettingsObject.md
+docs/SettingsUpdate.md
 docs/Token.md
 docs/TokenCredentials.md
 docs/User.md
@@ -73,6 +76,9 @@ model_service_body_base.go
 model_service_body_create.go
 model_service_body_partial_update.go
 model_service_body_update.go
+model_settings_base.go
+model_settings_object.go
+model_settings_update.go
 model_token.go
 model_token_credentials.go
 model_user.go

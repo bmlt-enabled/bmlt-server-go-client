@@ -26,6 +26,7 @@ Method | HTTP request | Description
 [**GetRootServers**](RootServerAPI.md#GetRootServers) | **Get** /api/v1/rootservers | Retrieves root servers
 [**GetServiceBodies**](RootServerAPI.md#GetServiceBodies) | **Get** /api/v1/servicebodies | Retrieves service bodies
 [**GetServiceBody**](RootServerAPI.md#GetServiceBody) | **Get** /api/v1/servicebodies/{serviceBodyId} | Retrieves a service body
+[**GetSettings**](RootServerAPI.md#GetSettings) | **Get** /api/v1/settings | Retrieves all settings
 [**GetUser**](RootServerAPI.md#GetUser) | **Get** /api/v1/users/{userId} | Retrieves a single user
 [**GetUsers**](RootServerAPI.md#GetUsers) | **Get** /api/v1/users | Retrieves users
 [**PartialUpdateUser**](RootServerAPI.md#PartialUpdateUser) | **Patch** /api/v1/users/{userId} | Patches a user
@@ -35,6 +36,7 @@ Method | HTTP request | Description
 [**UpdateFormat**](RootServerAPI.md#UpdateFormat) | **Put** /api/v1/formats/{formatId} | Updates a format
 [**UpdateMeeting**](RootServerAPI.md#UpdateMeeting) | **Put** /api/v1/meetings/{meetingId} | Updates a meeting
 [**UpdateServiceBody**](RootServerAPI.md#UpdateServiceBody) | **Put** /api/v1/servicebodies/{serviceBodyId} | Updates a Service Body
+[**UpdateSettings**](RootServerAPI.md#UpdateSettings) | **Patch** /api/v1/settings | Update settings
 [**UpdateUser**](RootServerAPI.md#UpdateUser) | **Put** /api/v1/users/{userId} | Update single user
 
 
@@ -1493,6 +1495,67 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetSettings
+
+> SettingsObject GetSettings(ctx).Execute()
+
+Retrieves all settings
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/bmlt-enabled/bmlt-server-go-client"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.RootServerAPI.GetSettings(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.GetSettings``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSettings`: SettingsObject
+	fmt.Fprintf(os.Stdout, "Response from `RootServerAPI.GetSettings`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSettingsRequest struct via the builder pattern
+
+
+### Return type
+
+[**SettingsObject**](SettingsObject.md)
+
+### Authorization
+
+[bmltToken](../README.md#bmltToken)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetUser
 
 > User GetUser(ctx, userId).Execute()
@@ -2097,6 +2160,70 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **serviceBodyUpdate** | [**ServiceBodyUpdate**](ServiceBodyUpdate.md) | Pass in service body object | 
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[bmltToken](../README.md#bmltToken)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateSettings
+
+> UpdateSettings(ctx).SettingsUpdate(settingsUpdate).Execute()
+
+Update settings
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/bmlt-enabled/bmlt-server-go-client"
+)
+
+func main() {
+	settingsUpdate := *openapiclient.NewSettingsUpdate() // SettingsUpdate | Pass in settings object with values to update
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.RootServerAPI.UpdateSettings(context.Background()).SettingsUpdate(settingsUpdate).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.UpdateSettings``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateSettingsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **settingsUpdate** | [**SettingsUpdate**](SettingsUpdate.md) | Pass in settings object with values to update | 
 
 ### Return type
 
