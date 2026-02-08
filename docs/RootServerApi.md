@@ -695,7 +695,7 @@ Name | Type | Description  | Notes
 
 ## DeleteServiceBody
 
-> DeleteServiceBody(ctx, serviceBodyId).Execute()
+> DeleteServiceBody(ctx, serviceBodyId).Force(force).Execute()
 
 Deletes a service body
 
@@ -715,10 +715,11 @@ import (
 
 func main() {
 	serviceBodyId := int64(1) // int64 | ID of service body
+	force := "false" // string | Force deletion of service body and all associated meetings (optional) (default to "false")
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	r, err := apiClient.RootServerAPI.DeleteServiceBody(context.Background(), serviceBodyId).Execute()
+	r, err := apiClient.RootServerAPI.DeleteServiceBody(context.Background(), serviceBodyId).Force(force).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RootServerAPI.DeleteServiceBody``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -742,6 +743,7 @@ Other parameters are passed through a pointer to a apiDeleteServiceBodyRequest s
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **force** | **string** | Force deletion of service body and all associated meetings | [default to &quot;false&quot;]
 
 ### Return type
 

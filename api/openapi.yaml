@@ -827,7 +827,8 @@ paths:
       - rootServer
   /api/v1/servicebodies/{serviceBodyId}:
     delete:
-      description: Deletes a service body by id.
+      description: "Deletes a service body by id. If the service body has meetings,\
+        \ use force=true to delete them as well."
       operationId: deleteServiceBody
       parameters:
       - description: ID of service body
@@ -840,6 +841,19 @@ paths:
           format: int64
           type: integer
         style: simple
+      - description: Force deletion of service body and all associated meetings
+        example: "false"
+        explode: true
+        in: query
+        name: force
+        required: false
+        schema:
+          default: "false"
+          enum:
+          - "true"
+          - "false"
+          type: string
+        style: form
       responses:
         "204":
           description: Success.
@@ -866,7 +880,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ConflictError"
-          description: Returns when service body has children.
+          description: Returns when service body has children or meetings (when force=false).
       security:
       - bmltToken: []
       summary: Deletes a service body
@@ -1764,6 +1778,9 @@ components:
         comments:
           example: string
           type: string
+        admin_notes:
+          example: string
+          type: string
         customFields:
           additionalProperties:
             type: string
@@ -1814,6 +1831,7 @@ components:
         contact_name_1: string
         location_province: string
         contact_phone_1: string
+        admin_notes: string
         location_city_subsection: string
         location_neighborhood: string
         serviceBodyId: 0
@@ -1876,6 +1894,7 @@ components:
         contact_name_1: string
         location_province: string
         contact_phone_1: string
+        admin_notes: string
         location_city_subsection: string
         location_neighborhood: string
         serviceBodyId: 0
@@ -1932,6 +1951,7 @@ components:
         contact_name_1: string
         location_province: string
         contact_phone_1: string
+        admin_notes: string
         location_city_subsection: string
         location_neighborhood: string
         serviceBodyId: 0
@@ -1988,6 +2008,7 @@ components:
         contact_name_1: string
         location_province: string
         contact_phone_1: string
+        admin_notes: string
         location_city_subsection: string
         location_neighborhood: string
         serviceBodyId: 0

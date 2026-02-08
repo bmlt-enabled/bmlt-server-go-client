@@ -40,6 +40,7 @@ Name | Type | Description | Notes
 **BusLines** | Pointer to **string** |  | [optional] 
 **TrainLines** | Pointer to **string** |  | [optional] 
 **Comments** | Pointer to **string** |  | [optional] 
+**AdminNotes** | Pointer to **string** |  | [optional] 
 **CustomFields** | Pointer to **map[string]string** |  | [optional] 
 **Id** | **int32** |  | 
 
@@ -891,6 +892,31 @@ SetComments sets Comments field to given value.
 `func (o *Meeting) HasComments() bool`
 
 HasComments returns a boolean if a field has been set.
+
+### GetAdminNotes
+
+`func (o *Meeting) GetAdminNotes() string`
+
+GetAdminNotes returns the AdminNotes field if non-nil, zero value otherwise.
+
+### GetAdminNotesOk
+
+`func (o *Meeting) GetAdminNotesOk() (*string, bool)`
+
+GetAdminNotesOk returns a tuple with the AdminNotes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAdminNotes
+
+`func (o *Meeting) SetAdminNotes(v string)`
+
+SetAdminNotes sets AdminNotes field to given value.
+
+### HasAdminNotes
+
+`func (o *Meeting) HasAdminNotes() bool`
+
+HasAdminNotes returns a boolean if a field has been set.
 
 ### GetCustomFields
 

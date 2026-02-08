@@ -1407,6 +1407,13 @@ type ApiDeleteServiceBodyRequest struct {
 	ctx context.Context
 	ApiService *RootServerAPIService
 	serviceBodyId int64
+	force *string
+}
+
+// Force deletion of service body and all associated meetings
+func (r ApiDeleteServiceBodyRequest) Force(force string) ApiDeleteServiceBodyRequest {
+	r.force = &force
+	return r
 }
 
 func (r ApiDeleteServiceBodyRequest) Execute() (*http.Response, error) {
@@ -1416,7 +1423,7 @@ func (r ApiDeleteServiceBodyRequest) Execute() (*http.Response, error) {
 /*
 DeleteServiceBody Deletes a service body
 
-Deletes a service body by id.
+Deletes a service body by id. If the service body has meetings, use force=true to delete them as well.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param serviceBodyId ID of service body
@@ -1450,6 +1457,13 @@ func (a *RootServerAPIService) DeleteServiceBodyExecute(r ApiDeleteServiceBodyRe
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.force != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "force", r.force, "form", "")
+	} else {
+		var defaultValue string = "false"
+		parameterAddToHeaderOrQuery(localVarQueryParams, "force", defaultValue, "form", "")
+		r.force = &defaultValue
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
