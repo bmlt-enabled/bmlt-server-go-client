@@ -57,6 +57,7 @@ type MeetingCreate struct {
 	BusLines *string `json:"bus_lines,omitempty"`
 	TrainLines *string `json:"train_lines,omitempty"`
 	Comments *string `json:"comments,omitempty"`
+	AdminNotes *string `json:"admin_notes,omitempty"`
 	CustomFields *map[string]string `json:"customFields,omitempty"`
 }
 
@@ -1161,6 +1162,38 @@ func (o *MeetingCreate) SetComments(v string) {
 	o.Comments = &v
 }
 
+// GetAdminNotes returns the AdminNotes field value if set, zero value otherwise.
+func (o *MeetingCreate) GetAdminNotes() string {
+	if o == nil || IsNil(o.AdminNotes) {
+		var ret string
+		return ret
+	}
+	return *o.AdminNotes
+}
+
+// GetAdminNotesOk returns a tuple with the AdminNotes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MeetingCreate) GetAdminNotesOk() (*string, bool) {
+	if o == nil || IsNil(o.AdminNotes) {
+		return nil, false
+	}
+	return o.AdminNotes, true
+}
+
+// HasAdminNotes returns a boolean if a field has been set.
+func (o *MeetingCreate) HasAdminNotes() bool {
+	if o != nil && !IsNil(o.AdminNotes) {
+		return true
+	}
+
+	return false
+}
+
+// SetAdminNotes gets a reference to the given string and assigns it to the AdminNotes field.
+func (o *MeetingCreate) SetAdminNotes(v string) {
+	o.AdminNotes = &v
+}
+
 // GetCustomFields returns the CustomFields field value if set, zero value otherwise.
 func (o *MeetingCreate) GetCustomFields() map[string]string {
 	if o == nil || IsNil(o.CustomFields) {
@@ -1290,6 +1323,9 @@ func (o MeetingCreate) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Comments) {
 		toSerialize["comments"] = o.Comments
+	}
+	if !IsNil(o.AdminNotes) {
+		toSerialize["admin_notes"] = o.AdminNotes
 	}
 	if !IsNil(o.CustomFields) {
 		toSerialize["customFields"] = o.CustomFields
